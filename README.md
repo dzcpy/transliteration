@@ -10,7 +10,7 @@ Transliterate `str`. Unknown characters will be converted to `unknown`
 __Example__
 ```javascript
 var transliteration = require('transliteration');
-transliteration.transliterate('你好，世界'); // Ni Hao, Shi Jie
+transliteration.transliterate('你好，世界'); // Ni Hao ,Shi Jie
 ```
 
 ### slugify(str, options)
