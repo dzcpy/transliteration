@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Transliteration module for node.js. Transliterate unicode characters into latin ones. Supports all common unicode characters including CJK.",
   "main": "lib/transliteration.js",
   "scripts": {
