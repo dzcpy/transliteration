@@ -1,6 +1,13 @@
 # Transliteration
 
 Transliteration module for node.js. Transliterate unicode characters into latin ones. Supports all common unicode characters including CJK.
+
+## Install
+
+```
+npm install transliteration
+```
+
 ## Usage
 
 ### transliterate(str, unknown)
