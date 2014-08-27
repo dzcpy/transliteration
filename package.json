@@ -1,0 +1,25 @@
+{
+  "name": "transliteration",
+  "version": "0.0.1",
+  "description": "Transliteration module for node.js. Support all common unicode characters including CJK.",
+  "main": "lib/transliteration.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andyhu/node-transliteration.git"
+  },
+  "keywords": [
+    "transliterate",
+    "transliteration",
+    "string",
+    "slug",
+    "slugify"
+  ],
+  "author": "Andy Hu",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/andyhu/node-transliteration/issues"
+  }
+}
