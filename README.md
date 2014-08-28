@@ -18,6 +18,8 @@ __Example__
 ```javascript
 var transliteration = require('transliteration');
 transliteration.transliterate('你好，世界'); // Ni Hao ,Shi Jie
+transliteration.transliterate('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
+transliteration.transliterate('안녕하세요, 세계'); // annyeonghaseyo, segye
 ```
 
 ### slugify(str, options)
