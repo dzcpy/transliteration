@@ -42,4 +42,7 @@ slugify('你好，世界', {lowercase: false, separator: '_'}); // Ni_Hao_Shi_Ji
 ```
 
 ### Client side usage
+```
+bower install transliteration
+```
 You can also use this module in the browser. Please check example.html for detailed usage.
