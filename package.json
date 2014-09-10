@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Transliteration module for node.js. Transliterate unicode characters into latin ones. Supports all common unicode characters including CJK.",
   "main": "lib/transliteration.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "slugify"
   ],
   "author": "Andy Hu",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/andyhu/node-transliteration/issues"
   }

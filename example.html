@@ -1,0 +1,10 @@
+<html>
+<body>
+<script src="transliteration.min.js"></script>
+<input id="a" placeholder="Input unicode characters" />
+<button onclick="document.getElementById('b').value = _TR.transliterate(document.getElementById('a').value)">Transliterate</button>
+<button onclick="document.getElementById('b').value = _TR.slugify(document.getElementById('a').value)">Slugify</button>
+<hr />
+<textarea id="b"></textarea>
+</body>
+</html>

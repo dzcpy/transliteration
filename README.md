@@ -10,16 +10,16 @@ npm install transliteration
 
 ## Usage
 
-### transliterate(str, unknown)
+### transliteration(str, unknown)
 
 Transliterate `str`. Unknown characters will be converted to `unknown`
 
 __Example__
 ```javascript
-var transliteration = require('transliteration');
-transliteration.transliterate('你好，世界'); // Ni Hao ,Shi Jie
-transliteration.transliterate('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
-transliteration.transliterate('안녕하세요, 세계'); // annyeonghaseyo, segye
+var tr = require('transliteration');
+tr('你好，世界'); // Ni Hao ,Shi Jie
+tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
+tr('안녕하세요, 세계'); // annyeonghaseyo, segye
 ```
 
 ### slugify(str, options)
@@ -36,7 +36,10 @@ Leave it blank to use the above default values.
 
 __Example__
 ```javascript
-var transliteration = require('transliteration');
-transliteration.slugify('你好，世界'); // ni-hao-shi-jie
-transliteration.slugify('你好，世界', {lowercase: false, separator: '_'}); // Ni_Hao_Shi_Jie
+var slugify = require('transliteration').slugify;
+slugify('你好，世界'); // ni-hao-shi-jie
+slugify('你好，世界', {lowercase: false, separator: '_'}); // Ni_Hao_Shi_Jie
 ```
+
+### Client side usage
+You can also use this module in the browser. Please check example.html for detailed usage.
