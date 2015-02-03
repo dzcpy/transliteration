@@ -1,10 +1,17 @@
 <html>
 <body>
 <script src="transliteration.min.js"></script>
-<input id="a" placeholder="Input unicode characters" />
-<button onclick="document.getElementById('b').value = _TR.transliterate(document.getElementById('a').value)">Transliterate</button>
-<button onclick="document.getElementById('b').value = _TR.slugify(document.getElementById('a').value)">Slugify</button>
+<script>
+function getEle(id) {
+	return document.getElementById(id);
+}
+</script>
+<label for="a">Source String:</label> <input id="a" placeholder="Input unicode characters" /> <br />
+<button onclick="getEle('b').value = _TR.transliterate(getEle('a').value, getEle('unknown').value)">Transliterate</button> <label for="unknown">Unknown Charactor Replaced to:</label> <input id="unknown" size="1" value="?" /> <br />
+<button onclick="getEle('b').value = _TR.slugify(getEle('a').value, {separator: getEle('sep').value, lowercase: getEle('lower').checked})">Slugify</button>
+<label for="lower">Lowercase?</label><input id="lower" type="checkbox" checked /> <label for="sep">Separator</label> <input size="1" id="sep" value="-" />
 <hr />
+<label for="b">Result:</label><br />
 <textarea id="b"></textarea>
 </body>
 </html>
