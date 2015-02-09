@@ -7,8 +7,8 @@ function getEle(id) {
 }
 </script>
 <label for="a">Source String:</label> <input id="a" placeholder="Input unicode characters" /> <br />
-<button onclick="getEle('b').value = _TR.transliterate(getEle('a').value, getEle('unknown').value)">Transliterate</button> <label for="unknown">Unknown Charactor Replaced to:</label> <input id="unknown" size="1" value="?" /> <br />
-<button onclick="getEle('b').value = _TR.slugify(getEle('a').value, {separator: getEle('sep').value, lowercase: getEle('lower').checked})">Slugify</button>
+<button onclick="getEle('b').value = TR.transliterate(getEle('a').value, getEle('unknown').value)">Transliterate</button> <label for="unknown">Unknown Charactor Replaced to:</label> <input id="unknown" size="1" value="?" /> <br />
+<button onclick="getEle('b').value = TR.slugify(getEle('a').value, {separator: getEle('sep').value, lowercase: getEle('lower').checked})">Slugify</button>
 <label for="lower">Lowercase?</label><input id="lower" type="checkbox" checked /> <label for="sep">Separator</label> <input size="1" id="sep" value="-" />
 <hr />
 <label for="b">Result:</label><br />

@@ -213,7 +213,7 @@ var Transliteration = function(str, unknown) {
   var ord, ascii;
   unknown = unknown || '?';
   str = ucs2decode(str);
-  strNew = '';
+  var strNew = '';
   for(i in str) {
     ord = str[i];
     if(ord > 0xffff) {
@@ -241,7 +241,7 @@ Transliteration.slugify = function(str, options) {
     separator: '-'
   };
   options = options || {};
-  for(prop in defaultOptions) {
+  for(var prop in defaultOptions) {
     if(typeof options[prop] === 'undefined') options[prop] = defaultOptions[prop];
   }
   var slug = Transliteration(str).replace(/[^a-zA-Z0-9]+/g, options.separator);
@@ -253,10 +253,22 @@ Transliteration.slugify = function(str, options) {
   slug = slug.replace(new RegExp('^(' + sep + ')+|(' + sep + ')+$', 'g'), '');
   return slug;
 }
-Transliteration.noConflict = function() {
-  return Transliteration;
-};
-if(window) {
-  window._TR = window.Transliteration = Transliteration;
+// AMD support
+if(typeof define === 'function' && define.amd) {
+  define(function () {
+    return Transliteration;
+  });
+}
+// CommonJS support
+else if(typeof module !== 'undefined' && module.exports) {
+  module.exports = Transliteration;
+}
+// Global object
+else if(window) {
+  window.TR = window.Transliteration = Transliteration;
+  Transliteration.noConflict = function() {
+    unset(window.TR, window.Transliteration);
+    return Transliteration;
+  };
 }
 })();

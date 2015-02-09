@@ -1,6 +1,6 @@
 # Transliteration
 
-Transliteration module for node.js. Transliterate unicode characters into latin ones. Supports all common unicode characters including CJK.
+Transliteration module for node.js. It can be used to transliterate unicode text into corresponding ascii characters, with support of nearly every commong languages including CJK (Chinese, Japanese and Korean).
 
 ## Install
 
@@ -10,9 +10,9 @@ npm install transliteration
 
 ## Usage
 
-### transliteration(str, unknown)
+### transliteration(str, [unknown])
 
-Transliterate `str`. Unknown characters will be converted to `unknown`
+Transliterate `str`. Characters which this module cannot recognise will be converted to the `unknown` parameter, defaults to `?`.
 
 __Example__
 ```javascript
@@ -32,7 +32,7 @@ You can provide an `options` parameter in the form of
   separator: '-'
 }
 ```
-Leave it blank to use the above default values.
+If no `options` parameter provided it will use the above default values.
 
 __Example__
 ```javascript
@@ -42,7 +42,23 @@ slugify('你好，世界', {lowercase: false, separator: '_'}); // Ni_Hao_Shi_Ji
 ```
 
 ### Client side usage
+Transliteration module can run in browser as well. You can download it using bower:
 ```
 bower install transliteration
 ```
-You can also use this module in the browser. Please check example.html for detailed usage.
+It can be loaded as AMD / CommonJS component or global variable.
+
+When use in the browser, by default it will create global variables under `window` object:
+```javascript
+TR('你好, World'); // window.TR
+// or
+Transliteration('String'); // window.Transliteration
+```
+If you don't like the default name or the variable names conflict with other libraries, you can call noConfilict() method before loading other libraries, then both `window.TR` and `window.Transliteration` will be deleted from windows object:
+```javascript
+var trans = Transliteration.noConflict();
+trans('你好, World');
+trans.slugify('你好, World');
+```
+
+Please check example.html for a quick demo.
