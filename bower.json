@@ -1,11 +1,11 @@
 {
   "name": "transliteration",
-  "version": "0.0.7",
+  "version": "0.1.1",
   "homepage": "https://github.com/andyhu/node-transliteration",
   "authors": [
     "Andy Hu"
   ],
-  "description": "Transliterate unicode characters into latin characters. Supports all common unicode characters including CJK.",
+  "description": "Transliteration module for node.js. Transliterates special unicode characters into corresponding ascii code so it can be safely used as URL slag or filename",
   "main": "transliteration.js",
   "keywords": [
     "transliteration",
