@@ -64,4 +64,4 @@ trans('你好, World');
 trans.slugify('你好, World');
 ```
 
-For detailed usage, please check example.html.
+For detailed usage, please check [example.html](http://rawgit.com/andyhu/node-transliteration/master/example.html).
