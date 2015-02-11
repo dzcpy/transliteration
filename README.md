@@ -1,6 +1,6 @@
 # Transliteration
 
-Transliteration module for node.js. Can be used to transliterate unicode text into corresponding ascii characters, with support of nearly every common languages including CJK (Chinese, Japanese and Korean).
+Transliteration module for node.js. It converts special characters in unicode text into corresponding ascii letters, with support of nearly every common languages including CJK (Chinese, Japanese and Korean).
 
 ## Install
 
