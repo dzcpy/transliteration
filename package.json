@@ -1,25 +1,33 @@
 {
-  "name": "transliteration",
-  "version": "0.1.1",
-  "description": "Transliteration module for node.js. Transliterates special unicode characters into corresponding ascii code so it can be safely used as URL slag or filename",
-  "main": "lib/transliteration.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/andyhu/node-transliteration.git"
-  },
-  "keywords": [
-    "transliterate",
-    "transliteration",
-    "string",
-    "slug",
-    "slugify"
-  ],
-  "author": "Andy Hu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/andyhu/node-transliteration/issues"
-  }
+    "name": "transliteration",
+    "version": "0.2.1",
+    "author": "Andy Hu",
+    "license": "MIT",
+    "description": "Transliterates characters into corresponding ASCII code so it can be safely used as URL slug or filename",
+    "keywords": [
+        "transliterate",
+        "transliteration",
+        "string",
+        "slug",
+        "slugify"
+    ],
+    "main": "build/transliteration.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/andyhu/node-transliteration.git"
+    },
+    "devDependencies": {
+        "gulp": "=3.9.0",
+        "bower": "=1.5.2",
+        "run-sequence":"",
+        "gulp-browserify": "",
+        "gulp-rename": "=1.2.2",
+        "gulp-uglify": "1.5.3"
+    },
+    "bugs": {
+        "url": "https://github.com/andyhu/node-transliteration/issues"
+    }
 }

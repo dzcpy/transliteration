@@ -1,0 +1,10 @@
+{
+    "esprima": "./node_modules/esprima-fb",
+    "esnext": true,
+    "verbose": true,
+    "preset": "yandex",
+    "disallowMultipleVarDecl": null,
+    "requireMultipleVarDecl": true,
+    "requireSpacesInAnonymousFunctionExpression": false,
+    "excludeFiles": ["node_modules/**", "bower_components/**"]
+}

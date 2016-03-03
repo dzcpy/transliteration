@@ -1,22 +1,25 @@
 {
-  "name": "transliteration",
-  "version": "0.1.1",
-  "homepage": "https://github.com/andyhu/node-transliteration",
-  "authors": [
-    "Andy Hu"
-  ],
-  "description": "Transliteration module for node.js. Transliterates special unicode characters into corresponding ascii code so it can be safely used as URL slag or filename",
-  "main": "transliteration.js",
-  "keywords": [
-    "transliteration",
-    "transliterate",
-    "slugify"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "lib",
-    "data",
-    "package.json"
-  ]
+    "name": "transliteration",
+    "version": "0.2.1",
+    "authors": ["Andy Hu"],
+    "license": "MIT",
+    "description": "Transliterates characters into corresponding ASCII code so it can be safely used as URL slug or filename",
+    "keywords": [
+        "transliterate",
+        "transliteration",
+        "string",
+        "slug",
+        "slugify"
+    ],
+    "main": "build/transliteration.js",
+    "homepage": "https://github.com/andyhu/node-transliteration",
+    "ignore": [
+        "**/.*",
+        "src",
+        "data",
+        "gulp",
+        "package.json",
+        "Makefile",
+        "Gulpfile.js"
+    ]
 }
