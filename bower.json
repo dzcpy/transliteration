@@ -1,6 +1,6 @@
 {
     "name": "transliteration",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "authors": ["Andy Hu"],
     "license": "MIT",
     "description": "Transliterates characters into corresponding ASCII code so it can be safely used as URL slug or filename",
