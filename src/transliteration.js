@@ -3,7 +3,7 @@ var ucs2decode = require('punycode').ucs2.decode,
     codemap = require('../src/codemap'),
     Transliteration = function (str, unknown) {
         unknown = unknown || '?';
-        str = ucs2decode(str);
+        str = ucs2decode(str || '');
         var ord, ascii, strNew = '', i, x;
         for (i in str) {
             ord = str[i];
@@ -28,11 +28,11 @@ var ucs2decode = require('punycode').ucs2.decode,
         return strNew.replace(/\s+$/, '');
     },
     Slugify = function (str, options) {
+        options = options || {};
         var defaultOptions = {
             lowercase: true,
             separator: '-'
         };
-        options = options || {};
         for (var prop in defaultOptions) {
             if (typeof options[prop] === 'undefined') {
                 options[prop] = defaultOptions[prop];
