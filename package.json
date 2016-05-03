@@ -4,7 +4,7 @@
   "description": "Transliteration module for node.js. Transliterates special unicode characters into corresponding ascii code so it can be safely used as URL slag or filename",
   "main": "lib/transliteration.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/andyhu/node-transliteration/issues"
+  },
+  "devDependencies": {
+    "mocha": "~2.4.5"
   }
 }
