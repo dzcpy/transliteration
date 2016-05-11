@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Transliteration module for node.js. Transliterates special unicode characters into corresponding ascii code so it can be safely used as URL slag or filename",
   "main": "lib/transliteration.js",
   "scripts": {
