@@ -1,23 +1,44 @@
 # Transliteration
 
-Transliteration module for node.js. It converts special characters in unicode text into corresponding ascii letters, with support of nearly every common languages including CJK (Chinese, Japanese and Korean).
+[![Build Status](https://travis-ci.org/andyhu/node-transliteration.svg)](https://travis-ci.org/andyhu/node-transliteration)
+[![Dependencies](https://img.shields.io/david/andyhu/node-transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/package.json)
+[![Dev Dependencies](https://img.shields.io/david/dev/andyhu/node-transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/package.json)
+[![Coverage Status](https://coveralls.io/repos/github/andyhu/node-transliteration/badge.svg?branch=master)](https://coveralls.io/github/andyhu/node-transliteration?branch=master)
 
-## Install
+[![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
+[![Bower](https://img.shields.io/bower/v/transliteration.svg)](https://github.com/andyhu/node-transliteration)
+[![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
+[![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/LICENSE.txt)
+[![Gitter](https://badges.gitter.im/andyhu/node-transliteration.svg)](https://gitter.im/andyhu/node-transliteration?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+Transliteration module for node.js and browser. Transliterate unicode special characters into corresponding pure ascii so it can be safely used as URL slug or as file name etc.
+
+Transliteration support nearly every common languages including CJK (Chinese, Japanese and Korean). Note that Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
+
+## Install in Node.js
 
 ```
-npm install transliteration
+npm install transliteration --save
 ```
+## Breaking changes since 1.0.0
+Please note that the code has been entirely refactored since version 1.0.0, becareful when you plan to upgrade from v0.1.x to v1.0.x
+
+__Changes:__
+* This module has been rewritten with ES6, means that it cannot be directly `require`d in the old way. You can either use `require('transliteration').transliterate` or ES6 import `import { transliterate as tr, slugify as slug } from 'transliteration'` to load the module.
+* The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
+* Unknown string will be transliterated as `[?]` instead of `?`.
+* In browser, global variables has changed to `window.transl` and `windnow.slugify`.
 
 ## Usage
 
-### transliteration(str, [unknown])
+### transliterate(str, options)
 
-Transliterate the string `str`. Characters which this module doesn't recognise will be converted to the character in the `unknown` parameter, defaults to `?`.
+Transliterate the string `str`. Characters which this module doesn't recognise will be converted to the character in the `unknown` parameter, defaults to `[?]`.
 
 __Example__
 ```javascript
-var tr = require('transliteration');
-tr('你好，世界'); // Ni Hao ,Shi Jie
+var tr = require('transliteration').transliterate;
+tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
 ```
@@ -39,29 +60,32 @@ __Example:__
 ```javascript
 var slugify = require('transliteration').slugify;
 slugify('你好，世界'); // ni-hao-shi-jie
-slugify('你好，世界', {lowercase: false, separator: '_'}); // Ni_Hao_Shi_Jie
+slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
 ```
 
-### Client side usage
+### Usage in browser
 Transliteration module can be run in the browser as well.
 
-Donload the library with bower:
+Download the library with bower:
 ```
 bower install transliteration
 ```
-It supports AMD / CommonJS standard or just to be loaded as a global variable.
+It supports AMD / CommonJS standard or just to be loaded as a global variable (UMD).
 
-When use in the browser, by default it will create global variables under `window` object:
+When use in browser, by default it will create global variables under `window` object:
 ```javascript
-TR('你好, World'); // window.TR
+transl('你好, World'); // window.transl
 // or
-Transliteration('String'); // window.Transliteration
+slugify('Hello, 世界'); // window.slugify
 ```
-If you don't like the default variable names or they conflict with other libraries, you can call noConfilict() method before loading other libraries, then both `window.TR` and `window.Transliteration` will be deleted from windows object and Transliteration function will be returned:
+If the name of the variables conflict with other libraries in your project or you prefer not to use global variables, you can then call noConfilict() before loading other libraries which contails the possible conflict.:
 ```javascript
-var trans = Transliteration.noConflict();
-trans('你好, World');
-trans.slugify('你好, World');
+var tr = transl.noConflict();
+console.log(transl); // undefined
+tr('你好, World'); // Ni Hao , World
+var slug = slugify.noConfilict();
+slug('你好, World'); // ni-hao-world
+console.log(slugify); // undefined
 ```
 
-For detailed usage, please check [example.html](http://rawgit.com/andyhu/node-transliteration/master/example.html).
+For detailed usage, please check the demo at [example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html).
