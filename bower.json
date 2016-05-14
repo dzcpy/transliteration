@@ -1,12 +1,12 @@
 {
   "name": "transliteration",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0",
   "homepage": "https://github.com/andyhu/node-transliteration",
   "authors": [
     "Andy Hu"
   ],
-  "description": "Transliterates unicode special characters into corresponding ascii. Make sure strings can be safely used as URL slug or file name etc.",
-  "main": "dist/transliteration.min.js",
+  "description": "Transliterate unicode special characters into corresponding pure ascii so it can be safely used as URL slug or as file name etc.",
+  "main": ["build/browser/transliteration.min.js"],
   "keywords": [
     "transliterate",
     "transliteration",
@@ -21,7 +21,8 @@
   "ignore": [
     ".*",
     "lib",
+    "build/node",
     "package.json",
-    "gulpfile.js"
+    "gulpfile.babel.js"
   ]
 }

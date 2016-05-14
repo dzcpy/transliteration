@@ -4,47 +4,44 @@
  * @see <http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm>
  */
 
-'use strict';
 /* global describe, it */
 
-var expect = require('chai').expect;
-var tr = require('../lib');
+import { should } from 'chai';
+import tr from '../lib';
 
-describe('# Purity tests', function () {
-  var tests = [];
-  for (var code = 1; code <= 127; code++) {
+should();
+
+describe('# Purity tests', () => {
+  const tests = [];
+  for (let code = 1; code <= 127; code++) {
     tests.push(String.fromCharCode(code));
   }
-  tests.forEach(function (test) {
-    it(test.charCodeAt(0).toString(16) + ' ' + test, function () {
-      var exp = test;
-      var res = tr(exp);
-      expect(res).to.equal(exp);
+  tests.forEach(test => {
+    it(`${test.charCodeAt(0).toString(16)} ${test}`, () => {
+      tr(test).should.equal(test);
     });
   });
 });
 
-describe('# Basic string tests', function () {
-  var tests = [
+describe('# Basic string tests', () => {
+  const tests = [
     '',
     1 / 10,
     'I like pie.',
     '\n',
     '\r\n',
-    'I like pie.\n'
+    'I like pie.\n',
   ];
 
-  tests.forEach(function (test) {
-    it(test, function () {
-      var exp = test.toString();
-      var res = tr(test.toString());
-      expect(res).to.equal(exp);
+  tests.forEach((test) => {
+    it(test, () => {
+      tr(test.toString()).should.equal(test.toString());
     });
   });
 });
 
-describe('# Complex tests', function () {
-  var tests = [
+describe('# Complex tests', () => {
+  const tests = [
     ['\u00C6neid', 'AEneid'],
     ['\u00E9tude', 'etude'],
     ['\u5317\u4EB0', 'Bei Jing'],
@@ -64,15 +61,13 @@ describe('# Complex tests', function () {
     ['\u0d2e\u0d32\u0d2f\u0d3e\u0d32\u0d2e\u0d4d', 'mlyaalm'],
     //  the Malayaalam word for 'Malayaalam'
     //  Yes, if we were doing it right, that'd be 'malayaalam', not 'mlyaalm'
-    ['\u3052\u3093\u307e\u3044\u8336', 'genmaiCha']
+    ['\u3052\u3093\u307e\u3044\u8336', 'genmaiCha'],
     //  Japanese, astonishingly unmangled.
   ];
 
-  tests.forEach(function (test) {
-    it(test[0] + '-->' + test[1], function () {
-      var exp = test[1];
-      var res = tr(test[0]);
-      expect(res).to.equal(exp);
+  tests.forEach(test => {
+    it(`${test[0]}-->${test[1]}`, () => {
+      tr(test[0]).should.equal(test[1]);
     });
   });
 });
