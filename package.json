@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "1.0.1",
+  "version": "1.0.0-beta1",
   "description": "Transliterates unicode special characters into corresponding ascii. Make sure strings can be safely used as URL slug or file name etc.",
   "main": "lib/index.js",
   "scripts": {
