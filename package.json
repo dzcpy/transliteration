@@ -1,10 +1,14 @@
 {
   "name": "transliteration",
-  "version": "0.2.1",
-  "description": "Transliteration module for node.js. Transliterates special unicode characters into corresponding ascii code so it can be safely used as URL slag or filename",
-  "main": "lib/transliteration.js",
+  "version": "1.0.1",
+  "description": "Transliterates unicode special characters into corresponding ascii. Make sure strings can be safely used as URL slug or file name etc.",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --recursive"
+    "lint": "node_modules/.bin/eslint lib/*.js test/*.js gulpfile.js",
+    "build": "node_modules/.bin/gulp",
+    "prebuild": "npm run test",
+    "pretest": "npm run lint",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -13,9 +17,12 @@
   "keywords": [
     "transliterate",
     "transliteration",
-    "string",
+    "utf8",
     "slug",
-    "slugify"
+    "slugify",
+    "romanization",
+    "unicode",
+    "unidecode"
   ],
   "author": "Andy Hu",
   "license": "MIT",
@@ -23,6 +30,18 @@
     "url": "https://github.com/andyhu/node-transliteration/issues"
   },
   "devDependencies": {
-    "mocha": "~2.4.5"
+    "browserify": "^13.0.1",
+    "chai": "^3.5.0",
+    "eslint": "^2.10.0",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "mocha": "~2.4.5",
+    "uglify-js": "^2.6.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
