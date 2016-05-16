@@ -1,4 +1,6 @@
 # Transliteration
+
+[![Join the chat at https://gitter.im/andyhu/node-transliteration](https://badges.gitter.im/andyhu/node-transliteration.svg)](https://gitter.im/andyhu/node-transliteration?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/andyhu/node-transliteration.svg)](https://travis-ci.org/andyhu/node-transliteration)
 [![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 ![Bower](https://img.shields.io/bower/v/transliteration.svg)
