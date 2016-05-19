@@ -3,18 +3,29 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.slugify = exports.transliterate = undefined;
 
 var _transliterate = require('./transliterate');
 
-var _transliterate2 = _interopRequireDefault(_transliterate);
+Object.defineProperty(exports, 'transliterate', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_transliterate).default;
+  }
+});
+Object.defineProperty(exports, 'default', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_transliterate).default;
+  }
+});
 
 var _slugify = require('./slugify');
 
-var _slugify2 = _interopRequireDefault(_slugify);
+Object.defineProperty(exports, 'slugify', {
+  enumerable: true,
+  get: function get() {
+    return _slugify.slugify;
+  }
+});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _transliterate2.default;
-var transliterate = exports.transliterate = _transliterate2.default;
-var slugify = exports.slugify = _slugify2.default;

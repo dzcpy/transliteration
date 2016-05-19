@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = slugify;
-
 var _transliterate = require('./transliterate');
 
 var _transliterate2 = _interopRequireDefault(_transliterate);
@@ -24,10 +22,10 @@ var defaultOptions = {
   ignore: []
 };
 
-function slugify(str, options) {
+var slugify = function slugify(str, options) {
   var config = _extends({}, defaultOptions, options || {});
   // remove leading and trailing separators
-  var sep = (0, _utils.escapeRegexp)(config.separator);
+  var sep = (0, _utils.escapeRegExp)(config.separator);
   var slug = (0, _transliterate2.default)(str).replace(/[^a-zA-Z0-9]+/g, config.separator);
   if (config.lowercase) {
     slug = slug.toLowerCase();
@@ -35,9 +33,11 @@ function slugify(str, options) {
 
   slug = slug.replace(new RegExp('^(' + sep + ')+|(' + sep + ')+$', 'g'), '');
   return slug;
-}
-
-slugify.config = function (options) {
-  _extends(defaultOptions, options);
 };
-module.exports = slugify;
+
+slugify.config = function () {
+  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  return _extends(defaultOptions, options);
+};
+
+exports.default = slugify;
