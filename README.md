@@ -37,7 +37,7 @@ Transliterate the string `str`. Characters which this module doesn't recognise w
 
 __Example__
 ```javascript
-var tr = require('transliteration').transliterate;
+var tr = require('transliteration').transliterate; // import { tr } from 'transliteration';
 tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
@@ -58,7 +58,7 @@ If no `options` parameter provided it will use the above default values.
 
 __Example:__
 ```javascript
-var slugify = require('transliteration').slugify;
+var slugify = require('transliteration').slugify; // import { slugify } from 'transliteration';
 slugify('你好，世界'); // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
 ```
