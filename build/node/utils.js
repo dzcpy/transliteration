@@ -3,17 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// modified version of ucs2decode with String.prototype.codePointAt polyfill
-// Credit: https://github.com/bestiejs/punycode.js/blob/master/LICENSE-MIT.txt
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+// Credit: https://github.com/bestiejs/punycode.js/blob/master/LICENSE-MIT.txt
 var ucs2decode = exports.ucs2decode = function ucs2decode(string) {
   var output = [];
   var counter = 0;
   while (counter < string.length) {
-    var value = string.codePointAt(counter++);
+    var value = string.charCodeAt(counter++);
     if (value >= 0xD800 && value <= 0xDBFF && counter < string.length) {
       // high surrogate, and there is a next character
-      var extra = string.codePointAt(counter++);
+      var extra = string.charCodeAt(counter++);
       if ((extra & 0xFC00) === 0xDC00) {
         // low surrogate
         output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
@@ -35,6 +36,7 @@ var fixChineseSpace = exports.fixChineseSpace = function fixChineseSpace(str) {
   return str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
 };
 
+// Escape regular expression string
 var escapeRegExp = exports.escapeRegExp = function escapeRegExp(str) {
   if (str === null || str === undefined) {
     str = '';
@@ -42,4 +44,37 @@ var escapeRegExp = exports.escapeRegExp = function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 };
 
-var dataPath = exports.dataPath = /build[\/\\]node[\/\\]?$/.test(__dirname) ? '../../data' : '../data';
+var mergeOptions = exports.mergeOptions = function mergeOptions(defaultOptions, options) {
+  var newOptions = {};
+  if (!options || (typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') options = {};
+  for (var key in defaultOptions) {
+    newOptions[key] = options[key] === undefined ? defaultOptions[key] : options[key];
+    if (newOptions[key] instanceof Array) {
+      newOptions[key] = newOptions[key].slice(0);
+    }
+  }
+  return newOptions;
+};
+
+var parseCmdEqualOption = exports.parseCmdEqualOption = function parseCmdEqualOption(option) {
+  var replaceToken = '__REPLACE_TOKEN__';
+  var tmpToken = replaceToken;
+  var result = void 0;
+  while (option.indexOf(tmpToken) > -1) {
+    tmpToken += tmpToken;
+  }
+  // escape for \\=
+  if (option.match(/[^\\]\\\\=/)) {
+    option = option.replace(/([^\\])\\\\=/g, '$1\\=');
+    // escape for \=
+  } else if (option.match(/[^\\]\\=/)) {
+      option = option.replace(/([^\\])\\=/g, '$1' + tmpToken);
+    }
+  result = option.split('=').map(function (value) {
+    return value.replace(new RegExp(tmpToken, 'g'), '=');
+  });
+  if (result.length !== 2) {
+    result = false;
+  }
+  return result;
+};

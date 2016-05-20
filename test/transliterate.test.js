@@ -4,14 +4,20 @@
  * @see <http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm>
  */
 
-/* global describe, it, before, beforeEach, after, afterEach */
-
-import { transliterate as tr } from '../lib';
+import { default as tr, replaceStr } from '../lib/src/transliterate';
 import { expect } from 'chai';
 
-describe('#transliteration()', () => {
+const defaultOptions = {
+  unknown: '[?]',
+  replace: [],
+  replaceAfter: [],
+  ignore: [],
+};
+
+describe('#transliterate()', () => {
   describe('- Purity tests', () => {
-    const tests = [...Array(127).keys()].map(i => String.fromCharCode(++i));
+    const tests = [];
+    for (let i = 1; tests.length < 127; tests.push(String.fromCharCode(i++)));
 
     tests.forEach(test => {
       it(`${test.charCodeAt(0).toString(16)} ${test}`, () => {
@@ -68,23 +74,62 @@ describe('#transliteration()', () => {
       });
     }
   });
+
+  describe('- With ignore option', () => {
+    const tests = [
+      ['\u00C6neid', ['\u00C6'], '\u00C6neid'],
+      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\uFF0C', '\uFF01'], 'Ni Hao\uFF0CShi Jie\uFF01'],
+      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\u4F60\u597D', '\uFF01'], '\u4F60\u597D,Shi Jie\uFF01'],
+    ];
+    for (const [str, ignore, result] of tests) {
+      it(`${str}-->${result}`, () => {
+        expect(tr(str, { ignore })).to.equal(result);
+      });
+    }
+  });
+
+  describe('- With replace option', () => {
+    const tests = [
+      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', [['\u4F60\u597D', 'Hola']], 'Hola,Shi Jie !'],
+    ];
+    for (const [str, replace, result] of tests) {
+      it(`${str}-->${result}`, () => {
+        expect(tr(str, { replace })).to.equal(result);
+      });
+    }
+  });
 });
 
+describe('#replaceStr()', () => {
+  const tests = [
+    ['abbc', [['a', 'aa'], [/b+/g, 'B']], 'aaBc'],
+    ['abbc', [[false, '']], 'abbc'],
+  ];
+  for (const [str, replace, result] of tests) {
+    it(`${str}->${result}`, () => {
+      expect(replaceStr(str, replace)).to.equal(result);
+    });
+  }
+});
+
+
 describe('#transliterage.config()', () => {
-  it('get default options', () => {
-    const defaultOptions = {
-      unknown: '[?]',
-      replace: {},
-      ignore: [],
-    };
+  it('read current config', () => {
     expect(tr.config()).to.deep.equal(defaultOptions);
   });
 });
 
 
 describe('#transliterage.setCodemap()', () => {
-  it('set codemap', () => {
-    const codemap = { t: 't' };
+  const codemap = { 0: { 97: 'A', 98: 'B', 99: 'C' } };
+  it('set custom codemap', () => {
+    tr.setCodemap(codemap);
     expect(tr.setCodemap(codemap)).to.equal(codemap);
+  });
+  it('read current custom codemap', () => {
+    expect(tr.setCodemap()).to.deep.equal(codemap);
+  });
+  it('transliterate with custom codemap', () => {
+    expect(tr('abc')).to.equal('ABC');
   });
 });

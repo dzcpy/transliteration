@@ -8,16 +8,18 @@ import sourcemaps from 'gulp-sourcemaps';
 import gutil from 'gulp-util';
 import rename from 'gulp-rename';
 import babelify from 'babelify';
-import del from 'del';
+import rimraf from 'rimraf';
 
 const paths = {
-  sourceBrowser: 'lib/browser.js',
-  sourceNode: ['lib/*.js', '!lib/browser.js', '!lib/data.js'],
+  sourceBrowser: 'lib/src/browser.js',
+  sourceNode: ['lib/src/*.js', '!lib/src/browser.js', '!lib/src/data.js'],
+  sourceBin: 'lib/bin/*.js',
   destBrowser: 'build/browser/',
   destNode: 'build/node/',
+  destBin: 'build/bin',
 };
 
-gulp.task('default', ['build:browser', 'build:node']);
+gulp.task('default', ['build:browser', 'build:node', 'build:bin']);
 
 gulp.task('build:browser', ['clean:browser'], () =>
   browserify(paths.sourceBrowser, { debug: true })
@@ -26,8 +28,8 @@ gulp.task('build:browser', ['clean:browser'], () =>
     .pipe(source('transliteration.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(gulp.dest(paths.destBrowser))
-    .pipe(rename('transliteration.min.js'))
+      .pipe(gulp.dest(paths.destBrowser))
+      .pipe(rename('transliteration.min.js'))
       .pipe(uglify())
       .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
@@ -41,6 +43,15 @@ gulp.task('build:node', ['clean:node'], () =>
     .pipe(gulp.dest(paths.destNode))
 );
 
-gulp.task('clean:browser', () => del('build/browser/*'));
+gulp.task('build:bin', ['clean:bin'], () =>
+  gulp.src(paths.sourceBin)
+    .pipe(babel())
+    .pipe(rename({ extname: '' }))
+    .pipe(gulp.dest(paths.destBin))
+);
 
-gulp.task('clean:node', () => del('build/node/*'));
+gulp.task('clean:browser', cb => rimraf('build/browser/*', cb));
+
+gulp.task('clean:node', cb => rimraf('build/node/*', cb));
+
+gulp.task('clean:bin', cb => rimraf('build/bin/*', cb));

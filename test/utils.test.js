@@ -1,5 +1,4 @@
-/* global describe, it, before, beforeEach, after, afterEach */
-import * as utils from '../lib/utils';
+import * as utils from '../lib/src/utils';
 import { expect } from 'chai';
 
 describe('#ucs2decode()', () => {
@@ -67,16 +66,39 @@ describe('#escapeRegex()', () => {
   });
 
   it('should return an empty string for empty values', () => {
-    /* eslint-disable no-sparse-arrays */
+    /* eslint-disable no-sparse-arrays,no-confusing-arrow */
     const values = [, null, undefined, ''];
-    /* eslint-enable no-sparse-arrays */
     const expected = values.map(() => '');
-    /* eslint-disable no-confusing-arrow */
     const actual = values.map((value, index) =>
-    /* eslint-enable no-confusing-arrow */
+    /* eslint-enable no-sparse-arrays,no-confusing-arrow */
       index ? utils.escapeRegExp(value) : utils.escapeRegExp()
     );
 
     expect(expected).to.deep.equal(actual);
+  });
+});
+
+describe('#parseCmdEqualOption', () => {
+  it('a=b', () => {
+    expect(utils.parseCmdEqualOption('a=b')).to.deep.equal(['a', 'b']);
+  });
+  it('a\\==b', () => {
+    expect(utils.parseCmdEqualOption('a\\==b')).to.deep.equal(['a=', 'b']);
+  });
+  it('a\\\\=b', () => {
+    expect(utils.parseCmdEqualOption('a\\\\=b')).to.deep.equal(['a\\', 'b']);
+  });
+  it('a==b', () => {
+    expect(utils.parseCmdEqualOption('a==b')).to.equal(false);
+  });
+  it('a__REPLACE_TOKEN__=b', () => {
+    expect(utils.parseCmdEqualOption('a__REPLACE_TOKEN__=b')).to.deep.equal(['a__REPLACE_TOKEN__', 'b']);
+  });
+});
+
+describe('#mergeOptions', () => {
+  it('extrame case with option="abc"', () => {
+    const opt = { a: 'b' };
+    expect(utils.mergeOptions(opt, 'abc')).to.deep.equal(opt);
   });
 });

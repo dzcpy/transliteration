@@ -24,7 +24,7 @@ var _slugify = require('./slugify');
 Object.defineProperty(exports, 'slugify', {
   enumerable: true,
   get: function get() {
-    return _slugify.slugify;
+    return _interopRequireDefault(_slugify).default;
   }
 });
 

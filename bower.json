@@ -23,6 +23,7 @@
     "lib",
     "build/node",
     "package.json",
+    "test",
     "gulpfile.babel.js"
   ]
 }

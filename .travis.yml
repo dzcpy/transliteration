@@ -1,8 +1,11 @@
 sudo: false
 language: node_js
 node_js:
+  - "0.12"
   - "iojs"
   - "4"
   - "6"
 after_script:
   - npm run coveralls
+addons:
+  sauce_connect: true
