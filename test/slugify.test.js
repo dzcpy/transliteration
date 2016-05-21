@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import slugify from '../lib/src/slugify';
-import { mergeOptions } from '../lib/src/utils';
 
 const defaultOptions = {
   lowercase: true,
@@ -30,17 +29,18 @@ describe('#slugify()', () => {
 describe('#slugify.config()', () => {
   describe('Get config', () => {
     it('read current config', () => {
+      slugify.config(defaultOptions);
       expect(slugify.config()).to.deep.equal(defaultOptions);
     });
   });
   const tests = [
     ['\u4F60\u597D, \u4E16\u754C!', {}, 'ni-hao-shi-jie'],
-    ['\u4F60\u597D, \u4E16\u754C!', mergeOptions(defaultOptions, { separator: '_' }), 'ni_hao_shi_jie'],
-    ['\u4F60\u597D, \u4E16\u754C!', mergeOptions(defaultOptions, { lowercase: false }), 'Ni-Hao-Shi-Jie'],
-    ['\u4F60\u597D, \u4E16\u754C!', mergeOptions(defaultOptions, { ignore: ['!', ','] }), 'ni-hao,shi-jie!'],
-    ['\u4F60\u597D, \u4E16\u754C!', mergeOptions(defaultOptions, { replace: [['\u4E16\u754C', '\u672A\u6765']] }), 'ni-hao-wei-lai'],
-    ['\u4F60\u597D, \u4E16\u754C!', mergeOptions(defaultOptions, { replace: [['\u4F60\u597D', 'Hello '], ['\u4E16\u754C', 'World ']] }), 'hello-world'],
-    ['\u4F60\u597D, \u4E16\u754C!', mergeOptions(defaultOptions, { separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false }), 'Hola, mundo!'],
+    ['\u4F60\u597D, \u4E16\u754C!', { separator: '_' }, 'ni_hao_shi_jie'],
+    ['\u4F60\u597D, \u4E16\u754C!', { lowercase: false }, 'Ni-Hao-Shi-Jie'],
+    ['\u4F60\u597D, \u4E16\u754C!', { ignore: ['!', ','] }, 'ni-hao,shi-jie!'],
+    ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4E16\u754C', '\u672A\u6765']] }, 'ni-hao-wei-lai'],
+    ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4F60\u597D', 'Hello '], ['\u4E16\u754C', 'World ']] }, 'hello-world'],
+    ['\u4F60\u597D, \u4E16\u754C!', { separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false }, 'Hola, mundo!'],
   ];
   describe('Generate slugs', () => {
     for (const [str, options, slug] of tests) {

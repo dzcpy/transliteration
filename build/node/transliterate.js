@@ -14,6 +14,7 @@ var defaultOptions = {
   replaceAfter: [],
   ignore: []
 };
+var configOptions = {};
 
 /* istanbul ignore next */
 var replaceStr = exports.replaceStr = function replaceStr(str, replace) {
@@ -62,7 +63,7 @@ var replaceStr = exports.replaceStr = function replaceStr(str, replace) {
  */
 /* istanbul ignore next */
 var transliterate = function transliterate(str, options) {
-  options = (0, _utils.mergeOptions)(defaultOptions, options);
+  options = options ? (0, _utils.mergeOptions)(defaultOptions, options) : (0, _utils.mergeOptions)(defaultOptions, configOptions);
   str = String(str);
   if (options.ignore instanceof Array && options.ignore.length > 0) {
     for (var i in options.ignore) {
@@ -140,8 +141,11 @@ transliterate.setCodemap = function (customCodemap) {
 };
 
 transliterate.config = function (options) {
-  defaultOptions = (0, _utils.mergeOptions)(defaultOptions, options);
-  return defaultOptions;
+  if (options === undefined) {
+    return configOptions;
+  }
+  configOptions = (0, _utils.mergeOptions)(defaultOptions, options);
+  return configOptions;
 };
 
 exports.default = transliterate;

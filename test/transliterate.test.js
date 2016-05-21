@@ -115,6 +115,7 @@ describe('#replaceStr()', () => {
 
 describe('#transliterage.config()', () => {
   it('read current config', () => {
+    tr.config(defaultOptions);
     expect(tr.config()).to.deep.equal(defaultOptions);
   });
 });

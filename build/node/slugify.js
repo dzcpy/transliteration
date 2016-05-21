@@ -20,9 +20,10 @@ var defaultOptions = {
   replaceAfter: [],
   ignore: []
 };
+var configOptions = {};
 
 var slugify = function slugify(str, options) {
-  options = (0, _utils.mergeOptions)(defaultOptions, options);
+  options = options ? (0, _utils.mergeOptions)(defaultOptions, options) : (0, _utils.mergeOptions)(defaultOptions, configOptions);
   // remove leading and trailing separators
   var sep = (0, _utils.escapeRegExp)(options.separator);
   options.replaceAfter.push([/[^a-zA-Z0-9]+/g, options.separator], [new RegExp('^(' + sep + ')+|(' + sep + ')+$', 'g'), '']);
@@ -35,8 +36,11 @@ var slugify = function slugify(str, options) {
 };
 
 slugify.config = function (options) {
-  defaultOptions = (0, _utils.mergeOptions)(defaultOptions, options);
-  return defaultOptions;
+  if (options === undefined) {
+    return configOptions;
+  }
+  configOptions = (0, _utils.mergeOptions)(defaultOptions, options);
+  return configOptions;
 };
 
 exports.default = slugify;
