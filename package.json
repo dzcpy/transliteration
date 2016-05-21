@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Unicode to ACSII transliteration / slugify module. Works in node.js, web browser and command line.",
   "main": "build/node/index.js",
   "scripts": {
@@ -15,8 +15,8 @@
     "postcoveralls": "rimraf .nyc_output"
   },
   "bin": {
-    "transliterate": "bin/js/transliterate.js",
-    "slugify": "bin/js/slugify.js"
+    "transliterate": "build/bin/transliterate",
+    "slugify": "build/bin/slugify"
   },
   "repository": {
     "type": "git",
