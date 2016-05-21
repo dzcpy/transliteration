@@ -8,7 +8,7 @@
 [![Bower](https://img.shields.io/bower/v/transliteration.svg)](https://github.com/andyhu/node-transliteration)
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/LICENSE.txt)
-[![PRs](https://img.shields.io/badge/prs-welcome-brightgreen.svg)](https://github.com/andyhu/node-transliteration)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/andyhu/node-transliteration)
 [![Gitter](https://img.shields.io/gitter/room/andyhu/node-transliteration.svg)](https://gitter.im/andyhu/node-transliteration)
 
 Transliteration module for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ACSII so it can be safely displayed, used as URL slug or as file name.
