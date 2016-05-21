@@ -93,6 +93,12 @@ var tr = require('transliteration').transliterate;
 tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
+tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] }) // You 好, Shi Jie
+// or use configurations
+tr({ replace: [['你', 'You']], ignore: ['好'] });
+tr('你好，世界') // You 好, Shi Jie
+// get configurations
+console.log(tr.config());
 ```
 
 ### slugify(str, options)
@@ -121,6 +127,11 @@ slugify('你好，世界'); // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
 slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // hello_world
 slugify('你好，世界', { ignore: ['你好'] }); // 你好shi-jie
+// or use configurations
+slugify.config({ lowercase: false, separator: '_' });
+slugify('你好，世界'); // Ni_Hao_Shi_Jie
+// get configurations
+console.log(slugify.config());
 ```
 
 ### Usage in browser
