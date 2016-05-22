@@ -1,7 +1,7 @@
+import test from 'tape';
 import * as utils from '../lib/src/utils';
-import { expect } from 'chai';
 
-describe('#ucs2decode()', () => {
+test('#ucs2decode()', (q) => {
   const data = [
     // Every Unicode symbol is tested separately. These are just the extra
     // tests for symbol combinations:
@@ -46,59 +46,46 @@ describe('#ucs2decode()', () => {
       encoded: '\uD801\uDC00',
     },
   ];
-  describe('Return ucs2 code array of a string', () => {
-    data.forEach(item =>
-      it(item.description, () => expect(utils.ucs2decode(item.encoded)).to.deep.equal(item.decoded))
-    );
+  test('Return ucs2 code array of a string', (t) => {
+    data.forEach(({ description, encoded, decoded }) => {
+      t.deepEqual(utils.ucs2decode(encoded), decoded, description);
+    });
+    t.end();
   });
+  q.end();
 });
 
-describe('#escapeRegex()', () => {
+test('#escapeRegex()', (t) => {
   const escaped = '\\^\\$\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|\\\\';
   const unescaped = '^$.*+?()[]{}|\\';
 
-  it('should escape values', () => {
-    expect(utils.escapeRegExp(unescaped + unescaped)).to.equal(escaped + escaped);
-  });
+  t.equal(utils.escapeRegExp(unescaped + unescaped), escaped + escaped, 'should escape values');
 
-  it('should handle strings with nothing to escape', () => {
-    expect(utils.escapeRegExp('abc')).to.equal('abc');
-  });
+  t.equal(utils.escapeRegExp('abc'), 'abc', 'should handle strings with nothing to escape');
 
-  it('should return an empty string for empty values', () => {
-    /* eslint-disable no-sparse-arrays,no-confusing-arrow */
-    const values = [, null, undefined, ''];
-    const expected = values.map(() => '');
-    const actual = values.map((value, index) =>
-    /* eslint-enable no-sparse-arrays,no-confusing-arrow */
-      index ? utils.escapeRegExp(value) : utils.escapeRegExp()
-    );
+  /* eslint-disable no-sparse-arrays,no-confusing-arrow */
+  const values = [, null, undefined, ''];
+  const expected = values.map(() => '');
+  const actual = values.map((value, index) =>
+  /* eslint-enable no-sparse-arrays,no-confusing-arrow */
+    index ? utils.escapeRegExp(value) : utils.escapeRegExp()
+  );
 
-    expect(expected).to.deep.equal(actual);
-  });
+  t.deepEqual(expected, actual, 'should return an empty string for empty values');
+  t.end();
 });
 
-describe('#parseCmdEqualOption', () => {
-  it('a=b', () => {
-    expect(utils.parseCmdEqualOption('a=b')).to.deep.equal(['a', 'b']);
-  });
-  it('a\\==b', () => {
-    expect(utils.parseCmdEqualOption('a\\==b')).to.deep.equal(['a=', 'b']);
-  });
-  it('a\\\\=b', () => {
-    expect(utils.parseCmdEqualOption('a\\\\=b')).to.deep.equal(['a\\', 'b']);
-  });
-  it('a==b', () => {
-    expect(utils.parseCmdEqualOption('a==b')).to.equal(false);
-  });
-  it('a__REPLACE_TOKEN__=b', () => {
-    expect(utils.parseCmdEqualOption('a__REPLACE_TOKEN__=b')).to.deep.equal(['a__REPLACE_TOKEN__', 'b']);
-  });
+test('#parseCmdEqualOption', (t) => {
+  t.deepEqual(utils.parseCmdEqualOption('a=b'), ['a', 'b'], 'a=b');
+  t.deepEqual(utils.parseCmdEqualOption('a\\==b'), ['a=', 'b'], 'a\\==b');
+  t.deepEqual(utils.parseCmdEqualOption('a\\\\=b'), ['a\\', 'b'], 'a\\\\=b');
+  t.equal(utils.parseCmdEqualOption('a==b'), false, 'a==b');
+  t.deepEqual(utils.parseCmdEqualOption('a__REPLACE_TOKEN__=b'), ['a__REPLACE_TOKEN__', 'b'], 'a__REPLACE_TOKEN__=b');
+  t.end();
 });
 
-describe('#mergeOptions', () => {
-  it('extrame case with option="abc"', () => {
-    const opt = { a: 'b' };
-    expect(utils.mergeOptions(opt, 'abc')).to.deep.equal(opt);
-  });
+test('#mergeOptions', (t) => {
+  const opt = { a: 'b' };
+  t.deepEqual(utils.mergeOptions(opt, 'abc'), opt, 'extrame case with option="abc"');
+  t.end();
 });

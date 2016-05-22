@@ -3,9 +3,8 @@
  *
  * @see <http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm>
  */
-
+import test from 'tape';
 import { default as tr, replaceStr } from '../lib/src/transliterate';
-import { expect } from 'chai';
 
 const defaultOptions = {
   unknown: '[?]',
@@ -14,19 +13,18 @@ const defaultOptions = {
   ignore: [],
 };
 
-describe('#transliterate()', () => {
-  describe('- Purity tests', () => {
+test('#transliterate()', (q) => {
+  test('- Purity tests', (t) => {
     const tests = [];
     for (let i = 1; tests.length < 127; tests.push(String.fromCharCode(i++)));
 
-    tests.forEach(test => {
-      it(`${test.charCodeAt(0).toString(16)} ${test}`, () => {
-        expect(tr(test)).to.equal(test);
-      });
+    tests.forEach(str => {
+      t.equal(tr(str), str, `${str.charCodeAt(0).toString(16)} ${str}`);
     });
+    t.end();
   });
 
-  describe('- Basic string tests', () => {
+  test('- Basic string tests', (t) => {
     const tests = [
       '',
       1 / 10,
@@ -36,12 +34,13 @@ describe('#transliterate()', () => {
       'I like pie.\n',
     ];
 
-    tests.forEach(test => {
-      it(test, () => expect(tr(test.toString())).to.equal(test.toString()));
+    tests.forEach(str => {
+      t.equal(tr(str.toString()), str.toString(), str);
     });
+    t.end();
   });
 
-  describe('- Complex tests', () => {
+  test('- Complex tests', (t) => {
     const tests = [
       ['\u00C6neid', 'AEneid'],
       ['\u00E9tude', 'etude'],
@@ -69,68 +68,60 @@ describe('#transliterate()', () => {
     ];
 
     for (const [str, result] of tests) {
-      it(`${str}-->${result}`, () => {
-        expect(tr(str)).to.equal(result);
-      });
+      t.equal(tr(str), result, `${str}-->${result}`);
     }
+    t.end();
   });
 
-  describe('- With ignore option', () => {
+  test('- With ignore option', (t) => {
     const tests = [
       ['\u00C6neid', ['\u00C6'], '\u00C6neid'],
       ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\uFF0C', '\uFF01'], 'Ni Hao\uFF0CShi Jie\uFF01'],
       ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\u4F60\u597D', '\uFF01'], '\u4F60\u597D,Shi Jie\uFF01'],
     ];
     for (const [str, ignore, result] of tests) {
-      it(`${str}-->${result}`, () => {
-        expect(tr(str, { ignore })).to.equal(result);
-      });
+      t.equal(tr(str, { ignore }), result, `${str}-->${result}`);
     }
+    t.end();
   });
 
-  describe('- With replace option', () => {
+  test('- With replace option', (t) => {
     const tests = [
       ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', [['\u4F60\u597D', 'Hola']], 'Hola,Shi Jie !'],
     ];
     for (const [str, replace, result] of tests) {
-      it(`${str}-->${result}`, () => {
-        expect(tr(str, { replace })).to.equal(result);
-      });
+      t.equal(tr(str, { replace }), result, `${str}-->${result}`);
     }
+    t.end();
   });
+  q.end();
 });
 
-describe('#replaceStr()', () => {
+test('#replaceStr()', (t) => {
   const tests = [
     ['abbc', [['a', 'aa'], [/b+/g, 'B']], 'aaBc'],
     ['abbc', [[false, '']], 'abbc'],
   ];
   for (const [str, replace, result] of tests) {
-    it(`${str}->${result}`, () => {
-      expect(replaceStr(str, replace)).to.equal(result);
-    });
+    t.equal(replaceStr(str, replace), result, `${str}->${result}`);
   }
+  t.end();
 });
 
 
-describe('#transliterage.config()', () => {
-  it('read current config', () => {
-    tr.config(defaultOptions);
-    expect(tr.config()).to.deep.equal(defaultOptions);
-  });
+test('#transliterage.config()', (t) => {
+  tr.config(defaultOptions);
+  t.deepEqual(tr.config(), defaultOptions, 'read current config');
+  t.end();
 });
 
 
-describe('#transliterage.setCodemap()', () => {
+test('#transliterage.setCodemap()', (t) => {
   const codemap = { 0: { 97: 'A', 98: 'B', 99: 'C' } };
-  it('set custom codemap', () => {
-    tr.setCodemap(codemap);
-    expect(tr.setCodemap(codemap)).to.equal(codemap);
-  });
-  it('read current custom codemap', () => {
-    expect(tr.setCodemap()).to.deep.equal(codemap);
-  });
-  it('transliterate with custom codemap', () => {
-    expect(tr('abc')).to.equal('ABC');
-  });
+  tr.setCodemap(codemap);
+  t.equal(tr.setCodemap(codemap), codemap, 'set custom codemap');
+  t.deepEqual(tr.setCodemap(), codemap, 'read current custom codemap');
+  t.equal(tr('abc'), 'ABC', 'transliterate with custom codemap');
+  tr.setCodemap({});
+  t.end();
 });

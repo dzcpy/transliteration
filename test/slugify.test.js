@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import test from 'tape';
 import slugify from '../lib/src/slugify';
 
 const defaultOptions = {
@@ -9,7 +9,7 @@ const defaultOptions = {
   ignore: [],
 };
 
-describe('#slugify()', () => {
+test('#slugify()', (q) => {
   const tests = [
     ['\u4F60\u597D, \u4E16\u754C!', {}, 'ni-hao-shi-jie'],
     ['\u4F60\u597D, \u4E16\u754C!', { separator: '_' }, 'ni_hao_shi_jie'],
@@ -19,19 +19,20 @@ describe('#slugify()', () => {
     ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4F60\u597D', 'Hello '], ['\u4E16\u754C', 'World ']] }, 'hello-world'],
     ['\u4F60\u597D, \u4E16\u754C!', { separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false }, 'Hola, mundo!'],
   ];
-  describe('Generate slugs', () => {
+  test('Generate slugs', (t) => {
     for (const [str, options, slug] of tests) {
-      it(`${str}-->${slug}`, () => expect(slugify(str, options)).to.equal(slug));
+      t.equal(slugify(str, options), slug, `${str}-->${slug}`);
     }
+    t.end();
   });
+  q.end();
 });
 
-describe('#slugify.config()', () => {
-  describe('Get config', () => {
-    it('read current config', () => {
-      slugify.config(defaultOptions);
-      expect(slugify.config()).to.deep.equal(defaultOptions);
-    });
+test('#slugify.config()', (q) => {
+  test('Get config', (t) => {
+    slugify.config(defaultOptions);
+    t.deepEqual(slugify.config(), defaultOptions, 'read current config');
+    t.end();
   });
   const tests = [
     ['\u4F60\u597D, \u4E16\u754C!', {}, 'ni-hao-shi-jie'],
@@ -42,12 +43,12 @@ describe('#slugify.config()', () => {
     ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4F60\u597D', 'Hello '], ['\u4E16\u754C', 'World ']] }, 'hello-world'],
     ['\u4F60\u597D, \u4E16\u754C!', { separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false }, 'Hola, mundo!'],
   ];
-  describe('Generate slugs', () => {
+  test('Generate slugs', (t) => {
     for (const [str, options, slug] of tests) {
-      it(`${str}-->${slug}`, () => {
-        slugify.config(options);
-        expect(slugify(str)).to.equal(slug);
-      });
+      slugify.config(options);
+      t.equal(slugify(str), slug, `${str}-->${slug}`);
     }
+    t.end();
   });
+  q.end();
 });
