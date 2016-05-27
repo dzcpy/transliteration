@@ -44,3 +44,4 @@ slugify.config = function (options) {
 };
 
 exports.default = slugify;
+module.exports = exports['default'];

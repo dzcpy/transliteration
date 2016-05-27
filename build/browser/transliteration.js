@@ -186,6 +186,7 @@ exports.default = {
   0xfe: require('./xfe.json'),
   0xff: require('./xff.json')
 };
+module.exports = exports['default'];
 
 },{"./x0.json":2,"./x1.json":3,"./x10.json":4,"./x11.json":5,"./x12.json":6,"./x13.json":7,"./x14.json":8,"./x15.json":9,"./x16.json":10,"./x17.json":11,"./x18.json":12,"./x1e.json":13,"./x1f.json":14,"./x2.json":15,"./x20.json":16,"./x21.json":17,"./x22.json":18,"./x23.json":19,"./x24.json":20,"./x25.json":21,"./x26.json":22,"./x27.json":23,"./x28.json":24,"./x2e.json":25,"./x2f.json":26,"./x3.json":27,"./x30.json":28,"./x31.json":29,"./x32.json":30,"./x33.json":31,"./x4.json":32,"./x4d.json":33,"./x4e.json":34,"./x4f.json":35,"./x5.json":36,"./x50.json":37,"./x51.json":38,"./x52.json":39,"./x53.json":40,"./x54.json":41,"./x55.json":42,"./x56.json":43,"./x57.json":44,"./x58.json":45,"./x59.json":46,"./x5a.json":47,"./x5b.json":48,"./x5c.json":49,"./x5d.json":50,"./x5e.json":51,"./x5f.json":52,"./x6.json":53,"./x60.json":54,"./x61.json":55,"./x62.json":56,"./x63.json":57,"./x64.json":58,"./x65.json":59,"./x66.json":60,"./x67.json":61,"./x68.json":62,"./x69.json":63,"./x6a.json":64,"./x6b.json":65,"./x6c.json":66,"./x6d.json":67,"./x6e.json":68,"./x6f.json":69,"./x7.json":70,"./x70.json":71,"./x71.json":72,"./x72.json":73,"./x73.json":74,"./x74.json":75,"./x75.json":76,"./x76.json":77,"./x77.json":78,"./x78.json":79,"./x79.json":80,"./x7a.json":81,"./x7b.json":82,"./x7c.json":83,"./x7d.json":84,"./x7e.json":85,"./x7f.json":86,"./x80.json":87,"./x81.json":88,"./x82.json":89,"./x83.json":90,"./x84.json":91,"./x85.json":92,"./x86.json":93,"./x87.json":94,"./x88.json":95,"./x89.json":96,"./x8a.json":97,"./x8b.json":98,"./x8c.json":99,"./x8d.json":100,"./x8e.json":101,"./x8f.json":102,"./x9.json":103,"./x90.json":104,"./x91.json":105,"./x92.json":106,"./x93.json":107,"./x94.json":108,"./x95.json":109,"./x96.json":110,"./x97.json":111,"./x98.json":112,"./x99.json":113,"./x9a.json":114,"./x9b.json":115,"./x9c.json":116,"./x9d.json":117,"./x9e.json":118,"./x9f.json":119,"./xa.json":120,"./xa0.json":121,"./xa1.json":122,"./xa2.json":123,"./xa3.json":124,"./xa4.json":125,"./xac.json":126,"./xad.json":127,"./xae.json":128,"./xaf.json":129,"./xb.json":130,"./xb0.json":131,"./xb1.json":132,"./xb2.json":133,"./xb3.json":134,"./xb4.json":135,"./xb5.json":136,"./xb6.json":137,"./xb7.json":138,"./xb8.json":139,"./xb9.json":140,"./xba.json":141,"./xbb.json":142,"./xbc.json":143,"./xbd.json":144,"./xbe.json":145,"./xbf.json":146,"./xc.json":147,"./xc0.json":148,"./xc1.json":149,"./xc2.json":150,"./xc3.json":151,"./xc4.json":152,"./xc5.json":153,"./xc6.json":154,"./xc7.json":155,"./xc8.json":156,"./xc9.json":157,"./xca.json":158,"./xcb.json":159,"./xcc.json":160,"./xcd.json":161,"./xce.json":162,"./xcf.json":163,"./xd.json":164,"./xd0.json":165,"./xd1.json":166,"./xd2.json":167,"./xd3.json":168,"./xd4.json":169,"./xd5.json":170,"./xd6.json":171,"./xd7.json":172,"./xe.json":173,"./xf.json":174,"./xf9.json":175,"./xfa.json":176,"./xfb.json":177,"./xfc.json":178,"./xfd.json":179,"./xfe.json":180,"./xff.json":181}],2:[function(require,module,exports){
 module.exports=["\u0000","\u0001","\u0002","\u0003","\u0004","\u0005","\u0006","\u0007","\b","\t","\n","\u000b","\f","\r","\u000e","\u000f","\u0010","\u0011","\u0012","\u0013","\u0014","\u0015","\u0016","\u0017","\u0018","\u0019","\u001a","\u001b","\u001c","\u001d","\u001e","\u001f"," ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","{","|","}","~","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""," ","!","C/","PS","$?","Y=","|","SS","\"","(c)","a","<<","!","","(r)","-","deg","+-","2","3","'","u","P","*",",","1","o",">>","1/4","1/2","3/4","?","A","A","A","A","A","A","AE","C","E","E","E","E","I","I","I","I","D","N","O","O","O","O","O","x","O","U","U","U","U","U","Th","ss","a","a","a","a","a","a","ae","c","e","e","e","e","i","i","i","i","d","n","o","o","o","o","o","/","o","u","u","u","u","y","th","y"]
@@ -550,50 +551,6 @@ module.exports=[null,"!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/
 },{}],182:[function(require,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /* global define */
-
-
-var _ = require('./');
-
-var _data = require('../../data');
-
-var _data2 = _interopRequireDefault(_data);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_.transliterate.setCodemap(_data2.default);
-
-// AMD support
-if (typeof define === 'function' && define.amd) {
-  define('transliterate', function () {
-    return _.transliterate;
-  });
-  define('slugify', function () {
-    return _.slugify;
-  });
-  // Global variables
-} else if (typeof window !== 'undefined' && _typeof(window.document) === 'object') {
-    window.transl = _.transliterate;
-    window.slugify = _.slugify;
-    _.transliterate.noConflict = function () {
-      var tr = _.transliterate;
-      delete window.transl;
-      return tr;
-    };
-    _.slugify.noConflict = function () {
-      var sl = _.slugify;
-      delete window.slugify;
-      return sl;
-    };
-  }
-// CommonJS support
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = _.transliterate;
-}
-
-},{"../../data":1,"./":183}],183:[function(require,module,exports){
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -624,7 +581,7 @@ Object.defineProperty(exports, 'slugify', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"./slugify":184,"./transliterate":185}],184:[function(require,module,exports){
+},{"./slugify":183,"./transliterate":184}],183:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -671,8 +628,9 @@ slugify.config = function (options) {
 };
 
 exports.default = slugify;
+module.exports = exports['default'];
 
-},{"./transliterate":185,"./utils":186}],185:[function(require,module,exports){
+},{"./transliterate":184,"./utils":185}],184:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -825,7 +783,7 @@ transliterate.config = function (options) {
 
 exports.default = transliterate;
 
-},{"./utils":186}],186:[function(require,module,exports){
+},{"./utils":185}],185:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -907,5 +865,49 @@ var parseCmdEqualOption = exports.parseCmdEqualOption = function parseCmdEqualOp
   return result;
 };
 
-},{}]},{},[182])
+},{}],186:[function(require,module,exports){
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /* global define */
+
+
+var _ = require('./');
+
+var _data = require('../../data');
+
+var _data2 = _interopRequireDefault(_data);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_.transliterate.setCodemap(_data2.default);
+
+// AMD support
+if (typeof define === 'function' && define.amd) {
+  define('transliterate', function () {
+    return _.transliterate;
+  });
+  define('slugify', function () {
+    return _.slugify;
+  });
+  // Global variables
+} else if (typeof window !== 'undefined' && _typeof(window.document) === 'object') {
+    window.transl = _.transliterate;
+    window.slugify = _.slugify;
+    _.transliterate.noConflict = function () {
+      var tr = _.transliterate;
+      delete window.transl;
+      return tr;
+    };
+    _.slugify.noConflict = function () {
+      var sl = _.slugify;
+      delete window.slugify;
+      return sl;
+    };
+  }
+// CommonJS support
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = _.transliterate;
+}
+
+},{"../../data":1,"./":182}]},{},[186])
 
