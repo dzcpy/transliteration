@@ -10,7 +10,7 @@
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/LICENSE.txt)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/andyhu/node-transliteration)
 
-Transliteration module for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ACSII so it can be safely displayed, used as URL slug or as file name.
+Transliteration module for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ACSII, so it can be safely displayed, used as URL slug or as file name.
 
 This module also provide a slugify function with flexible configurations.
 
@@ -201,5 +201,5 @@ Examples:
 
 ```
 
-### Notice
+### Notice about Japanese language
 `Transliteration` support nearly every common languages including CJK (Chinese, Japanese and Korean). Note that Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
