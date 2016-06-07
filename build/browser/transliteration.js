@@ -317,7 +317,7 @@ module.exports=["Di ","Zhuang ","Le ","Lang ","Chen ","Cong ","Li ","Xiu ","Qing
 },{}],65:[function(require,module,exports){
 module.exports=["Xiang ","Nong ","Bo ","Chan ","Lan ","Ju ","Shuang ","She ","Wei ","Cong ","Quan ","Qu ","Cang ",null,"Yu ","Luo ","Li ","Zan ","Luan ","Dang ","Jue ","Em ","Lan ","Lan ","Zhu ","Lei ","Li ","Ba ","Nang ","Yu ","Ling ","Tsuki ","Qian ","Ci ","Huan ","Xin ","Yu ","Yu ","Qian ","Ou ","Xu ","Chao ","Chu ","Chi ","Kai ","Yi ","Jue ","Xi ","Xu ","Xia ","Yu ","Kuai ","Lang ","Kuan ","Shuo ","Xi ","Ai ","Yi ","Qi ","Hu ","Chi ","Qin ","Kuan ","Kan ","Kuan ","Kan ","Chuan ","Sha ","Gua ","Yin ","Xin ","Xie ","Yu ","Qian ","Xiao ","Yi ","Ge ","Wu ","Tan ","Jin ","Ou ","Hu ","Ti ","Huan ","Xu ","Pen ","Xi ","Xiao ","Xu ","Xi ","Sen ","Lian ","Chu ","Yi ","Kan ","Yu ","Chuo ","Huan ","Zhi ","Zheng ","Ci ","Bu ","Wu ","Qi ","Bu ","Bu ","Wai ","Ju ","Qian ","Chi ","Se ","Chi ","Se ","Zhong ","Sui ","Sui ","Li ","Cuo ","Yu ","Li ","Gui ","Dai ","Dai ","Si ","Jian ","Zhe ","Mo ","Mo ","Yao ","Mo ","Cu ","Yang ","Tian ","Sheng ","Dai ","Shang ","Xu ","Xun ","Shu ","Can ","Jue ","Piao ","Qia ","Qiu ","Su ","Qing ","Yun ","Lian ","Yi ","Fou ","Zhi ","Ye ","Can ","Hun ","Dan ","Ji ","Ye ","Zhen ","Yun ","Wen ","Chou ","Bin ","Ti ","Jin ","Shang ","Yin ","Diao ","Cu ","Hui ","Cuan ","Yi ","Dan ","Du ","Jiang ","Lian ","Bin ","Du ","Tsukusu ","Jian ","Shu ","Ou ","Duan ","Zhu ","Yin ","Qing ","Yi ","Sha ","Que ","Ke ","Yao ","Jun ","Dian ","Hui ","Hui ","Gu ","Que ","Ji ","Yi ","Ou ","Hui ","Duan ","Yi ","Xiao ","Wu ","Guan ","Mu ","Mei ","Mei ","Ai ","Zuo ","Du ","Yu ","Bi ","Bi ","Bi ","Pi ","Pi ","Bi ","Chan ","Mao ",null,null,"Pu ","Mushiru ","Jia ","Zhan ","Sai ","Mu ","Tuo ","Xun ","Er ","Rong ","Xian ","Ju ","Mu ","Hao ","Qiu ","Dou ","Mushiru ","Tan ","Pei ","Ju ","Duo ","Cui ","Bi ","San ",null,"Mao ","Sui ","Yu ","Yu ","Tuo ","He ","Jian ","Ta ","San "]
 },{}],66:[function(require,module,exports){
-module.exports=["Lu ","Mu ","Li ","Tong ","Rong ","Chang ","Pu ","Luo ","Zhan ","Sao ","Zhan ","Meng ","Luo ","Qu ","Die ","Shi ","Di ","Min ","Jue ","Mang ","Qi ","Pie ","Nai ","Qi ","Dao ","Xian ","Chuan ","Fen ","Ri ","Nei ",null,"Fu ","Shen ","Dong ","Qing ","Qi ","Yin ","Xi ","Hai ","Yang ","An ","Ya ","Ke ","Qing ","Ya ","Dong ","Dan ","Lu ","Qing ","Yang ","Yun ","Yun ","Shui ","San ","Zheng ","Bing ","Yong ","Dang ","Shitamizu ","Le ","Ni ","Tun ","Fan ","Gui ","Ting ","Zhi ","Qiu ","Bin ","Ze ","Mian ","Cuan ","Hui ","Diao ","Yi ","Cha ","Zhuo ","Chuan ","Wan ","Fan ","Dai ","Xi ","Tuo ","Mang ","Qiu ","Qi ","Shan ","Pai ","Han ","Qian ","Wu ","Wu ","Xun ","Si ","Ru ","Gong ","Jiang ","Chi ","Wu ","Tsuchi ",null,"Tang ","Zhi ","Chi ","Qian ","Mi ","Yu ","Wang ","Qing ","Jing ","Rui ","Jun ","Hong ","Tai ","Quan ","Ji ","Bian ","Bian ","Gan ","Wen ","Zhong ","Fang ","Xiong ","Jue ","Hang ","Niou ","Qi ","Fen ","Xu ","Xu ","Qin ","Yi ","Wo ","Yun ","Yuan ","Hang ","Yan ","Chen ","Chen ","Dan ","You ","Dun ","Hu ","Huo ","Qie ","Mu ","Rou ","Mei ","Ta ","Mian ","Wu ","Chong ","Tian ","Bi ","Sha ","Zhi ","Pei ","Pan ","Zhui ","Za ","Gou ","Liu ","Mei ","Ze ","Feng ","Ou ","Li ","Lun ","Cang ","Feng ","Wei ","Hu ","Mo ","Mei ","Shu ","Ju ","Zan ","Tuo ","Tuo ","Tuo ","He ","Li ","Mi ","Yi ","Fa ","Fei ","You ","Tian ","Zhi ","Zhao ","Gu ","Zhan ","Yan ","Si ","Kuang ","Jiong ","Ju ","Xie ","Qiu ","Yi ","Jia ","Zhong ","Quan ","Bo ","Hui ","Mi ","Ben ","Zhuo ","Chu ","Le ","You ","Gu ","Hong ","Gan ","Fa ","Mao ","Si ","Hu ","Ping ","Ci ","Fan ","Chi ","Su ","Ning ","Cheng ","Ling ","Pao ","Bo ","Qi ","Si ","Ni ","Ju ","Yue ","Zhu ","Sheng ","Lei ","Xuan ","Xue ","Fu ","Pan ","Min ","Tai ","Yang ","Ji ","Yong ","Guan ","Beng ","Xue ","Long ","Lu ",null,"Bo ","Xie ","Po ","Ze ","Jing ","Yin "]
+module.exports=["Lu ","Mu ","Li ","Tong ","Rong ","Chang ","Pu ","Luo ","Zhan ","Sao ","Zhan ","Meng ","Luo ","Qu ","Die ","Shi ","Di ","Min ","Jue ","Mang ","Qi ","Pie ","Nai ","Qi ","Dao ","Xian ","Chuan ","Fen ","Ri ","Nei ",null,"Fu ","Shen ","Dong ","Qing ","Qi ","Yin ","Xi ","Hai ","Yang ","An ","Ya ","Ke ","Qing ","Ya ","Dong ","Dan ","Lu ","Qing ","Yang ","Yun ","Yun ","Shui ","San ","Zheng ","Bing ","Yong ","Dang ","Shitamizu ","Le ","Ni ","Tun ","Fan ","Gui ","Ting ","Zhi ","Qiu ","Bin ","Ze ","Mian ","Cuan ","Hui ","Diao ","Yi ","Cha ","Zhuo ","Chuan ","Wan ","Fan ","Dai ","Xi ","Tuo ","Mang ","Qiu ","Qi ","Shan ","Pai ","Han ","Qian ","Wu ","Wu ","Xun ","Si ","Ru ","Gong ","Jiang ","Chi ","Wu ","Tsuchi ",null,"Tang ","Zhi ","Chi ","Qian ","Mi ","Yu ","Wang ","Qing ","Jing ","Rui ","Jun ","Hong ","Tai ","Quan ","Ji ","Bian ","Bian ","Gan ","Wen ","Zhong ","Fang ","Xiong ","Jue ","Hang ","Niou ","Qi ","Fen ","Xu ","Xu ","Qin ","Yi ","Wo ","Yun ","Yuan ","Hang ","Yan ","Shen ","Chen ","Dan ","You ","Dun ","Hu ","Huo ","Qie ","Mu ","Rou ","Mei ","Ta ","Mian ","Wu ","Chong ","Tian ","Bi ","Sha ","Zhi ","Pei ","Pan ","Zhui ","Za ","Gou ","Liu ","Mei ","Ze ","Feng ","Ou ","Li ","Lun ","Cang ","Feng ","Wei ","Hu ","Mo ","Mei ","Shu ","Ju ","Zan ","Tuo ","Tuo ","Tuo ","He ","Li ","Mi ","Yi ","Fa ","Fei ","You ","Tian ","Zhi ","Zhao ","Gu ","Zhan ","Yan ","Si ","Kuang ","Jiong ","Ju ","Xie ","Qiu ","Yi ","Jia ","Zhong ","Quan ","Bo ","Hui ","Mi ","Ben ","Zhuo ","Chu ","Le ","You ","Gu ","Hong ","Gan ","Fa ","Mao ","Si ","Hu ","Ping ","Ci ","Fan ","Chi ","Su ","Ning ","Cheng ","Ling ","Pao ","Bo ","Qi ","Si ","Ni ","Ju ","Yue ","Zhu ","Sheng ","Lei ","Xuan ","Xue ","Fu ","Pan ","Min ","Tai ","Yang ","Ji ","Yong ","Guan ","Beng ","Xue ","Long ","Lu ",null,"Bo ","Xie ","Po ","Ze ","Jing ","Yin "]
 },{}],67:[function(require,module,exports){
 module.exports=["Zhou ","Ji ","Yi ","Hui ","Hui ","Zui ","Cheng ","Yin ","Wei ","Hou ","Jian ","Yang ","Lie ","Si ","Ji ","Er ","Xing ","Fu ","Sa ","Suo ","Zhi ","Yin ","Wu ","Xi ","Kao ","Zhu ","Jiang ","Luo ",null,"An ","Dong ","Yi ","Mou ","Lei ","Yi ","Mi ","Quan ","Jin ","Mo ","Wei ","Xiao ","Xie ","Hong ","Xu ","Shuo ","Kuang ","Tao ","Qie ","Ju ","Er ","Zhou ","Ru ","Ping ","Xun ","Xiong ","Zhi ","Guang ","Huan ","Ming ","Huo ","Wa ","Qia ","Pai ","Wu ","Qu ","Liu ","Yi ","Jia ","Jing ","Qian ","Jiang ","Jiao ","Cheng ","Shi ","Zhuo ","Ce ","Pal ","Kuai ","Ji ","Liu ","Chan ","Hun ","Hu ","Nong ","Xun ","Jin ","Lie ","Qiu ","Wei ","Zhe ","Jun ","Han ","Bang ","Mang ","Zhuo ","You ","Xi ","Bo ","Dou ","Wan ","Hong ","Yi ","Pu ","Ying ","Lan ","Hao ","Lang ","Han ","Li ","Geng ","Fu ","Wu ","Lian ","Chun ","Feng ","Yi ","Yu ","Tong ","Lao ","Hai ","Jin ","Jia ","Chong ","Weng ","Mei ","Sui ","Cheng ","Pei ","Xian ","Shen ","Tu ","Kun ","Pin ","Nie ","Han ","Jing ","Xiao ","She ","Nian ","Tu ","Yong ","Xiao ","Xian ","Ting ","E ","Su ","Tun ","Juan ","Cen ","Ti ","Li ","Shui ","Si ","Lei ","Shui ","Tao ","Du ","Lao ","Lai ","Lian ","Wei ","Wo ","Yun ","Huan ","Di ",null,"Run ","Jian ","Zhang ","Se ","Fu ","Guan ","Xing ","Shou ","Shuan ","Ya ","Chuo ","Zhang ","Ye ","Kong ","Wo ","Han ","Tuo ","Dong ","He ","Wo ","Ju ","Gan ","Liang ","Hun ","Ta ","Zhuo ","Dian ","Qie ","De ","Juan ","Zi ","Xi ","Yao ","Qi ","Gu ","Guo ","Han ","Lin ","Tang ","Zhou ","Peng ","Hao ","Chang ","Shu ","Qi ","Fang ","Chi ","Lu ","Nao ","Ju ","Tao ","Cong ","Lei ","Zhi ","Peng ","Fei ","Song ","Tian ","Pi ","Dan ","Yu ","Ni ","Yu ","Lu ","Gan ","Mi ","Jing ","Ling ","Lun ","Yin ","Cui ","Qu ","Huai ","Yu ","Nian ","Shen ","Piao ","Chun ","Wa ","Yuan ","Lai ","Hun ","Qing ","Yan ","Qian ","Tian ","Miao ","Zhi ","Yin ","Mi "]
 },{}],68:[function(require,module,exports){
@@ -551,37 +551,69 @@ module.exports=[null,"!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/
 },{}],182:[function(require,module,exports){
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /* global define */
 
-var _transliterate = require('./transliterate');
 
-Object.defineProperty(exports, 'transliterate', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_transliterate).default;
-  }
-});
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_transliterate).default;
-  }
-});
+var _ = require('./');
 
-var _slugify = require('./slugify');
+var _data = require('../../data');
 
-Object.defineProperty(exports, 'slugify', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_slugify).default;
-  }
-});
+var _data2 = _interopRequireDefault(_data);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"./slugify":183,"./transliterate":184}],183:[function(require,module,exports){
+_.transliterate.setCodemap(_data2.default);
+
+// AMD support
+if (typeof define === 'function' && define.amd) {
+  define('transliterate', function () {
+    return _.transliterate;
+  });
+  define('slugify', function () {
+    return _.slugify;
+  });
+  // Global variables
+} else if (typeof window !== 'undefined' && _typeof(window.document) === 'object') {
+    window.transl = _.transliterate;
+    window.slugify = _.slugify;
+    _.transliterate.noConflict = function () {
+      var tr = _.transliterate;
+      delete window.transl;
+      return tr;
+    };
+    _.slugify.noConflict = function () {
+      var sl = _.slugify;
+      delete window.slugify;
+      return sl;
+    };
+  }
+// CommonJS support
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = _.transliterate;
+}
+
+},{"../../data":1,"./":183}],183:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.slugify = exports.transliterate = undefined;
+
+var _transliterate = require('./transliterate');
+
+var _transliterate2 = _interopRequireDefault(_transliterate);
+
+var _slugify = require('./slugify');
+
+var _slugify2 = _interopRequireDefault(_slugify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.transliterate = _transliterate2.default;
+exports.slugify = _slugify2.default;
+
+},{"./slugify":184,"./transliterate":185}],184:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -630,7 +662,7 @@ slugify.config = function (options) {
 exports.default = slugify;
 module.exports = exports['default'];
 
-},{"./transliterate":184,"./utils":185}],184:[function(require,module,exports){
+},{"./transliterate":185,"./utils":186}],185:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -783,7 +815,7 @@ transliterate.config = function (options) {
 
 exports.default = transliterate;
 
-},{"./utils":185}],185:[function(require,module,exports){
+},{"./utils":186}],186:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -865,49 +897,5 @@ var parseCmdEqualOption = exports.parseCmdEqualOption = function parseCmdEqualOp
   return result;
 };
 
-},{}],186:[function(require,module,exports){
-'use strict';
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /* global define */
-
-
-var _ = require('./');
-
-var _data = require('../../data');
-
-var _data2 = _interopRequireDefault(_data);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_.transliterate.setCodemap(_data2.default);
-
-// AMD support
-if (typeof define === 'function' && define.amd) {
-  define('transliterate', function () {
-    return _.transliterate;
-  });
-  define('slugify', function () {
-    return _.slugify;
-  });
-  // Global variables
-} else if (typeof window !== 'undefined' && _typeof(window.document) === 'object') {
-    window.transl = _.transliterate;
-    window.slugify = _.slugify;
-    _.transliterate.noConflict = function () {
-      var tr = _.transliterate;
-      delete window.transl;
-      return tr;
-    };
-    _.slugify.noConflict = function () {
-      var sl = _.slugify;
-      delete window.slugify;
-      return sl;
-    };
-  }
-// CommonJS support
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = _.transliterate;
-}
-
-},{"../../data":1,"./":182}]},{},[186])
+},{}]},{},[182])
 
