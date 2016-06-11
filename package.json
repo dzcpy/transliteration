@@ -1,12 +1,12 @@
 {
   "name": "transliteration",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Unicode to ACSII transliteration / slugify module. Works in node.js, web browser and command line.",
   "main": "build/node/index.js",
   "scripts": {
     "lint": "eslint lib/**/*.js test/**/*.js gulpfile.babel.js",
     "pretest": "npm run lint",
-    "test": "npm run test:node && npm run test:browser",
+    "test": "npm run test:node",
     "test:node": "tape -r babel-core/register test/node/*.js | tap-spec",
     "test:browser": "zuul --no-coverage -- test/browser/*.js",
     "prebuild": "npm run test",
