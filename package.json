@@ -8,6 +8,7 @@
     "pretest": "npm run lint",
     "test": "npm run test:node",
     "test:node": "tape -r babel-core/register test/node/*.js | tap-spec",
+    "pretest:browser": "npm run build",
     "test:browser": "zuul --no-coverage -- test/browser/*.js",
     "prebuild": "npm run test",
     "build": "gulp",
