@@ -11,11 +11,15 @@ var _yargs2 = _interopRequireDefault(_yargs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// eslint-disable-line import/no-unresolved
+
+
 var options = {
   unknown: '[?]',
   replace: [],
   ignore: []
-};
+}; // eslint-disable-line import/no-unresolved
+
 
 var argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('u', {
   alias: 'unknown',
@@ -38,34 +42,26 @@ var argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').opti
 
 options.unknown = argv.u;
 if (argv.replace.length) {
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
+  for (var _iterator = argv.replace, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+    var _ref;
 
-  try {
-    for (var _iterator = argv.replace[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-      var repl = _step.value;
+    if (_isArray) {
+      if (_i >= _iterator.length) break;
+      _ref = _iterator[_i++];
+    } else {
+      _i = _iterator.next();
+      if (_i.done) break;
+      _ref = _i.value;
+    }
 
-      var tmp = (0, _utils.parseCmdEqualOption)(repl);
-      if (tmp === false) {
-        console.error('Bad argument -r or --replace. Please try \'' + argv.$0 + ' --help\' for correct usage.');
-        process.exit(1);
-      }
-      options.replace.push(tmp);
+    var repl = _ref;
+
+    var tmp = (0, _utils.parseCmdEqualOption)(repl);
+    if (tmp === false) {
+      console.error('Bad argument -r or --replace. Please try \'' + argv.$0 + ' --help\' for correct usage.');
+      process.exit(1);
     }
-  } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
+    options.replace.push(tmp);
   }
 }
 options.ignore = argv.ignore;

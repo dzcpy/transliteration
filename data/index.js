@@ -1,4 +1,4 @@
-export default ({
+module.exports = {
   0x0: require('./x0.json'),
   0x1: require('./x1.json'),
   0x10: require('./x10.json'),
@@ -179,4 +179,4 @@ export default ({
   0xfd: require('./xfd.json'),
   0xfe: require('./xfe.json'),
   0xff: require('./xff.json'),
-});
+};

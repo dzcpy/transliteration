@@ -1,10 +1,12 @@
 /**
- * Tests are taken from Text-Unidecode-0.04/test.pl
+ * Some of tests are taken from Text-Unidecode-0.04/test.pl
  *
  * @see <http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm>
  */
 import test from 'tape';
-import { default as tr, replaceStr } from '../lib/src/transliterate';
+import 'es5-shim';
+
+const transl = window.transl;
 
 const defaultOptions = {
   unknown: '[?]',
@@ -19,7 +21,7 @@ test('#transliterate()', (q) => {
     for (let i = 1; tests.length < 127; tests.push(String.fromCharCode(i++)));
 
     tests.forEach(str => {
-      t.equal(tr(str), str, `${str.charCodeAt(0).toString(16)} ${str}`);
+      t.equal(transl(str), str, `${str.charCodeAt(0).toString(16)} ${str}`);
     });
     t.end();
   });
@@ -35,7 +37,7 @@ test('#transliterate()', (q) => {
     ];
 
     tests.forEach(str => {
-      t.equal(tr(str.toString()), str.toString(), str);
+      t.equal(transl(str.toString()), str.toString(), str);
     });
     t.end();
   });
@@ -68,7 +70,7 @@ test('#transliterate()', (q) => {
     ];
 
     for (const [str, result] of tests) {
-      t.equal(tr(str), result, `${str}-->${result}`);
+      t.equal(transl(str), result, `${str}-->${result}`);
     }
     t.end();
   });
@@ -80,7 +82,7 @@ test('#transliterate()', (q) => {
       ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\u4F60\u597D', '\uFF01'], '\u4F60\u597D,Shi Jie\uFF01'],
     ];
     for (const [str, ignore, result] of tests) {
-      t.equal(tr(str, { ignore }), result, `${str}-->${result}`);
+      t.equal(transl(str, { ignore }), result, `${str}-->${result}`);
     }
     t.end();
   });
@@ -90,38 +92,15 @@ test('#transliterate()', (q) => {
       ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', [['\u4F60\u597D', 'Hola']], 'Hola,Shi Jie !'],
     ];
     for (const [str, replace, result] of tests) {
-      t.equal(tr(str, { replace }), result, `${str}-->${result}`);
+      t.equal(transl(str, { replace }), result, `${str}-->${result}`);
     }
     t.end();
   });
   q.end();
 });
 
-test('#replaceStr()', (t) => {
-  const tests = [
-    ['abbc', [['a', 'aa'], [/b+/g, 'B']], 'aaBc'],
-    ['abbc', [[false, '']], 'abbc'],
-  ];
-  for (const [str, replace, result] of tests) {
-    t.equal(replaceStr(str, replace), result, `${str}->${result}`);
-  }
-  t.end();
-});
-
-
 test('#transliterage.config()', (t) => {
-  tr.config(defaultOptions);
-  t.deepEqual(tr.config(), defaultOptions, 'read current config');
-  t.end();
-});
-
-
-test('#transliterage.setCodemap()', (t) => {
-  const codemap = { 0: { 97: 'A', 98: 'B', 99: 'C' } };
-  tr.setCodemap(codemap);
-  t.equal(tr.setCodemap(codemap), codemap, 'set custom codemap');
-  t.deepEqual(tr.setCodemap(), codemap, 'read current custom codemap');
-  t.equal(tr('abc'), 'ABC', 'transliterate with custom codemap');
-  tr.setCodemap({});
+  transl.config(defaultOptions);
+  t.deepEqual(transl.config(), defaultOptions, 'read current config');
   t.end();
 });

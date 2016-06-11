@@ -1,5 +1,5 @@
 import test from 'tape';
-import * as utils from '../lib/src/utils';
+import * as utils from '../../lib/src/utils';
 
 test('#ucs2decode()', (q) => {
   const data = [

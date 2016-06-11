@@ -1,8 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 exports.slugify = exports.transliterate = undefined;
 
 var _transliterate = require('./transliterate');

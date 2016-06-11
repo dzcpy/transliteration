@@ -8,6 +8,7 @@ import sourcemaps from 'gulp-sourcemaps';
 import gutil from 'gulp-util';
 import rename from 'gulp-rename';
 import babelify from 'babelify';
+import es3ify from 'gulp-es3ify';
 import rimraf from 'rimraf';
 
 const paths = {
@@ -28,6 +29,7 @@ gulp.task('build:browser', ['clean:browser'], () =>
     .pipe(source('transliteration.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
+      .pipe(es3ify())
       .pipe(gulp.dest(paths.destBrowser))
       .pipe(rename('transliteration.min.js'))
       .pipe(uglify())
