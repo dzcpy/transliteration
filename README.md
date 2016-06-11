@@ -10,6 +10,8 @@
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/LICENSE.txt)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/andyhu/node-transliteration)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/node-transliteration.svg)](https://saucelabs.com/u/node-transliteration)
+
 Transliteration module for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ACSII, so it can be safely displayed, used as URL slug or as file name.
 
 This module also provide a slugify function with flexible configurations.
