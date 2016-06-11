@@ -51,6 +51,9 @@ bower install transliteration
 </html>
 ```
 
+### Browser compatibility
+`transliteration` module should support all major browsers including IE 6-8 (with `es5-shim`)
+
 ## Install command line tools globally
 
 ```bash
