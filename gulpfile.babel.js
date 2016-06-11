@@ -24,7 +24,7 @@ gulp.task('default', ['build:browser', 'build:node', 'build:bin']);
 
 gulp.task('build:browser', ['clean:browser'], () =>
   browserify(paths.sourceBrowser, { debug: true })
-    .transform(babelify, { sourceMaps: true })
+    .transform(babelify)
     .bundle()
     .pipe(source('transliteration.js'))
     .pipe(buffer())
