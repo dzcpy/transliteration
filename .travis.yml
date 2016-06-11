@@ -7,5 +7,4 @@ node_js:
   - "6"
 after_script:
   - npm run coveralls
-addons:
-  sauce_connect: true
+  - npm run test:browser
