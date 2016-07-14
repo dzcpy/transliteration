@@ -1,5 +1,5 @@
 import test from 'tape';
-import slugify from '../../lib/src/slugify';
+import slugify from '../../src/main/slugify';
 
 const defaultOptions = {
   lowercase: true,

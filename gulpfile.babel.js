@@ -12,12 +12,12 @@ import es3ify from 'gulp-es3ify';
 import rimraf from 'rimraf';
 
 const paths = {
-  sourceBrowser: 'lib/src/browser.js',
-  sourceNode: ['lib/src/*.js', '!lib/src/browser.js', '!lib/src/data.js'],
-  sourceBin: 'lib/bin/*.js',
-  destBrowser: 'build/browser/',
-  destNode: 'build/node/',
-  destBin: 'build/bin',
+  sourceBrowser: 'src/main/browser.js',
+  sourceNode: ['src/main/*.js', '!src/main/browser.js', '!src/main/data.js'],
+  sourceBin: 'src/bin/*.js',
+  destBrowser: 'lib/browser/',
+  destNode: 'lib/node/',
+  destBin: 'lib/bin/',
 };
 
 gulp.task('default', ['build:browser', 'build:node', 'build:bin']);
@@ -52,8 +52,8 @@ gulp.task('build:bin', ['clean:bin'], () =>
     .pipe(gulp.dest(paths.destBin))
 );
 
-gulp.task('clean:browser', cb => rimraf('build/browser/*', cb));
+gulp.task('clean:browser', cb => rimraf('lib/browser/*', cb));
 
-gulp.task('clean:node', cb => rimraf('build/node/*', cb));
+gulp.task('clean:node', cb => rimraf('lib/node/*', cb));
 
-gulp.task('clean:bin', cb => rimraf('build/bin/*', cb));
+gulp.task('clean:bin', cb => rimraf('lib/bin/*', cb));

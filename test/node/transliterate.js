@@ -4,7 +4,7 @@
  * @see <http://search.cpan.org/~sburke/Text-Unidecode-0.04/lib/Text/Unidecode.pm>
  */
 import test from 'tape';
-import { default as tr, replaceStr } from '../../lib/src/transliterate';
+import { default as tr, replaceStr } from '../../src/main/transliterate';
 
 const defaultOptions = {
   unknown: '[?]',

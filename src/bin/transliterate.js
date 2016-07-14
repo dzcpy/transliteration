@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+import yargs from 'yargs';
+import { parseCmdEqualOption as parseE } from '../../build/node/utils'; // eslint-disable-line import/no-unresolved
+import { transliterate as tr } from '../../build/node'; // eslint-disable-line import/no-unresolved
+
+const options = {
+  unknown: '[?]',
+  replace: [],
+  ignore: [],
+};
+
+const argv = yargs
+  .version()
+  .usage('Usage: $0 <unicode> [options]')
+  .option('u', {
+    alias: 'unknown',
+    default: options.unknown,
+    describe: 'Placeholder for unknown characters',
+    type: 'string',
+  })
+  .option('r', {
+    alias: 'replace',
+    default: options.replace,
+    describe: 'Custom string replacement',
+    type: 'array',
+  })
+  .option('i', {
+    alias: 'ignore',
+    default: options.ignore,
+    describe: 'String list to ignore',
+    type: 'array',
+  })
+  .help('h')
+  .option('h', {
+    alias: 'help',
+  })
+  .example('$0 "你好, world!" -r 好=good -r "world=Shi Jie"',
+    'Replace `,` into `!`, `world` into `shijie`.\nResult: Ni good, Shi Jie!')
+  .example('$0 "你好，世界!" -i 你好 -i ，',
+    'Ignore `你好` and `，`.\nResult: 你好，Shi Jie !')
+  .wrap(100)
+  .argv;
+
+options.unknown = argv.u;
+if (argv.replace.length) {
+  for (const repl of argv.replace) {
+    const tmp = parseE(repl);
+    if (tmp === false) {
+      console.error(`Bad argument -r or --replace. Please try '${argv.$0} --help' for correct usage.`);
+      process.exit(1);
+    }
+    options.replace.push(tmp);
+  }
+}
+options.ignore = argv.ignore;
+if (argv._.length !== 1) {
+  console.error(`Invalid argument. Please try '${argv.$0} --help' for correct usage.`);
+}
+console.log(tr(argv._[0], options));

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
+import yargs from 'yargs';
 import { parseCmdEqualOption as parseE } from '../../build/node/utils'; // eslint-disable-line import/no-unresolved
 import { default as slugify } from '../../build/node/slugify'; // eslint-disable-line import/no-unresolved
-import yargs from 'yargs';
 
 const options = {
   lowercase: true,

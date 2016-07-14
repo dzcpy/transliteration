@@ -1,14 +1,14 @@
 {
   "name": "transliteration",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "homepage": "https://github.com/andyhu/node-transliteration",
   "authors": [
     "Andy Hu"
   ],
   "description": "Unicode to ACSII transliteration / slugify module. Works in node.js, web browser and command line.",
   "main": [
-    "build/browser/transliteration.js",
-    "build/browser/transliteration.min.js"
+    "lib/browser/transliteration.js",
+    "lib/browser/transliteration.min.js"
   ],
   "keywords": [
     "transliterate",
@@ -23,10 +23,10 @@
   "license": "MIT",
   "ignore": [
     ".*",
-    "lib",
+    "src",
     "data",
-    "build/node",
-    "build/bin",
+    "lib/node",
+    "lib/bin",
     "package.json",
     "test",
     "gulpfile.babel.js"

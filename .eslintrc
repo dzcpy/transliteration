@@ -10,6 +10,7 @@
     "no-param-reassign": 0,
     "no-restricted-syntax": [0, "ForInStatement"],
     "guard-for-in": 0,
-    "max-len": [1, 120]
+    "max-len": [1, 120],
+    "import/no-extraneous-dependencies": 0
   }
 }
