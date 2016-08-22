@@ -1,3 +1,4 @@
+/* global window */
 /**
  * Some of tests are taken from Text-Unidecode-0.04/test.pl
  *

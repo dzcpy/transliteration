@@ -1,3 +1,4 @@
+/* global window */
 import test from 'tape';
 import 'es5-shim';
 

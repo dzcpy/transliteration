@@ -1,6 +1,7 @@
-/* global define */
+/* global define, window */
 import { transliterate, slugify } from './';
 import data from '../../data';
+
 transliterate.setCodemap(data);
 
 // AMD support

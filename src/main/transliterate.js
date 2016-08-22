@@ -1,4 +1,5 @@
 import { ucs2decode, fixChineseSpace, escapeRegExp, mergeOptions } from './utils';
+
 let codemap = {};
 const defaultOptions = {
   unknown: '[?]',
@@ -55,22 +56,22 @@ const transliterate = (str, options) => {
     // These characters are also transliteratable. Will improve it later if needed
     if (ord > 0xffff) {
       strArrNew.push(options.unknown);
-      continue;
-    }
-    const offset = ord >> 8;
-    if (typeof codemap[offset] === 'undefined') {
-      try {
-        codemap[offset] = require(`../../data/x${offset.toString(16)}.json`);
-      } catch (e) {
-        codemap[offset] = [];
-      }
-    }
-    ord = 0xff & ord;
-    const t = codemap[offset][ord];
-    if (typeof t === 'undefined' || t === null) {
-      strArrNew.push(options.unknown);
     } else {
-      strArrNew.push(codemap[offset][ord]);
+      const offset = ord >> 8;
+      if (typeof codemap[offset] === 'undefined') {
+        try {
+          codemap[offset] = require(`../../data/x${offset.toString(16)}.json`);
+        } catch (e) {
+          codemap[offset] = [];
+        }
+      }
+      ord &= 0xff;
+      const t = codemap[offset][ord];
+      if (typeof t === 'undefined' || t === null) {
+        strArrNew.push(options.unknown);
+      } else {
+        strArrNew.push(codemap[offset][ord]);
+      }
     }
   }
   // trim spaces at the begining and ending of the string

@@ -48,7 +48,7 @@ test('#ucs2decode()', (q) => {
   ];
   test('Return ucs2 code array of a string', (t) => {
     data.forEach(({ description, encoded, decoded }) => {
-      t.deepEqual(utils.ucs2decode(String.fromCharCode.apply(String, encoded)), decoded, description);
+      t.deepEqual(utils.ucs2decode(String.fromCharCode(...encoded)), decoded, description);
     });
     t.end();
   });
