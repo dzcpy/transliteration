@@ -11,6 +11,8 @@
     "no-restricted-syntax": [0, "ForInStatement"],
     "guard-for-in": 0,
     "max-len": [1, 120],
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "no-bitwise": 1,
+    "no-plusplus": 0
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Unicode to ACSII transliteration / slugify module. Works in node.js, web browser and command line.",
   "main": "lib/node/index.js",
   "scripts": {
@@ -42,17 +42,17 @@
     "url": "https://github.com/andyhu/node-transliteration/issues"
   },
   "devDependencies": {
-    "babel-core": "^6.13.2",
+    "babel-core": "^6.14.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-es2015": "^6.14.0",
     "babel-preset-es2015-loose": "^7.0.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "coveralls": "^2.11.12",
     "es5-shim": "^4.5.9",
-    "eslint": "^3.3.1",
-    "eslint-config-airbnb-base": "^5.0.3",
-    "eslint-plugin-import": "^1.13.0",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb-base": "^7.0.0",
+    "eslint-plugin-import": "^1.14.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-es3ify": "0.0.0",
