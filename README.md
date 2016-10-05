@@ -4,7 +4,6 @@
 [![Dependencies](https://img.shields.io/david/andyhu/node-transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/package.json)
 [![Dev Dependencies](https://img.shields.io/david/dev/andyhu/node-transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/package.json)
 [![Coverage Status](https://coveralls.io/repos/github/andyhu/node-transliteration/badge.svg?branch=master)](https://coveralls.io/github/andyhu/node-transliteration?branch=master)
-[![Codacy grade](https://img.shields.io/codacy/grade/a752bacd344a4b6b94b2dcbe6debea1f.svg)](https://github.com/andyhu/node-transliteration)
 [![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![Bower Version](https://img.shields.io/bower/v/transliteration.svg)](https://github.com/andyhu/node-transliteration)
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
