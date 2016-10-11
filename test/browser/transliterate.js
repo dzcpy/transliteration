@@ -21,7 +21,7 @@ test('#transliterate()', (q) => {
     const tests = [];
     for (let i = 1; tests.length < 127; tests.push(String.fromCharCode(i++)));
 
-    tests.forEach(str => {
+    tests.forEach((str) => {
       t.equal(transl(str), str, `${str.charCodeAt(0).toString(16)} ${str}`);
     });
     t.end();
@@ -37,7 +37,7 @@ test('#transliterate()', (q) => {
       'I like pie.\n',
     ];
 
-    tests.forEach(str => {
+    tests.forEach((str) => {
       t.equal(transl(str.toString()), str.toString(), str);
     });
     t.end();

@@ -1,5 +1,5 @@
 // Credit: https://github.com/bestiejs/punycode.js/blob/master/LICENSE-MIT.txt
-export const ucs2decode = string => {
+export const ucs2decode = (string) => {
   const output = [];
   let counter = 0;
   while (counter < string.length) {
@@ -26,7 +26,7 @@ export const ucs2decode = string => {
 export const fixChineseSpace = str => str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
 
 // Escape regular expression string
-export const escapeRegExp = str => {
+export const escapeRegExp = (str) => {
   if (str === null || str === undefined) {
     str = '';
   }
@@ -45,7 +45,7 @@ export const mergeOptions = (defaultOptions, options) => {
   return newOptions;
 };
 
-export const parseCmdEqualOption = option => {
+export const parseCmdEqualOption = (option) => {
   const replaceToken = '__REPLACE_TOKEN__';
   let tmpToken = replaceToken;
   let result;

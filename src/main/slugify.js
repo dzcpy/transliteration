@@ -24,7 +24,7 @@ const slugify = (str, options) => {
   return slug;
 };
 
-slugify.config = options => {
+slugify.config = (options) => {
   if (options === undefined) {
     return configOptions;
   }

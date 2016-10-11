@@ -84,12 +84,12 @@ const transliterate = (str, options) => {
   return strNew;
 };
 
-transliterate.setCodemap = customCodemap => {
+transliterate.setCodemap = (customCodemap) => {
   codemap = customCodemap || codemap;
   return codemap;
 };
 
-transliterate.config = options => {
+transliterate.config = (options) => {
   if (options === undefined) {
     return configOptions;
   }

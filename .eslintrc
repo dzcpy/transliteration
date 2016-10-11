@@ -12,6 +12,8 @@
     "guard-for-in": 0,
     "max-len": [1, 120],
     "import/no-extraneous-dependencies": 0,
+    "import/no-dynamic-require": 0,
+    "import/extensions": 0,
     "no-bitwise": 1,
     "no-plusplus": 0
   }

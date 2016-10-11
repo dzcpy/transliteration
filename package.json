@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Unicode to ACSII transliteration / slugify module. Works in node.js, web browser and command line.",
   "main": "lib/node/index.js",
   "scripts": {
@@ -57,10 +57,10 @@
     "gulp-babel": "^6.1.2",
     "gulp-es3ify": "0.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.6.0",
+    "gulp-sourcemaps": "^2.0.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "nyc": "^8.3.0",
+    "nyc": "^8.3.1",
     "rimraf": "^2.5.4",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.2",
