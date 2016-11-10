@@ -36,20 +36,20 @@ gulp.task('build:browser', ['clean:browser'], () =>
       .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.destBrowser))
-    .pipe(gutil.noop())
+    .pipe(gutil.noop()),
 );
 
 gulp.task('build:node', ['clean:node'], () =>
   gulp.src(paths.sourceNode)
     .pipe(babel())
-    .pipe(gulp.dest(paths.destNode))
+    .pipe(gulp.dest(paths.destNode)),
 );
 
 gulp.task('build:bin', ['clean:bin'], () =>
   gulp.src(paths.sourceBin)
     .pipe(babel())
     .pipe(rename({ extname: '' }))
-    .pipe(gulp.dest(paths.destBin))
+    .pipe(gulp.dest(paths.destBin)),
 );
 
 gulp.task('clean:browser', cb => rimraf('lib/browser/*', cb));
