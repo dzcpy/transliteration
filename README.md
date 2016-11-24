@@ -12,9 +12,12 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/node-transliteration.svg)](https://saucelabs.com/u/node-transliteration)
 
-Transliteration module for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ASCII, so it can be safely displayed, used as URL slug or as file name.
+UTF-8 transliteration for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ASCII, so it can be safely displayed, used as URL slug or as file name.
 
 This module also provide a slugify function with flexible configurations.
+
+## Demo
+[example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html).
 
 ## Install in Node.js
 
@@ -161,8 +164,6 @@ var slug = slugify.noConfilict();
 slug('你好, World'); // ni-hao-world
 console.log(slugify); // undefined
 ```
-
-For detailed example, please check the demo at [example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html).
 
 ### Usage in command line
 ```
