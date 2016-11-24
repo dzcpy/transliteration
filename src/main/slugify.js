@@ -12,13 +12,13 @@ const defaultOptions = {
 let configOptions = {};
 
 const slugify = (str, options) => {
-  options = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
+  const opt = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
   // remove leading and trailing separators
-  const sep = escapeRegExp(options.separator);
-  options.replaceAfter.push([/[^a-zA-Z0-9]+/g, options.separator], [new RegExp(`^(${sep})+|(${sep})+$`, 'g'), '']);
-  const transliterateOptions = { replaceAfter: options.replaceAfter, replace: options.replace, ignore: options.ignore };
+  const sep = escapeRegExp(opt.separator);
+  opt.replaceAfter.push([/[^a-zA-Z0-9]+/g, opt.separator], [new RegExp(`^(${sep})+|(${sep})+$`, 'g'), '']);
+  const transliterateOptions = { replaceAfter: opt.replaceAfter, replace: opt.replace, ignore: opt.ignore };
   let slug = transliterate(str, transliterateOptions);
-  if (options.lowercase) {
+  if (opt.lowercase) {
     slug = slug.toLowerCase();
   }
   return slug;

@@ -34,28 +34,28 @@ export const replaceStr = (str, replace) => {
  */
 /* istanbul ignore next */
 const transliterate = (str, options) => {
-  options = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
+  const opt = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
   str = String(str);
-  if (options.ignore instanceof Array && options.ignore.length > 0) {
-    for (const i in options.ignore) {
-      const splitted = str.split(options.ignore[i]);
+  if (opt.ignore instanceof Array && opt.ignore.length > 0) {
+    for (const i in opt.ignore) {
+      const splitted = str.split(opt.ignore[i]);
       const result = [];
       for (const j in splitted) {
-        const ignore = options.ignore.slice(0);
+        const ignore = opt.ignore.slice(0);
         ignore.splice(i, 1);
-        result.push(transliterate(splitted[j], mergeOptions(options, { ignore })));
+        result.push(transliterate(splitted[j], mergeOptions(opt, { ignore })));
       }
-      return result.join(options.ignore[i]);
+      return result.join(opt.ignore[i]);
     }
   }
-  str = replaceStr(str, options.replace);
+  str = replaceStr(str, opt.replace);
   const strArr = ucs2decode(fixChineseSpace(str));
   const strArrNew = [];
 
   for (let ord of strArr) {
     // These characters are also transliteratable. Will improve it later if needed
     if (ord > 0xffff) {
-      strArrNew.push(options.unknown);
+      strArrNew.push(opt.unknown);
     } else {
       const offset = ord >> 8;
       if (typeof codemap[offset] === 'undefined') {
@@ -68,7 +68,7 @@ const transliterate = (str, options) => {
       ord &= 0xff;
       const t = codemap[offset][ord];
       if (typeof t === 'undefined' || t === null) {
-        strArrNew.push(options.unknown);
+        strArrNew.push(opt.unknown);
       } else {
         strArrNew.push(codemap[offset][ord]);
       }
@@ -76,11 +76,11 @@ const transliterate = (str, options) => {
   }
   // trim spaces at the begining and ending of the string
   if (strArrNew.length > 1) {
-    options.replaceAfter.push([/(^ +?)|( +?$)/g, '']);
+    opt.replaceAfter.push([/(^ +?)|( +?$)/g, '']);
   }
   let strNew = strArrNew.join('');
 
-  strNew = replaceStr(strNew, options.replaceAfter);
+  strNew = replaceStr(strNew, opt.replaceAfter);
   return strNew;
 };
 
