@@ -26,9 +26,9 @@ npm install transliteration --save
 ```
 ```javascript
 var transliteration = require('transliteration');
-var slug = transliteration.slugify;
+var slugify = transliteration.slugify;
 var tr = transliteration.transliterate;
-//import { transliterate as tr, slugify as slug } from 'transliteration'; /* For ES6 syntax */
+//import { transliterate as tr, slugify } from 'transliteration'; /* For ES6 syntax */
 
 tr('你好, world!'); // Ni Hao , world!
 slugify('你好, world!'); // ni-hao-world
