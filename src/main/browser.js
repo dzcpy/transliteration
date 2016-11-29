@@ -29,7 +29,9 @@ if (typeof define === 'function' && define.amd) {
 // Webworker
 } else if (typeof WorkerGlobalScope !== 'undefined' && typeof self !== 'undefined') {
   bindGlobals(self);
+}
+
 // CommonJS support
-} else if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = { transliterate, slugify };
 }
