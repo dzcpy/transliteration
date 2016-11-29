@@ -71,7 +71,7 @@ Please note that the code has been entirely refactored since version 1.0.0. Be c
 
 __Changes:__
 * The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
-* Added `transliteration.config` and `slugify.config`.
+* Added `transliterate.config` and `slugify.config`.
 * Unknown string will be transliterated as `[?]` instead of `?`.
 * In browser, global variables have been changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
 
