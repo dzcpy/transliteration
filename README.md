@@ -17,7 +17,7 @@ UTF-8 transliteration for node.js, browser and command line. It provides the abi
 This module also provide a slugify function with flexible configurations.
 
 ## Demo
-[example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html).
+[example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html){:target="_blank"}
 
 ## Install in Node.js
 
@@ -73,7 +73,7 @@ __Changes:__
 * This module has been rewritten with ES6, means that it cannot be directly `require`d in the old way. You can either use `require('transliteration').transliterate` or ES6 import `import { transliterate as tr, slugify as slug } from 'transliteration'` to load the module.
 * The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
 * Unknown string will be transliterated as `[?]` instead of `?`.
-* In browser, global variables has changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
+* In browser, global variables have been changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
 
 ## Usage
 
@@ -91,6 +91,13 @@ __Options:__
   /* Strings in the ignore list will be bypassed from transliteration */
   ignore: [str1, str2] // default: []
 }
+```
+
+__transliterate.config(optionsObj?)__
+Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+```javascript
+transliterate.config({ replace: [['你好', 'Hello']] });
+transliterate('你好, world!'); // Result: 'Hello, world!'. This equals transliterate('你好, world!', { replace: [['你好', 'Hello']] });
 ```
 
 __Example__
@@ -126,6 +133,13 @@ __Options:__
 }
 ```
 If no `options` parameter provided it will use the above default values.
+
+__slugify.config(optionsObj?)__
+Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+```javascript
+slugify.config({ replace: [['你好', 'Hello']] });
+slugify('你好, world!'); // Result: 'hello-world'. This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
+```
 
 __Example:__
 ```javascript
