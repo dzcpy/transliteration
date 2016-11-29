@@ -1,4 +1,4 @@
-/* global define, window, WorkerGlobalScope */
+/* global define, window, WorkerGlobalScope, self */
 import { transliterate, slugify } from './';
 import data from '../../data';
 
@@ -17,7 +17,7 @@ const bindGlobals = (globalObj) => {
     delete globalObj.slugify;
     return sl;
   };
-}
+};
 
 // AMD support
 if (typeof define === 'function' && define.amd) {
