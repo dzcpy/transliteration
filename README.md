@@ -110,7 +110,7 @@ tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
 tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] }) // You 好, Shi Jie
 // or use configurations
-tr({ replace: [['你', 'You']], ignore: ['好'] });
+tr.config({ replace: [['你', 'You']], ignore: ['好'] });
 tr('你好，世界') // You 好, Shi Jie
 // get configurations
 console.log(tr.config());
