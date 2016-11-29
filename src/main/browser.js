@@ -1,8 +1,23 @@
-/* global define, window */
+/* global define, window, WorkerGlobalScope */
 import { transliterate, slugify } from './';
 import data from '../../data';
 
 transliterate.setCodemap(data);
+
+const bindGlobals = (globalObj) => {
+  globalObj.transl = transliterate;
+  globalObj.slugify = slugify;
+  globalObj.transl.noConflict = function () {
+    const tr = globalObj.transl;
+    delete globalObj.transl;
+    return tr;
+  };
+  globalObj.slugify.noConflict = function () {
+    const sl = slugify;
+    delete globalObj.slugify;
+    return sl;
+  };
+}
 
 // AMD support
 if (typeof define === 'function' && define.amd) {
@@ -10,20 +25,11 @@ if (typeof define === 'function' && define.amd) {
   define('slugify', () => slugify);
 // Global variables
 } else if (typeof window !== 'undefined' && typeof window.document === 'object') {
-  window.transl = transliterate;
-  window.slugify = slugify;
-  window.transl.noConflict = function () {
-    const tr = window.transl;
-    delete window.transl;
-    return tr;
-  };
-  slugify.noConflict = function () {
-    const sl = slugify;
-    delete window.slugify;
-    return sl;
-  };
-}
+  bindGlobals(window);
+// Webworker
+} else if (typeof WorkerGlobalScope !== 'undefined' && typeof self !== 'undefined') {
+  bindGlobals(self);
 // CommonJS support
-if (typeof module !== 'undefined' && module.exports) {
+} else if (typeof module !== 'undefined' && module.exports) {
   module.exports = { transliterate, slugify };
 }
