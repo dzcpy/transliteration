@@ -17,7 +17,7 @@ UTF-8 transliteration for node.js, browser and command line. It provides the abi
 This module also provide a slugify function with flexible configurations.
 
 ## Demo
-[example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html){:target="_blank"}
+<a href="http://rawgit.com/andyhu/node-transliteration/master/demo/example.html" target="_blank">example.html</a>
 
 ## Install in Node.js
 
