@@ -70,8 +70,8 @@ slugify 你好 # ni-hao
 Please note that the code has been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
 
 __Changes:__
-* This module has been rewritten with ES6, means that it cannot be directly `require`d in the old way. You can either use `require('transliteration').transliterate` or ES6 import `import { transliterate as tr, slugify as slug } from 'transliteration'` to load the module.
 * The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
+* Added `transliteration.config` and `slugify.config`.
 * Unknown string will be transliterated as `[?]` instead of `?`.
 * In browser, global variables have been changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
 
