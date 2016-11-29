@@ -17,7 +17,7 @@ UTF-8 transliteration for node.js, browser and command line. It provides the abi
 This module also provide a slugify function with flexible configurations.
 
 ## Demo
-<a href="http://rawgit.com/andyhu/node-transliteration/master/demo/example.html" target="_blank">example.html</a>
+[example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html)
 
 ## Install in Node.js
 
@@ -94,6 +94,7 @@ __Options:__
 ```
 
 __transliterate.config(optionsObj?)__
+
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 ```javascript
 transliterate.config({ replace: [['你好', 'Hello']] });
@@ -135,6 +136,7 @@ __Options:__
 If no `options` parameter provided it will use the above default values.
 
 __slugify.config(optionsObj?)__
+
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 ```javascript
 slugify.config({ replace: [['你好', 'Hello']] });
