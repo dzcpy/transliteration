@@ -56,4 +56,4 @@ options.ignore = argv.ignore;
 if (argv._.length !== 1) {
   console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
 }
-process.stdout.write(tr(argv._[0], options));
+console.log(tr(argv._[0], options));
