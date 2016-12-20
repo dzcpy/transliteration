@@ -108,7 +108,8 @@ var tr = require('transliteration').transliterate;
 tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
-tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] }) // You 好, Shi Jie
+tr('你好，世界', { replace: {你: 'You'}, ignore: ['好'] }) // You 好, Shi Jie
+tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] }) // You 好, Shi Jie (option in array form)
 // or use configurations
 tr.config({ replace: [['你', 'You']], ignore: ['好'] });
 tr('你好，世界') // You 好, Shi Jie
@@ -148,7 +149,8 @@ __Example:__
 var slugify = require('transliteration').slugify; // import { slugify } from 'transliteration'; /* For ES6 syntax */
 slugify('你好，世界'); // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
-slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // hello_world
+slugify('你好，世界', { replace: {你好: 'Hello', 世界: 'world'}, separator: '_' }); // hello_world
+slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // hello_world (option in array form)
 slugify('你好，世界', { ignore: ['你好'] }); // 你好shi-jie
 // or use configurations
 slugify.config({ lowercase: false, separator: '_' });
@@ -223,5 +225,5 @@ Examples:
 
 ```
 
-### Notice about Japanese language
-`Transliteration` support nearly every common languages including CJK (Chinese, Japanese and Korean). Note that Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
+### Caveats
+`Transliteration` support nearly every common languages including CJK (Chinese, Japanese and Korean). Please note that Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
