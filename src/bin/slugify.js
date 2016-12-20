@@ -54,7 +54,7 @@ if (argv.replace.length) {
   for (const repl of argv.replace) {
     const tmp = parseE(repl);
     if (tmp === false) {
-      console.error(`Bad argument -r or --replace. Please try '${argv.$0} --help' for correct usage.`);
+      console.error(`Bad argument -r or --replace. Please type '${argv.$0} --help' for help.`);
       process.exit(1);
     }
     options.replace.push(tmp);
@@ -62,6 +62,6 @@ if (argv.replace.length) {
 }
 options.ignore = argv.ignore;
 if (argv._.length !== 1) {
-  console.error(`Invalid argument. Please try '${argv.$0} --help' for correct usage.`);
+  console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
 }
 console.log(slugify(argv._[0], options));
