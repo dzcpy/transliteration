@@ -22,8 +22,9 @@ export const ucs2decode = (string) => {
   return output;
 };
 
-// add additional space between Chinese and English
-export const fixChineseSpace = str => str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
+// add additional space between Chinese and English.
+export const fixChineseSpace = str =>
+  str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
 
 // Escape regular expression string
 export const escapeRegExp = (str) => {
@@ -33,16 +34,27 @@ export const escapeRegExp = (str) => {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 };
 
+/**
+ * Merge configuration options. Use deep merge if option is an array.
+ */
 export const mergeOptions = (defaultOptions, options) => {
-  const newOptions = {};
+  const result = {};
   if (!options || typeof options !== 'object') options = {};
   for (const key in defaultOptions) {
-    newOptions[key] = options[key] === undefined ? defaultOptions[key] : options[key];
-    if (newOptions[key] instanceof Array) {
-      newOptions[key] = newOptions[key].slice(0);
+    result[key] = options[key] === undefined ? defaultOptions[key] : options[key];
+    if (result[key] instanceof Array) {
+      result[key] = result[key].slice(0);
+    }
+    // convert object version of the 'replace' option into array version
+    if (key === 'replace' && typeof result[key] === 'object' && !(result[key] instanceof Array)) {
+      const replaceArr = [];
+      for (const source in result.replace) {
+        replaceArr.push([source, result.replace[source]]);
+      }
+      result.replace = replaceArr;
     }
   }
-  return newOptions;
+  return result;
 };
 
 export const parseCmdEqualOption = (option) => {

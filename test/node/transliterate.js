@@ -88,6 +88,7 @@ test('#transliterate()', (q) => {
   test('- With replace option', (t) => {
     const tests = [
       ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', [['\u4F60\u597D', 'Hola']], 'Hola,Shi Jie !'],
+      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', { 你好: 'Hola' }, 'Hola,Shi Jie !'],
     ];
     for (const [str, replace, result] of tests) {
       t.equal(tr(str, { replace }), result, `${str}-->${result}`);
