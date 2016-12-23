@@ -39,7 +39,7 @@ export const escapeRegExp = (str) => {
  */
 export const mergeOptions = (defaultOptions, options) => {
   const result = {};
-  if (!options || typeof options !== 'object') options = {};
+  if (!options) options = {};
   for (const key in defaultOptions) {
     result[key] = options[key] === undefined ? defaultOptions[key] : options[key];
     if (result[key] instanceof Array) {

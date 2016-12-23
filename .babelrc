@@ -1,8 +1,6 @@
 {
-  "presets": [
-    "es2015-ie"
-  ],
   "plugins": [
-    "add-module-exports"
+    "add-module-exports",
+    "transform-es2015-modules-commonjs"
   ]
 }

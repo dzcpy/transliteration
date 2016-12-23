@@ -11,45 +11,43 @@ import babelify from 'babelify';
 import es3ify from 'gulp-es3ify';
 import rimraf from 'rimraf';
 
-const paths = {
-  sourceBrowser: 'src/main/browser.js',
-  sourceNode: ['src/main/*.js', '!src/main/browser.js', '!src/main/data.js'],
-  sourceBin: 'src/bin/*.js',
-  destBrowser: 'lib/browser/',
-  destNode: 'lib/node/',
-  destBin: 'lib/bin/',
-};
+const SRC_BROWSER_PATH = 'src/main/browser.js';
+const SRC_NODE_PATH = ['src/main/*.js', '!src/main/browser.js', '!src/main/data.js'];
+const SRC_BIN_PATH = 'src/bin/*.js';
+const DEST_BROWSER_PATH = 'lib/browser/';
+const DEST_NODE_PATH = 'lib/node/';
+const DEST_BIN_PATH = 'lib/bin/';
 
 gulp.task('default', ['build:browser', 'build:node', 'build:bin']);
 
 gulp.task('build:browser', ['clean:browser'], () =>
-  browserify(paths.sourceBrowser, { debug: true })
-    .transform(babelify)
+  browserify(SRC_BROWSER_PATH, { debug: true })
+    .transform(babelify, { presets: ['es2015-ie'], plugins: ['add-module-exports'] })
     .bundle()
     .pipe(source('transliteration.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(es3ify())
-      .pipe(gulp.dest(paths.destBrowser))
+      .pipe(gulp.dest(DEST_BROWSER_PATH))
       .pipe(rename('transliteration.min.js'))
       .pipe(uglify())
       .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.destBrowser))
+    .pipe(gulp.dest(DEST_BROWSER_PATH))
     .pipe(gutil.noop()),
 );
 
 gulp.task('build:node', ['clean:node'], () =>
-  gulp.src(paths.sourceNode)
+  gulp.src(SRC_NODE_PATH)
     .pipe(babel())
-    .pipe(gulp.dest(paths.destNode)),
+    .pipe(gulp.dest(DEST_NODE_PATH)),
 );
 
 gulp.task('build:bin', ['clean:bin'], () =>
-  gulp.src(paths.sourceBin)
+  gulp.src(SRC_BIN_PATH)
     .pipe(babel())
     .pipe(rename({ extname: '' }))
-    .pipe(gulp.dest(paths.destBin)),
+    .pipe(gulp.dest(DEST_BIN_PATH)),
 );
 
 gulp.task('clean:browser', cb => rimraf('lib/browser/*', cb));
