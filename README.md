@@ -12,29 +12,24 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/node-transliteration.svg)](https://saucelabs.com/u/node-transliteration)
 
-UTF-8 transliteration for node.js, browser and command line. It provides the ability to transliterate unicode characters into corresponding pure ASCII, so it can be safely displayed, used as URL slug or as file name.
-
-This module also provide a slugify function with flexible configurations.
+Transliteration / slugify for node.js, browser, Web Worker, ReactNative and CLI. It provides the ability to transliterate UTF-8 characters into corresponding pure ASCII, so it can be safely displayed, used as URL slug or as file name.
 
 ## Demo
 [example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html)
 
-## Install in Node.js
+## Instalation in Node.js
 
 ```bash
 npm install transliteration --save
 ```
 ```javascript
-var transliteration = require('transliteration');
-var slugify = transliteration.slugify;
-var tr = transliteration.transliterate;
-//import { transliterate as tr, slugify } from 'transliteration'; /* For ES6 syntax */
+import { transliterate as tr, slugify } from 'transliteration';
 
 tr('你好, world!'); // Ni Hao , world!
 slugify('你好, world!'); // ni-hao-world
 ```
 
-## Download the library and use in browser
+## Browser
 ```bash
 # Install bower if not already installed
 # npm install bower -g
@@ -57,13 +52,19 @@ bower install transliteration
 ### Browser compatibility
 `transliteration` module should support all major browsers including IE 6-8 (with `es5-shim`)
 
-## Install command line tools globally
+## CLI
 
 ```bash
 npm install transliteration -g
 
 transliterate 你好 # Ni Hao
 slugify 你好 # ni-hao
+```
+
+## ReactNative
+
+```javascript
+import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
 
 ## Breaking changes since 1.0.0
@@ -79,7 +80,7 @@ __Changes:__
 
 ### transliterate(str, options)
 
-Transliterate the string `str`. Characters which this module doesn't recognise will be converted to the character in the `unknown` parameter, defaults to `[?]`.
+Transliterate the string `str` from UTF-8 to pure ASCII. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` option, defaults to `[?]`.
 
 __Options:__
 ```javascript
@@ -87,13 +88,14 @@ __Options:__
   /* Unicode characters that are not in the database will be replaced with `unknown` */
   unknown: '[?]', // default: [?]
   /* Custom replacement of the strings before transliteration */
-  replace: [[source1, target1], [source2, target2], ...], // default: []
+  replace: { source1: target1, source2: target2, ... }, // default: [] // Object
+  replace: [[source1, target1], [source2, target2], ... ], // default: [] // Array
   /* Strings in the ignore list will be bypassed from transliteration */
   ignore: [str1, str2] // default: []
 }
 ```
 
-__transliterate.config(optionsObj?)__
+__transliterate.config([optionsObj])__
 
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 ```javascript
@@ -103,7 +105,7 @@ transliterate('你好, world!'); // Result: 'Hello, world!'. This equals transli
 
 __Example__
 ```javascript
-var tr = require('transliteration').transliterate;
+import { transliterate as tr } from 'transliteration';
 // import { tr } from 'transliteration'; /* For ES6 syntax */
 tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
@@ -129,14 +131,15 @@ __Options:__
   /* Separator of the slug */
   separator: '-', // default: '-'
   /* Custom replacement of the strings before transliteration */
-  replace: [[source1, target1], [source2, target2], ...], // default: []
+  replace: { source1: target1, source2: target2, ... },
+  replace: [[source1, target1], [source2, target2], ... ], // default: []
   /* Strings in the ignore list will be bypassed from transliteration */
   ignore: [str1, str2] // default: []
 }
 ```
 If no `options` parameter provided it will use the above default values.
 
-__slugify.config(optionsObj?)__
+__slugify.config([optionsObj])__
 
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 ```javascript
@@ -146,7 +149,7 @@ slugify('你好, world!'); // Result: 'hello-world'. This equals slugify('你好
 
 __Example:__
 ```javascript
-var slugify = require('transliteration').slugify; // import { slugify } from 'transliteration'; /* For ES6 syntax */
+import { slugify } from 'transliteration';
 slugify('你好，世界'); // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
 slugify('你好，世界', { replace: {你好: 'Hello', 世界: 'world'}, separator: '_' }); // hello_world
