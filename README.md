@@ -81,11 +81,11 @@ __Changes:__
 
 ## Usage
 
-### transliterate(str, options)
+### transliterate(str, [options])
 
 It will transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
 
-__Options:__
+__Options:__ (optionable)
 ```javascript
 {
   /* Unicode characters that are not in the database will be replaced with `unknown` */
@@ -121,10 +121,10 @@ tr('你好，世界') // You 好, Shi Jie
 console.log(tr.config());
 ```
 
-### slugify(str, options)
+### slugify(str, [options])
 Converts unicode string to slugs. So it can be safely used in URL or file name.
 
-__Options:__
+__Options:__ (optionable)
 ```javascript
 {
   /* Whether to force slags to be lowercased */
@@ -138,7 +138,7 @@ __Options:__
   ignore: [str1, str2] // default: []
 }
 ```
-If no `options` parameter provided it will use the above default values.
+If `options` is not provided, it will use the above default values.
 
 __slugify.config([optionsObj])__
 
