@@ -50,7 +50,7 @@ bower install transliteration
 ```
 
 ### Browser support
-`transliteration` has good browser compatibility with all major browsers (including IE 6-8 if used with `es5-shim`).
+`transliteration` has a good browser compatibility with all major browsers (including IE 6-8 if used with `es5-shim`).
 
 ### CLI
 
