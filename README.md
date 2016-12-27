@@ -83,7 +83,7 @@ __Changes:__
 
 ### transliterate(str, [options])
 
-It will transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
+Transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
 
 __Options:__ (optionable)
 ```javascript
