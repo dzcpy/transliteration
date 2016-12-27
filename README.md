@@ -12,13 +12,14 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/node-transliteration.svg)](https://saucelabs.com/u/node-transliteration)
 
-Transliteration / slugify for node.js, browser, Web Worker, ReactNative and CLI. It provides the ability to transliterate UTF-8 characters into corresponding pure ASCII, so it can be safely displayed, used as URL slug or as file name.
+Transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI. It provides the ability to transliterate UTF-8 characters into corresponding pure ASCII; so they can be safely displayed, used as URL slugs or file names.
 
 ## Demo
 [example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html)
 
-## Instalation in Node.js
+## Instalation
 
+### Node.js
 ```bash
 npm install transliteration --save
 ```
@@ -28,8 +29,7 @@ import { transliterate as tr, slugify } from 'transliteration';
 tr('你好, world!'); // Ni Hao , world!
 slugify('你好, world!'); // ni-hao-world
 ```
-
-## Browser
+### Browser
 ```bash
 # Install bower if not already installed
 # npm install bower -g
@@ -49,10 +49,10 @@ bower install transliteration
 </html>
 ```
 
-### Browser compatibility
-`transliteration` module should support all major browsers including IE 6-8 (with `es5-shim`)
+### Browser support
+`transliteration` has good browser compatibility with all major browsers (including IE 6-8 with `es5-shim`).
 
-## CLI
+### CLI
 
 ```bash
 npm install transliteration -g
@@ -61,13 +61,16 @@ transliterate 你好 # Ni Hao
 slugify 你好 # ni-hao
 ```
 
-## ReactNative
+### ReactNative
 
 ```javascript
 import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
 
-## Breaking changes since 1.0.0
+## Breaking changes
+
+###1.0.0
+
 Please note that the code has been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
 
 __Changes:__
@@ -80,7 +83,7 @@ __Changes:__
 
 ### transliterate(str, options)
 
-Transliterate the string `str` from UTF-8 to pure ASCII. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` option, defaults to `[?]`.
+It will transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
 
 __Options:__
 ```javascript
@@ -88,8 +91,8 @@ __Options:__
   /* Unicode characters that are not in the database will be replaced with `unknown` */
   unknown: '[?]', // default: [?]
   /* Custom replacement of the strings before transliteration */
-  replace: { source1: target1, source2: target2, ... }, // default: [] // Object
-  replace: [[source1, target1], [source2, target2], ... ], // default: [] // Array
+  replace: { source1: target1, source2: target2, ... }, // Object form of argument
+  replace: [[source1, target1], [source2, target2], ... ], // Array form of argument
   /* Strings in the ignore list will be bypassed from transliteration */
   ignore: [str1, str2] // default: []
 }
@@ -106,7 +109,6 @@ transliterate('你好, world!'); // Result: 'Hello, world!'. This equals transli
 __Example__
 ```javascript
 import { transliterate as tr } from 'transliteration';
-// import { tr } from 'transliteration'; /* For ES6 syntax */
 tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
@@ -120,7 +122,6 @@ console.log(tr.config());
 ```
 
 ### slugify(str, options)
-
 Converts unicode string to slugs. So it can be safely used in URL or file name.
 
 __Options:__
@@ -163,11 +164,9 @@ console.log(slugify.config());
 ```
 
 ### Usage in browser
-`Transliteration` module can be run in the browser as well.
+`transliteration` can be loaded as a AMD / CommonJS module, or as global variables (UMD).
 
-It supports AMD / CommonJS standard or it could be just loaded as global variables (UMD).
-
-When use in browser, by default it will create global variables under `window` object:
+When using it in the browser, by default it will create global variables under `window` object:
 ```javascript
 transl('你好, World'); // window.transl
 // or
@@ -229,4 +228,9 @@ Examples:
 ```
 
 ### Caveats
-`Transliteration` support nearly every common languages including CJK (Chinese, Japanese and Korean). Please note that Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
+`transliteration` supports almost all common languages whereas there might be quirks in some specific languages. For example Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
+
+If you find any issues, please raise a github issue. Thanks!
+
+### License
+MIT
