@@ -17,7 +17,7 @@ Transliteration / slugify module for node.js, browser, Web Worker, ReactNative a
 ## Demo
 [example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html)
 
-## Instalation
+## Installation
 
 ### Node.js
 ```bash
