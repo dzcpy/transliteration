@@ -85,7 +85,7 @@ __Changes:__
 
 Transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
 
-__Options:__ (optionable)
+__Options:__ (optional)
 ```javascript
 {
   /* Unicode characters that are not in the database will be replaced with `unknown` */
@@ -124,7 +124,7 @@ console.log(tr.config());
 ### slugify(str, [options])
 Converts unicode string to slugs. So it can be safely used in URL or file name.
 
-__Options:__ (optionable)
+__Options:__ (optional)
 ```javascript
 {
   /* Whether to force slags to be lowercased */
