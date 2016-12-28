@@ -1,21 +1,21 @@
 # Transliteration
 
-[![Build Status](https://travis-ci.org/andyhu/node-transliteration.svg)](https://travis-ci.org/andyhu/node-transliteration)
-[![Dependencies](https://img.shields.io/david/andyhu/node-transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/package.json)
-[![Dev Dependencies](https://img.shields.io/david/dev/andyhu/node-transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/package.json)
-[![Coverage Status](https://coveralls.io/repos/github/andyhu/node-transliteration/badge.svg?branch=master)](https://coveralls.io/github/andyhu/node-transliteration?branch=master)
+[![Build Status](https://travis-ci.org/andyhu/transliteration.svg)](https://travis-ci.org/andyhu/transliteration)
+[![Dependencies](https://img.shields.io/david/andyhu/transliteration.svg)](https://github.com/andyhu/transliteration/blob/master/package.json)
+[![Dev Dependencies](https://img.shields.io/david/dev/andyhu/transliteration.svg)](https://github.com/andyhu/transliteration/blob/master/package.json)
+[![Coverage Status](https://coveralls.io/repos/github/andyhu/transliteration/badge.svg?branch=master)](https://coveralls.io/github/andyhu/transliteration?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
-[![Bower Version](https://img.shields.io/bower/v/transliteration.svg)](https://github.com/andyhu/node-transliteration)
+[![Bower Version](https://img.shields.io/bower/v/transliteration.svg)](https://github.com/andyhu/transliteration)
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
-[![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/node-transliteration/blob/master/LICENSE.txt)
-[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/andyhu/node-transliteration)
+[![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/transliteration/blob/master/LICENSE.txt)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/andyhu/transliteration)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/node-transliteration.svg)](https://saucelabs.com/u/node-transliteration)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/transliteration.svg)](https://saucelabs.com/u/transliteration)
 
 Transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI. It provides the ability to transliterate UTF-8 characters into corresponding pure ASCII; so they can be safely displayed, used as URL slugs or file names.
 
 ## Demo
-[example.html](http://rawgit.com/andyhu/node-transliteration/master/demo/example.html)
+[example.html](http://rawgit.com/andyhu/transliteration/master/demo/example.html)
 
 ## Installation
 
