@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andyhu/node-transliteration.git"
+    "url": "https://github.com/andyhu/transliteration.git"
   },
   "keywords": [
     "transliterate",
@@ -39,7 +39,7 @@
   "author": "Andy Hu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andyhu/node-transliteration/issues"
+    "url": "https://github.com/andyhu/transliteration/issues"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
