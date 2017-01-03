@@ -172,7 +172,7 @@ transl('你好, World'); // window.transl
 // or
 slugify('Hello, 世界'); // window.slugify
 ```
-If the name of the variables conflict with other libraries in your project or you prefer not to use global variables, you can then call noConfilict() before loading other libraries which contails the possible conflict.:
+If the variable names conflict with other libraries in your project or you prefer not to use global variables, use noConfilict() before loading libraries which contain the conflicted variables.:
 
 __Load the library globally__
 
