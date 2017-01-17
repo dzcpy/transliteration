@@ -30,6 +30,12 @@ tr('你好, world!'); // Ni Hao , world!
 slugify('你好, world!'); // ni-hao-world
 ```
 ### Browser
+__CDN:__
+```html
+
+<script src="https://unpkg.com/transliteration/lib/browser/transliteration.min.js"></script>
+```
+__Bower:__
 ```bash
 # Install bower if not already installed
 # npm install bower -g
@@ -62,7 +68,6 @@ slugify 你好 # ni-hao
 ```
 
 ### ReactNative
-
 ```javascript
 import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
@@ -77,7 +82,7 @@ __Changes:__
 * The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
 * Added `transliterate.config` and `slugify.config`.
 * Unknown string will be transliterated as `[?]` instead of `?`.
-* In browser, global variables have been changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
+* In the browser, global variables have been changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
 
 ## Usage
 
@@ -122,7 +127,7 @@ console.log(tr.config());
 ```
 
 ### slugify(str, [options])
-Converts unicode string to slugs. So it can be safely used in URL or file name.
+Converts Unicode string to slugs. So it can be safely used in URL or file name.
 
 __Options:__ (optional)
 ```javascript
@@ -164,7 +169,7 @@ console.log(slugify.config());
 ```
 
 ### Usage in browser
-`transliteration` can be loaded as a AMD / CommonJS module, or as global variables (UMD).
+`transliteration` can be loaded as an AMD / CommonJS module, or as global variables (UMD).
 
 When using it in the browser, by default it will create global variables under `window` object:
 ```javascript
@@ -172,7 +177,7 @@ transl('你好, World'); // window.transl
 // or
 slugify('Hello, 世界'); // window.slugify
 ```
-If the variable names conflict with other libraries in your project or you prefer not to use global variables, use noConfilict() before loading libraries which contain the conflicted variables.:
+If the variable names conflict with other libraries in your project or you prefer not to use global variables, use noConfilict() before loading libraries which contain the conflicting variables.:
 
 __Load the library globally__
 
@@ -228,9 +233,9 @@ Examples:
 ```
 
 ### Caveats
-`transliteration` supports almost all common languages whereas there might be quirks in some specific languages. For example Kanji characters in Japanese will be translierated as Chinese Pinyin. I couldn't find a better way to distinguash Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
+`transliteration` supports almost all common languages whereas there might be quirks in some specific languages. For example, Kanji characters in Japanese will be transliterated as Chinese Pinyin. I couldn't find a better way to distinguish Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
 
-If you find any issues, please raise a github issue. Thanks!
+If you find any issues, please raise a GitHub issue. Thanks!
 
 ### License
 MIT
