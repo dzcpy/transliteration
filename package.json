@@ -57,7 +57,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-es3ify": "^0.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.9.1",
+    "gulp-sourcemaps": "^2.4.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "nyc": "^10.0.0",
