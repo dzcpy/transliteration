@@ -65,6 +65,7 @@ npm install transliteration -g
 
 transliterate 你好 # Ni Hao
 slugify 你好 # ni-hao
+echo 你好 | slugify -S # ni-hao
 ```
 
 ### ReactNative
@@ -200,6 +201,7 @@ Options:
   -u, --unknown  Placeholder for unknown characters                        [string] [default: "[?]"]
   -r, --replace  Custom string replacement                                     [array] [default: []]
   -i, --ignore   String list to ignore                                         [array] [default: []]
+  -S, --stdin      Use stdin as input                                     [boolean] [default: false]
   -h, --help     Show help                                                                 [boolean]
 
 Examples:
@@ -221,6 +223,7 @@ Options:
   -s, --separator  Separator of the slug                                     [string] [default: "-"]
   -r, --replace    Custom string replacement                                   [array] [default: []]
   -i, --ignore     String list to ignore                                       [array] [default: []]
+  -S, --stdin      Use stdin as input                                     [boolean] [default: false]
   -h, --help       Show help                                                               [boolean]
 
 Examples:

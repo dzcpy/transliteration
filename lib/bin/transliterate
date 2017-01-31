@@ -13,12 +13,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // eslint-disable-line import/no-unresolved
 
+var STDIN_ENCODING = 'utf-8'; // eslint-disable-line import/no-unresolved
+
 var options = {
   unknown: '[?]',
   replace: [],
   ignore: []
-}; // eslint-disable-line import/no-unresolved
-
+};
 
 var argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('u', {
   alias: 'unknown',
@@ -35,6 +36,11 @@ var argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').opti
   default: options.ignore,
   describe: 'String list to ignore',
   type: 'array'
+}).option('S', {
+  alias: 'stdin',
+  default: false,
+  describe: 'Use stdin as input',
+  type: 'boolean'
 }).help('h').option('h', {
   alias: 'help'
 }).example('$0 "你好, world!" -r 好=good -r "world=Shi Jie"', 'Replace `,` into `!`, `world` into `shijie`.\nResult: Ni good, Shi Jie!').example('$0 "你好，世界!" -i 你好 -i ，', 'Ignore `你好` and `，`.\nResult: 你好，Shi Jie !').wrap(100).argv;
@@ -72,7 +78,21 @@ if (argv.replace.length) {
   }
 }
 options.ignore = argv.ignore;
-if (argv._.length !== 1) {
-  console.error('Invalid argument. Please type \'' + argv.$0 + ' --help\' for help.');
+
+if (argv.stdin) {
+  process.stdin.setEncoding(STDIN_ENCODING);
+  process.stdin.on('readable', function () {
+    var chunk = process.stdin.read();
+    if (chunk !== null) {
+      process.stdout.write((0, _node.transliterate)(chunk, options));
+    }
+  });
+  process.stdin.on('end', function () {
+    return console.log('');
+  });
+} else {
+  if (argv._.length !== 1) {
+    console.error('Invalid argument. Please type \'' + argv.$0 + ' --help\' for help.');
+  }
+  console.log((0, _node.transliterate)(argv._[0], options));
 }
-console.log((0, _node.transliterate)(argv._[0], options));

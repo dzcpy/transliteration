@@ -3,6 +3,7 @@ import yargs from 'yargs';
 import { parseCmdEqualOption as parseE } from '../../lib/node/utils'; // eslint-disable-line import/no-unresolved
 import { transliterate as tr } from '../../lib/node'; // eslint-disable-line import/no-unresolved
 
+const STDIN_ENCODING = 'utf-8';
 const options = {
   unknown: '[?]',
   replace: [],
@@ -30,6 +31,12 @@ const argv = yargs
     describe: 'String list to ignore',
     type: 'array',
   })
+  .option('S', {
+    alias: 'stdin',
+    default: false,
+    describe: 'Use stdin as input',
+    type: 'boolean',
+  })
   .help('h')
   .option('h', {
     alias: 'help',
@@ -53,7 +60,19 @@ if (argv.replace.length) {
   }
 }
 options.ignore = argv.ignore;
-if (argv._.length !== 1) {
-  console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
+
+if (argv.stdin) {
+  process.stdin.setEncoding(STDIN_ENCODING);
+  process.stdin.on('readable', () => {
+    const chunk = process.stdin.read();
+    if (chunk !== null) {
+      process.stdout.write(tr(chunk, options));
+    }
+  });
+  process.stdin.on('end', () => console.log(''));
+} else {
+  if (argv._.length !== 1) {
+    console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
+  }
+  console.log(tr(argv._[0], options));
 }
-console.log(tr(argv._[0], options));
