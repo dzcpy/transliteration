@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs';
-import { parseCmdEqualOption as parseE } from '../../build/node/utils'; // eslint-disable-line import/no-unresolved
-import { transliterate as tr } from '../../build/node'; // eslint-disable-line import/no-unresolved
+import { parseCmdEqualOption as parseE } from '../../lib/node/utils'; // eslint-disable-line import/no-unresolved
+import { transliterate as tr } from '../../lib/node'; // eslint-disable-line import/no-unresolved
 
 const options = {
   unknown: '[?]',

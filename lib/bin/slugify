@@ -5,9 +5,9 @@ var _yargs = require('yargs');
 
 var _yargs2 = _interopRequireDefault(_yargs);
 
-var _utils = require('../../build/node/utils');
+var _utils = require('../../lib/node/utils');
 
-var _slugify = require('../../build/node/slugify');
+var _slugify = require('../../lib/node/slugify');
 
 var _slugify2 = _interopRequireDefault(_slugify);
 

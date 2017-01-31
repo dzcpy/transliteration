@@ -5,9 +5,9 @@ var _yargs = require('yargs');
 
 var _yargs2 = _interopRequireDefault(_yargs);
 
-var _utils = require('../../build/node/utils');
+var _utils = require('../../lib/node/utils');
 
-var _node = require('../../build/node');
+var _node = require('../../lib/node');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
