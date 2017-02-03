@@ -6,6 +6,7 @@ const defaultOptions = {
   replace: [],
   replaceAfter: [],
   ignore: [],
+  trim: true,
 };
 let configOptions = {};
 
@@ -43,7 +44,7 @@ const transliterate = (str, options) => {
       for (const j in splitted) {
         const ignore = opt.ignore.slice(0);
         ignore.splice(i, 1);
-        result.push(transliterate(splitted[j], mergeOptions(opt, { ignore })));
+        result.push(transliterate(splitted[j], mergeOptions(opt, { ignore, trim: false })));
       }
       return result.join(opt.ignore[i]);
     }
@@ -75,7 +76,7 @@ const transliterate = (str, options) => {
     }
   }
   // trim spaces at the begining and ending of the string
-  if (strArrNew.length > 1) {
+  if (opt.trim && strArrNew.length > 1) {
     opt.replaceAfter.push([/(^ +?)|( +?$)/g, '']);
   }
   let strNew = strArrNew.join('');
