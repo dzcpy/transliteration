@@ -11,6 +11,7 @@ const defaultOptions = {
   replace: [],
   replaceAfter: [],
   ignore: [],
+  trim: true,
 };
 
 test('#transliterate()', (q) => {
@@ -76,8 +77,8 @@ test('#transliterate()', (q) => {
   test('- With ignore option', (t) => {
     const tests = [
       ['\u00C6neid', ['\u00C6'], '\u00C6neid'],
-      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\uFF0C', '\uFF01'], 'Ni Hao\uFF0CShi Jie\uFF01'],
-      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\u4F60\u597D', '\uFF01'], '\u4F60\u597D,Shi Jie\uFF01'],
+      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\uFF0C', '\uFF01'], 'Ni Hao \uFF0CShi Jie \uFF01'],
+      ['\u4F60\u597D\uFF0C\u4E16\u754C\uFF01', ['\u4F60\u597D', '\uFF01'], '\u4F60\u597D,Shi Jie \uFF01'],
     ];
     for (const [str, ignore, result] of tests) {
       t.equal(tr(str, { ignore }), result, `${str}-->${result}`);
