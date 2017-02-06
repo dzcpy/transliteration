@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Unicode to ACSII transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI.",
   "main": "lib/node/index.js",
   "browser": "lib/browser/transliteration.js",
@@ -42,8 +42,8 @@
   "bugs": {
     "url": "https://github.com/andyhu/transliteration/issues"
   },
-  "engines" : {
-    "node" : ">=6.0.0"
+  "engines": {
+    "node": ">=6.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
