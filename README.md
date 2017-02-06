@@ -74,6 +74,8 @@ import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
 
 ## Breaking changes
+###1.5.0
+Since version 1.5.0, `transliteration` module requires minimum node version v6.0.
 
 ###1.0.0
 
