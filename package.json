@@ -72,6 +72,6 @@
     "zuul": "^3.11.1"
   },
   "dependencies": {
-    "yargs": "^6.6.0"
+    "yargs": "^7.0.1"
   }
 }
