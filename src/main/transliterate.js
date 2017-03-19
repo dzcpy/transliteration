@@ -73,7 +73,7 @@ const transliterate = (sourceStr, options) => {
       }
     }
   }
-  // trim spaces at the begining and ending of the string
+  // trim spaces at the beginning and ending of the string
   if (opt.trim && strArrNew.length > 1) {
     opt.replaceAfter.push([/(^ +?)|( +?$)/g, '']);
   }
