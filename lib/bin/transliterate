@@ -50,7 +50,7 @@ if (argv.replace.length) {
   for (const repl of argv.replace) {
     const tmp = (0, _utils.parseCmdEqualOption)(repl);
     if (tmp === false) {
-      console.error(`Bad argument -r or --replace. Please type '${argv.$0} --help' for help.`);
+      console.error(`Bad argument -r or --replace. Please type '${ argv.$0 } --help' for help.`);
       process.exit(1);
     }
     options.replace.push(tmp);
@@ -69,7 +69,7 @@ if (argv.stdin) {
   process.stdin.on('end', () => console.log(''));
 } else {
   if (argv._.length !== 1) {
-    console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
+    console.error(`Invalid argument. Please type '${ argv.$0 } --help' for help.`);
   }
   console.log((0, _node.transliterate)(argv._[0], options));
 }
