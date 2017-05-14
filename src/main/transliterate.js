@@ -11,14 +11,12 @@ const defaultOptions = {
 let configOptions = {};
 
 /* istanbul ignore next */
-export const replaceStr = (sourceStr, replace) => {
-  let str = sourceStr;
+export const replaceStr = (source, replace) => {
+  let str = source;
   for (const item of replace) {
     if (item[0] instanceof RegExp) {
-      let flag = item[0].flags;
       if (!item[0].global) {
-        flag += 'g';
-        item[0] = new RegExp(item[0].toString().replace(/^\/|\/$/), flag);
+        item[0] = new RegExp(item[0].toString().replace(/^\/|\/$/), `${item[0].flags}g`);
       }
     } else if (typeof item[0] === 'string') {
       item[0] = new RegExp(escapeRegExp(item[0]), 'g');
@@ -31,19 +29,20 @@ export const replaceStr = (sourceStr, replace) => {
 };
 
 /**
- * @param {string} str The string which is being transliterated
+ * @param {string} sourceStr The string which is being transliterated
  * @param {object} options options
  */
 /* istanbul ignore next */
 const transliterate = (sourceStr, options) => {
   const opt = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
   let str = String(sourceStr);
+  let i, j, splitted, result, ignore, ord;
   if (opt.ignore instanceof Array && opt.ignore.length > 0) {
-    for (const i in opt.ignore) {
-      const splitted = str.split(opt.ignore[i]);
-      const result = [];
-      for (const j in splitted) {
-        const ignore = opt.ignore.slice(0);
+    for (i in opt.ignore) {
+      splitted = str.split(opt.ignore[i]);
+      result = [];
+      for (j in splitted) {
+        ignore = opt.ignore.slice(0);
         ignore.splice(i, 1);
         result.push(transliterate(splitted[j], mergeOptions(opt, { ignore, trim: false })));
       }
@@ -51,10 +50,11 @@ const transliterate = (sourceStr, options) => {
     }
   }
   str = replaceStr(str, opt.replace);
-  const strArr = ucs2decode(fixChineseSpace(str));
+  str = fixChineseSpace(str);
+  const strArr = ucs2decode(str);
   const strArrNew = [];
 
-  for (let ord of strArr) {
+  for (ord of strArr) {
     // These characters are also transliteratable. Will improve it later if needed
     if (ord > 0xffff) {
       strArrNew.push(opt.unknown);
@@ -68,8 +68,8 @@ const transliterate = (sourceStr, options) => {
         }
       }
       ord &= 0xff;
-      const t = codemap[offset][ord];
-      if (typeof t === 'undefined' || t === null) {
+      const text = codemap[offset][ord];
+      if (typeof text === 'undefined' || text === null) {
         strArrNew.push(opt.unknown);
       } else {
         strArrNew.push(codemap[offset][ord]);
