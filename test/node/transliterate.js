@@ -117,13 +117,13 @@ test('#transliterage.config()', (t) => {
   t.end();
 });
 
-
-test('#transliterage.setCodemap()', (t) => {
+test('#transliterage.setCharmap()', (t) => {
   const codemap = { 0: { 97: 'A', 98: 'B', 99: 'C' } };
-  tr.setCodemap(codemap);
-  t.equal(tr.setCodemap(codemap), codemap, 'set custom codemap');
-  t.deepEqual(tr.setCodemap(), codemap, 'read current custom codemap');
+  tr.setCharmap(codemap);
+  t.equal(tr.setCharmap(codemap), codemap, 'set custom codemap');
+  t.deepEqual(tr.setCharmap(), codemap, 'read current custom codemap');
   t.equal(tr('abc'), 'ABC', 'transliterate with custom codemap');
-  tr.setCodemap({});
+  tr.setCharmap({});
   t.end();
 });
+

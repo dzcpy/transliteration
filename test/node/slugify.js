@@ -52,3 +52,4 @@ test('#slugify.config()', (q) => {
   });
   q.end();
 });
+

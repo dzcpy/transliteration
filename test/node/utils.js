@@ -89,3 +89,4 @@ test('#mergeOptions', (t) => {
   t.deepEqual(utils.mergeOptions(opt, 'abc'), opt, 'extrame case with option="abc"');
   t.end();
 });
+
