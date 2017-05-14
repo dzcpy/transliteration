@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "Unicode to ACSII transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI.",
   "main": "lib/node/index.js",
   "scripts": {
