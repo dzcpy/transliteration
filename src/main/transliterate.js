@@ -11,7 +11,8 @@ const defaultOptions = {
 let configOptions = {};
 
 /* istanbul ignore next */
-export const replaceStr = (str, replace) => {
+export const replaceStr = (sourceStr, replace) => {
+  let str = sourceStr;
   for (const item of replace) {
     if (item[0] instanceof RegExp) {
       let flag = item[0].flags;
@@ -34,9 +35,9 @@ export const replaceStr = (str, replace) => {
  * @param {object} options options
  */
 /* istanbul ignore next */
-const transliterate = (str, options) => {
+const transliterate = (sourceStr, options) => {
   const opt = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
-  str = String(str);
+  let str = String(sourceStr);
   if (opt.ignore instanceof Array && opt.ignore.length > 0) {
     for (const i in opt.ignore) {
       const splitted = str.split(opt.ignore[i]);

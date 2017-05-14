@@ -5,16 +5,17 @@ import data from '../../data';
 transliterate.setCodemap(data);
 
 const bindGlobals = (globalObj) => {
-  globalObj.transl = transliterate;
-  globalObj.slugify = slugify;
-  globalObj.transl.noConflict = function () {
-    const tr = globalObj.transl;
-    delete globalObj.transl;
+  const obj = globalObj;
+  obj.transl = transliterate;
+  obj.slugify = slugify;
+  obj.transl.noConflict = function () {
+    const tr = obj.transl;
+    delete obj.transl;
     return tr;
   };
-  globalObj.slugify.noConflict = function () {
+  obj.slugify.noConflict = function () {
     const sl = slugify;
-    delete globalObj.slugify;
+    delete obj.slugify;
     return sl;
   };
 };

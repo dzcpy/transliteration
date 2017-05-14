@@ -27,7 +27,8 @@ export const fixChineseSpace = str =>
   str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
 
 // Escape regular expression string
-export const escapeRegExp = (str) => {
+export const escapeRegExp = (sourceStr) => {
+  let str = sourceStr;
   if (str === null || str === undefined) {
     str = '';
   }
@@ -39,9 +40,9 @@ export const escapeRegExp = (str) => {
  */
 export const mergeOptions = (defaultOptions, options) => {
   const result = {};
-  if (!options) options = {};
+  const opt = options || {};
   for (const key in defaultOptions) {
-    result[key] = options[key] === undefined ? defaultOptions[key] : options[key];
+    result[key] = opt[key] === undefined ? defaultOptions[key] : opt[key];
     if (result[key] instanceof Array) {
       result[key] = result[key].slice(0);
     }
@@ -58,20 +59,21 @@ export const mergeOptions = (defaultOptions, options) => {
 };
 
 export const parseCmdEqualOption = (option) => {
+  let opt = option || {};
   const replaceToken = '__REPLACE_TOKEN__';
   let tmpToken = replaceToken;
   let result;
-  while (option.indexOf(tmpToken) > -1) {
+  while (opt.indexOf(tmpToken) > -1) {
     tmpToken += tmpToken;
   }
   // escape for \\=
-  if (option.match(/[^\\]\\\\=/)) {
-    option = option.replace(/([^\\])\\\\=/g, '$1\\=');
+  if (opt.match(/[^\\]\\\\=/)) {
+    opt = opt.replace(/([^\\])\\\\=/g, '$1\\=');
   // escape for \=
-  } else if (option.match(/[^\\]\\=/)) {
-    option = option.replace(/([^\\])\\=/g, `$1${tmpToken}`);
+  } else if (opt.match(/[^\\]\\=/)) {
+    opt = opt.replace(/([^\\])\\=/g, `$1${tmpToken}`);
   }
-  result = option.split('=').map(value => value.replace(new RegExp(tmpToken, 'g'), '='));
+  result = opt.split('=').map(value => value.replace(new RegExp(tmpToken, 'g'), '='));
   if (result.length !== 2) {
     result = false;
   }
