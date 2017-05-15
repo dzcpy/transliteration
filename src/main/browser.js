@@ -2,7 +2,7 @@
 import { transliterate, slugify } from './';
 import data from '../../data';
 
-transliterate.setCodemap(data);
+transliterate.setCharmap(data);
 
 const bindGlobals = (globalObj) => {
   const obj = globalObj;
