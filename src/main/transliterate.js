@@ -1,5 +1,5 @@
 import { ucs2decode, fixChineseSpace, escapeRegExp, mergeOptions } from './utils';
-import data from '../../data';
+import data from '../../data/charmap.json';
 
 let charmap = {};
 const defaultOptions = {

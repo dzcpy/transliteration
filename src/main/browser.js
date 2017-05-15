@@ -1,6 +1,6 @@
 /* global define, window, WorkerGlobalScope, self */
 import { transliterate, slugify } from './';
-import data from '../../data';
+import data from '../../data/charmap.json';
 
 transliterate.setCharmap(data);
 
