@@ -61,7 +61,7 @@
     "gulp-es3ify": "^0.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.6.0",
-    "gulp-uglify": "^2.1.2",
+    "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "nyc": "^10.3.2",
     "rimraf": "^2.6.1",
