@@ -63,7 +63,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "nyc": "^10.3.2",
+    "nyc": "^11.0.2",
     "rimraf": "^2.6.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
