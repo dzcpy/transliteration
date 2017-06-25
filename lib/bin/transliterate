@@ -13,15 +13,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // eslint-disable-line import/no-unresolved
 
-const STDIN_ENCODING = 'utf-8'; // eslint-disable-line import/no-unresolved
+var STDIN_ENCODING = 'utf-8'; // eslint-disable-line import/no-unresolved
 
-const options = {
+var options = {
   unknown: '[?]',
   replace: [],
   ignore: []
 };
 
-const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('u', {
+var argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('u', {
   alias: 'unknown',
   default: options.unknown,
   describe: 'Placeholder for unknown characters',
@@ -47,29 +47,52 @@ const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').op
 
 options.unknown = argv.u;
 if (argv.replace.length) {
-  for (const repl of argv.replace) {
-    const tmp = (0, _utils.parseCmdEqualOption)(repl);
-    if (tmp === false) {
-      console.error(`Bad argument -r or --replace. Please type '${argv.$0} --help' for help.`);
-      process.exit(1);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = argv.replace[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var repl = _step.value;
+
+      var tmp = (0, _utils.parseCmdEqualOption)(repl);
+      if (tmp === false) {
+        console.error('Bad argument -r or --replace. Please type \'' + argv.$0 + ' --help\' for help.');
+        process.exit(1);
+      }
+      options.replace.push(tmp);
     }
-    options.replace.push(tmp);
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
   }
 }
 options.ignore = argv.ignore;
 
 if (argv.stdin) {
   process.stdin.setEncoding(STDIN_ENCODING);
-  process.stdin.on('readable', () => {
-    const chunk = process.stdin.read();
+  process.stdin.on('readable', function () {
+    var chunk = process.stdin.read();
     if (chunk !== null) {
       process.stdout.write((0, _node.transliterate)(chunk, options));
     }
   });
-  process.stdin.on('end', () => console.log(''));
+  process.stdin.on('end', function () {
+    return console.log('');
+  });
 } else {
   if (argv._.length !== 1) {
-    console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
+    console.error('Invalid argument. Please type \'' + argv.$0 + ' --help\' for help.');
   }
   console.log((0, _node.transliterate)(argv._[0], options));
 }
