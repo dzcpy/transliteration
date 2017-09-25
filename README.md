@@ -15,7 +15,7 @@
 Transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI. It provides the ability to transliterate UTF-8 characters into corresponding pure ASCII; so they can be safely displayed, used as URL slugs or file names.
 
 ## Demo
-[example.html](http://rawgit.com/andyhu/transliteration/master/demo/example.html)
+[example.html](http://andyhu.github.io/transliteration)
 
 ## Installation
 
