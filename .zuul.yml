@@ -19,6 +19,6 @@ browsers:
 browserify:
   - transform: babelify
 scripts:
-  - "build/browser/transliteration.min.js"
+  - "lib/browser/transliteration.min.js"
 username: node-transliteration
 key: 45c0ecd6-f97f-480f-a050-1f35e24e732b

@@ -7,13 +7,15 @@
 import test from 'tape';
 import 'es5-shim';
 
-const transl = window.transl;
+const { transl } = window;
 
 const defaultOptions = {
   unknown: '[?]',
   replace: [],
   replaceAfter: [],
   ignore: [],
+  trim: true,
+  lang: '',
 };
 
 test('#transliterate()', (q) => {
@@ -94,6 +96,34 @@ test('#transliterate()', (q) => {
     ];
     for (const [str, replace, result] of tests) {
       t.equal(transl(str, { replace }), result, `${str}-->${result}`);
+    }
+    t.end();
+  });
+
+  test('- With language option', (t) => {
+    const tests = [
+      ['цЦщЩъЪьѝюя', 'bg', 'tsTsshtShtaAyiyuya'],
+      ['ЩщЇїХхЄєҐґИи', 'ua', 'ShchshchIiKhkhIeieGgYy'],
+      ['мозгу', 'ua', 'mozghu'], // edge case (зг -> zgh)
+      ['ЃѓЅsЉљЊњєЄЌќЏџИ', 'mk', 'GjgjDzdzLjljNjnjieIeKjkjDjdjY'],
+      ['ЂђЉљЊњЏџ', 'rs', 'DjdjLjljNjnjDjdj'],
+    ];
+    for (const [str, lang, result] of tests) {
+      t.equal(transl(str, { lang }), result, `${str} ('${lang}') --> ${result}`);
+    }
+    t.end();
+  });
+
+  test('- With language option + ignore/replace', (t) => {
+    // ignore/replace should take precedense if specified and non-empty
+    const tests = [
+      ['Цц', { lang: 'bg', replace: [['Ц', '$'], ['ц', '#']] }, '$#'],
+      ['Цц', { lang: 'bg', ignore: ['Ц', 'ц'] }, 'Цц'],
+      ['ць', { lang: 'bg', replace: [['ц', '#']], ignore: ['ь'] }, '#ь'],
+      ['Цц', { lang: 'bg', replace: [], ignore: [] }, 'Tsts'],
+    ];
+    for (const [str, { lang, replace, ignore }, result] of tests) {
+      t.equal(transl(str, { lang, replace, ignore }), result, `${str} ('${lang}') --> ${result}`);
     }
     t.end();
   });

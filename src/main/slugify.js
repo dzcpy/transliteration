@@ -8,6 +8,7 @@ const defaultOptions = {
   replace: [],
   replaceAfter: [],
   ignore: [],
+  lang: '',
 };
 let configOptions = {};
 
@@ -16,7 +17,12 @@ const slugify = (str, options) => {
   // remove leading and trailing separators
   const sep = escapeRegExp(opt.separator);
   opt.replaceAfter.push([/[^a-zA-Z0-9]+/g, opt.separator], [new RegExp(`^(${sep})+|(${sep})+$`, 'g'), '']);
-  const transliterateOptions = { replaceAfter: opt.replaceAfter, replace: opt.replace, ignore: opt.ignore };
+  const transliterateOptions = {
+    replaceAfter: opt.replaceAfter,
+    replace: opt.replace,
+    ignore: opt.ignore,
+    lang: opt.lang,
+  };
   let slug = transliterate(str, transliterateOptions);
   if (opt.lowercase) {
     slug = slug.toLowerCase();

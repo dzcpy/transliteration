@@ -102,16 +102,77 @@ __Options:__ (optional)
   replace: { source1: target1, source2: target2, ... }, // Object form of argument
   replace: [[source1, target1], [source2, target2], ... ], // Array form of argument
   /* Strings in the ignore list will be bypassed from transliteration */
-  ignore: [str1, str2] // default: []
+  ignore: [str1, str2], // default: [],
+  /* Source language (allows using custom rules for specific languages) */
+  lang: 'bg' // default: ''
 }
 ```
 
 __transliterate.config([optionsObj])__
 
-Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+Bind options globally so any following calls will be using `optionsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 ```javascript
 transliterate.config({ replace: [['你好', 'Hello']] });
 transliterate('你好, world!'); // Result: 'Hello, world!'. This equals transliterate('你好, world!', { replace: [['你好', 'Hello']] });
+```
+
+__transliterate.setLanguagesConfig([languagesConfig])__
+
+You can set a custom languages configuration object in the form of:
+```js
+{
+  'lang-name': {
+    replace: [['a', 'b']],
+    ignore: ['c']
+  },
+  'lang-name2': {
+    replace: [['c', 'd']]
+  }
+}
+```
+
+The need for having control over the source language is brought by the fact that the same characters can have a different transliteration output in different languages. For example, in Russian the character `щ` has a different pronounciation than the same character in the Bulgarian alphabet, thus the difference in transliteration - `shch` versus `sht`.
+
+Sample configuration for the Bulgarian language:
+```javascript
+transliterate.setLanguagesConfig({
+  bg: {
+    replace: [
+      ['ц', 'ts'],
+      ['Ц', 'Ts'],
+      ['щ', 'sht'],
+      ['Щ', 'Sht'],
+      ['ъ', 'a'],
+      ['Ъ', 'A'],
+      ['ь', 'y'],
+      ['ѝ', 'i']
+    ]
+  }
+});
+
+transliterate('щастие'); // 'shchastie'
+transliterate('щастие', { lang: 'bg' }); // 'shtastie'
+```
+
+Currently the following Cyrillic languages are supported:
+- Russian (used by default if you don't specify a language)
+- Bulgarian `'bg'`
+- Macedonian `'mk'`
+- Ukrainian `'ua'`
+- Serbian `'rs'`
+
+If you want to specify your own language rules but still use those provided in the library, you can use something like [deep-assign](https://www.npmjs.com/package/deep-assign) to extend the built-ins:
+
+```javascript
+const builtInConfig = transliterate.setLanguagesConfig();
+transliterate.setLanguagesConfig(
+  deepAssign(
+    builtInConfig, {
+    'my-lang': {
+      replace: [['a', 'b']]
+    }
+  })
+);
 ```
 
 __Example__
@@ -120,6 +181,8 @@ import { transliterate as tr } from 'transliteration';
 tr('你好，世界'); // Ni Hao , Shi Jie
 tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
 tr('안녕하세요, 세계'); // annyeonghaseyo, segye
+tr('цвете'); // 'cvete'
+tr('цвете', { lang: 'bg' }); // 'tsvete'
 tr('你好，世界', { replace: {你: 'You'}, ignore: ['好'] }) // You 好, Shi Jie
 tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] }) // You 好, Shi Jie (option in array form)
 // or use configurations
@@ -143,14 +206,16 @@ __Options:__ (optional)
   replace: { source1: target1, source2: target2, ... },
   replace: [[source1, target1], [source2, target2], ... ], // default: []
   /* Strings in the ignore list will be bypassed from transliteration */
-  ignore: [str1, str2] // default: []
+  ignore: [str1, str2], // default: []
+  /* Source language */
+  lang: 'bg' // default: ''
 }
 ```
 If `options` is not provided, it will use the above default values.
 
 __slugify.config([optionsObj])__
 
-Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+Bind options globally so any following calls will be using `optionsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 ```javascript
 slugify.config({ replace: [['你好', 'Hello']] });
 slugify('你好, world!'); // Result: 'hello-world'. This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
@@ -163,6 +228,7 @@ slugify('你好，世界'); // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
 slugify('你好，世界', { replace: {你好: 'Hello', 世界: 'world'}, separator: '_' }); // hello_world
 slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // hello_world (option in array form)
+slugify('Цветя и щастие.', { lang: 'bg'}); // 'tsvetya-i-shtastie'
 slugify('你好，世界', { ignore: ['你好'] }); // 你好shi-jie
 // or use configurations
 slugify.config({ lowercase: false, separator: '_' });
@@ -203,6 +269,7 @@ Options:
   -u, --unknown  Placeholder for unknown characters                        [string] [default: "[?]"]
   -r, --replace  Custom string replacement                                     [array] [default: []]
   -i, --ignore   String list to ignore                                         [array] [default: []]
+  -l, --lang     Source language                                              [string] [default: ""]
   -S, --stdin      Use stdin as input                                     [boolean] [default: false]
   -h, --help     Show help                                                                 [boolean]
 
@@ -225,6 +292,7 @@ Options:
   -s, --separator  Separator of the slug                                     [string] [default: "-"]
   -r, --replace    Custom string replacement                                   [array] [default: []]
   -i, --ignore     String list to ignore                                       [array] [default: []]
+  --lang           Source language                                            [string] [default: '']
   -S, --stdin      Use stdin as input                                     [boolean] [default: false]
   -h, --help       Show help                                                               [boolean]
 

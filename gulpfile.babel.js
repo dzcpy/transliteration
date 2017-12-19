@@ -1,3 +1,4 @@
+/* eslint-disable function-paren-newline */
 import browserify from 'browserify';
 import gulp from 'gulp';
 import source from 'vinyl-source-stream';

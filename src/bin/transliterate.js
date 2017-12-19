@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console, function-paren-newline */
 import yargs from 'yargs';
 import { parseCmdEqualOption as parseE } from '../../lib/node/utils'; // eslint-disable-line import/no-unresolved
 import { transliterate as tr } from '../../lib/node'; // eslint-disable-line import/no-unresolved
@@ -8,9 +9,10 @@ const options = {
   unknown: '[?]',
   replace: [],
   ignore: [],
+  lang: '',
 };
 
-const argv = yargs
+const { argv } = yargs
   .version()
   .usage('Usage: $0 <unicode> [options]')
   .option('u', {
@@ -31,6 +33,12 @@ const argv = yargs
     describe: 'String list to ignore',
     type: 'array',
   })
+  .option('l', {
+    alias: 'lang',
+    default: options.lang,
+    describe: 'Source language',
+    type: 'string',
+  })
   .option('S', {
     alias: 'stdin',
     default: false,
@@ -45,8 +53,7 @@ const argv = yargs
     'Replace `,` into `!`, `world` into `shijie`.\nResult: Ni good, Shi Jie!')
   .example('$0 "你好，世界!" -i 你好 -i ，',
     'Ignore `你好` and `，`.\nResult: 你好，Shi Jie !')
-  .wrap(100)
-  .argv;
+  .wrap(100);
 
 options.unknown = argv.u;
 if (argv.replace.length) {
@@ -60,6 +67,7 @@ if (argv.replace.length) {
   }
 }
 options.ignore = argv.ignore;
+options.lang = argv.lang;
 
 if (argv.stdin) {
   process.stdin.setEncoding(STDIN_ENCODING);
