@@ -63,13 +63,11 @@ test('#escapeRegex()', (t) => {
 
   t.equal(utils.escapeRegExp('abc'), 'abc', 'should handle strings with nothing to escape');
 
-  /* eslint-disable no-sparse-arrays,no-confusing-arrow */
+  /* eslint-disable no-sparse-arrays,no-confusing-arrow, function-paren-newline */
   const values = [, null, undefined, ''];
   const expected = values.map(() => '');
-  const actual = values.map((value, index) =>
+  const actual = values.map((value, index) => index ? utils.escapeRegExp(value) : utils.escapeRegExp());
   /* eslint-enable no-sparse-arrays,no-confusing-arrow */
-    index ? utils.escapeRegExp(value) : utils.escapeRegExp(),
-  );
 
   t.deepEqual(expected, actual, 'should return an empty string for empty values');
   t.end();

@@ -1,13 +1,16 @@
 import { ucs2decode, fixChineseSpace, escapeRegExp, mergeOptions } from './utils';
 import data from '../../data/charmap.json';
+import defaultLanguages from '../../data/languages-config';
 
 let charmap = {};
+let languagesConfig = defaultLanguages;
 const defaultOptions = {
   unknown: '[?]',
   replace: [],
   replaceAfter: [],
   ignore: [],
   trim: true,
+  lang: '',
 };
 let configOptions = {};
 
@@ -35,9 +38,26 @@ export const replaceStr = (source, replace) => {
  */
 /* istanbul ignore next */
 const transliterate = (sourceStr, options) => {
-  const opt = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
+  let opt = null;
+  if (!options) {
+    opt = mergeOptions(defaultOptions, configOptions);
+  } else {
+    // check for a 'lang' option and apply the language configurations (if it exists)
+    opt = mergeOptions(defaultOptions, (languagesConfig[options.lang] || configOptions));
+
+    const restOfOptions = mergeOptions(defaultOptions, options);
+    if (!(Array.isArray(restOfOptions.ignore) && restOfOptions.ignore.length > 0)) {
+      delete restOfOptions.ignore;
+    }
+    if (!(Array.isArray(restOfOptions.replace) && restOfOptions.replace.length > 0)) {
+      delete restOfOptions.replace;
+    }
+    opt = mergeOptions(opt, restOfOptions);
+  }
   let str = String(sourceStr);
+  /* eslint-disable */
   let i, j, splitted, result, ignore, ord;
+  /* eslint-enable */
   if (opt.ignore instanceof Array && opt.ignore.length > 0) {
     for (i in opt.ignore) {
       splitted = str.split(opt.ignore[i]);
@@ -86,6 +106,11 @@ const transliterate = (sourceStr, options) => {
 transliterate.setCharmap = (customCharmap) => {
   charmap = customCharmap || charmap;
   return charmap;
+};
+
+transliterate.setLanguagesConfig = (langsConfig) => {
+  languagesConfig = langsConfig || languagesConfig;
+  return languagesConfig;
 };
 
 transliterate.config = (options) => {

@@ -12,6 +12,7 @@ const defaultOptions = {
   replaceAfter: [],
   ignore: [],
   trim: true,
+  lang: '',
 };
 
 test('#transliterate()', (q) => {
@@ -96,6 +97,34 @@ test('#transliterate()', (q) => {
     }
     t.end();
   });
+
+  test('- With language option', (t) => {
+    const tests = [
+      ['цЦщЩъЪьѝюя', 'bg', 'tsTsshtShtaAyiyuya'],
+      ['ЩщЇїХхЄєҐґИи', 'ua', 'ShchshchIiKhkhIeieGgYy'],
+      ['мозгу', 'ua', 'mozghu'], // edge case (зг -> zgh)
+      ['ЃѓЅsЉљЊњєЄЌќЏџИ', 'mk', 'GjgjDzdzLjljNjnjieIeKjkjDjdjY'],
+      ['ЂђЉљЊњЏџ', 'rs', 'DjdjLjljNjnjDjdj'],
+    ];
+    for (const [str, lang, result] of tests) {
+      t.equal(tr(str, { lang }), result, `${str} ('${lang}') --> ${result}`);
+    }
+    t.end();
+  });
+
+  test('- With language option + ignore/replace', (t) => {
+    // ignore/replace should take precedense if specified and non-empty
+    const tests = [
+      ['Цц', { lang: 'bg', replace: [['Ц', '$'], ['ц', '#']] }, '$#'],
+      ['Цц', { lang: 'bg', ignore: ['Ц', 'ц'] }, 'Цц'],
+      ['ць', { lang: 'bg', replace: [['ц', '#']], ignore: ['ь'] }, '#ь'],
+      ['Цц', { lang: 'bg', replace: [], ignore: [] }, 'Tsts'],
+    ];
+    for (const [str, { lang, replace, ignore }, result] of tests) {
+      t.equal(tr(str, { lang, replace, ignore }), result, `${str} ('${lang}') --> ${result}`);
+    }
+    t.end();
+  });
   q.end();
 });
 
@@ -110,14 +139,13 @@ test('#replaceStr()', (t) => {
   t.end();
 });
 
-
-test('#transliterage.config()', (t) => {
+test('#transliterate.config()', (t) => {
   tr.config(defaultOptions);
   t.deepEqual(tr.config(), defaultOptions, 'read current config');
   t.end();
 });
 
-test('#transliterage.setCharmap()', (t) => {
+test('#transliterate.setCharmap()', (t) => {
   const codemap = { 0: { 97: 'A', 98: 'B', 99: 'C' } };
   tr.setCharmap(codemap);
   t.equal(tr.setCharmap(codemap), codemap, 'set custom codemap');
@@ -127,3 +155,17 @@ test('#transliterage.setCharmap()', (t) => {
   t.end();
 });
 
+test('#transliterate.setLanguagesConfig()', (t) => {
+  const defaultConfig = tr.setLanguagesConfig();
+  const languageConfigs = {
+    bg: {
+      replace: [['ц', 'ts'], ['щ', 'sht'], ['ъ', 'a'], ['ь', 'y']],
+    },
+  };
+  t.deepEqual(tr.setLanguagesConfig(languageConfigs), languageConfigs, 'set custom languages configuration');
+  t.deepEqual(tr.setLanguagesConfig(), languageConfigs, 'read current custom languages configuration');
+  t.equal(tr('цщъь', { lang: 'bg' }), 'tsshtay', 'transliterate with custom languages configuration ("bg" - custom)');
+  t.equal(tr('цщъь', { lang: 'en' }), 'cshch', 'transliterate with custom languages configuration ("en" - default)');
+  tr.setLanguagesConfig(defaultConfig);
+  t.end();
+});

@@ -17,14 +17,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const STDIN_ENCODING = 'utf-8'; // eslint-disable-line import/no-unresolved
 
+/* eslint-disable no-console, function-paren-newline */
+
 const options = {
   lowercase: true,
   separator: '-',
   replace: [],
-  ignore: []
+  ignore: [],
+  lang: ''
 };
 
-const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('l', {
+const { argv } = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('l', {
   alias: 'lowercase',
   default: options.lowercase,
   describe: 'Use lowercase',
@@ -44,6 +47,10 @@ const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').op
   default: options.ignore,
   describe: 'String list to ignore',
   type: 'array'
+}).option('lang', {
+  default: options.lang,
+  describe: 'Source language',
+  type: 'string'
 }).option('S', {
   alias: 'stdin',
   default: false,
@@ -51,7 +58,7 @@ const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').op
   type: 'boolean'
 }).help('h').option('h', {
   alias: 'help'
-}).example('$0 "你好, world!" -r 好=good -r "world=Shi Jie"', 'Replace `,` into `!` and `world` into `shijie`.\nResult: ni-good-shi-jie').example('$0 "你好，世界!" -i 你好 -i ，', 'Ignore `你好` and `，`.\nResult: 你好，shi-jie').wrap(100).argv;
+}).example('$0 "你好, world!" -r 好=good -r "world=Shi Jie"', 'Replace `,` into `!` and `world` into `shijie`.\nResult: ni-good-shi-jie').example('$0 "你好，世界!" -i 你好 -i ，', 'Ignore `你好` and `，`.\nResult: 你好，shi-jie').wrap(100);
 
 options.lowercase = !!argv.l;
 options.separator = argv.separator;
@@ -66,6 +73,7 @@ if (argv.replace.length) {
   }
 }
 options.ignore = argv.ignore;
+options.lang = argv.lang;
 
 if (argv.stdin) {
   process.stdin.setEncoding(STDIN_ENCODING);

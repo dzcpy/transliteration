@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import test from 'tape';
 import slugify from '../../src/main/slugify';
 
@@ -7,6 +8,7 @@ const defaultOptions = {
   replace: [],
   replaceAfter: [],
   ignore: [],
+  lang: '',
 };
 
 test('#slugify()', (q) => {
@@ -17,7 +19,12 @@ test('#slugify()', (q) => {
     ['\u4F60\u597D, \u4E16\u754C!', { ignore: ['!', ','] }, 'ni-hao,shi-jie!'],
     ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4E16\u754C', '\u672A\u6765']] }, 'ni-hao-wei-lai'],
     ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4F60\u597D', 'Hello '], ['\u4E16\u754C', 'World ']] }, 'hello-world'],
-    ['\u4F60\u597D, \u4E16\u754C!', { separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false }, 'Hola, mundo!'],
+    ['\u4F60\u597D, \u4E16\u754C!', {
+      separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false,
+    }, 'Hola, mundo!'],
+    ['Цветя, рози и щастие', { lang: 'bg' }, 'tsvetya-rozi-i-shtastie'],
+    ['Районы Киева готовятся к новогодним праздникам', { lang: 'ua', separator: '_' }, 'rayony_kyeva_gotoviatsia_k_novogodnym_prazdnykam'],
+    ['Најдобрите европски филмови во домашните кина', { lang: 'mk' }, 'najdobryte-evropsky-fylmovy-vo-domashnyte-kyna'],
   ];
   test('Generate slugs', (t) => {
     for (const [str, options, slug] of tests) {
@@ -41,7 +48,9 @@ test('#slugify.config()', (q) => {
     ['\u4F60\u597D, \u4E16\u754C!', { ignore: ['!', ','] }, 'ni-hao,shi-jie!'],
     ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4E16\u754C', '\u672A\u6765']] }, 'ni-hao-wei-lai'],
     ['\u4F60\u597D, \u4E16\u754C!', { replace: [['\u4F60\u597D', 'Hello '], ['\u4E16\u754C', 'World ']] }, 'hello-world'],
-    ['\u4F60\u597D, \u4E16\u754C!', { separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false }, 'Hola, mundo!'],
+    ['\u4F60\u597D, \u4E16\u754C!', {
+      separator: ', ', replace: [['\u4F60\u597D', 'Hola '], ['\u4E16\u754C', 'mundo ']], ignore: ['¡', '!'], lowercase: false,
+    }, 'Hola, mundo!'],
   ];
   test('Generate slugs', (t) => {
     for (const [str, options, slug] of tests) {
@@ -52,4 +61,3 @@ test('#slugify.config()', (q) => {
   });
   q.end();
 });
-

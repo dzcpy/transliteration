@@ -1,4 +1,5 @@
 /* global define, window, WorkerGlobalScope, self */
+/* eslint no-restricted-globals: 0 */
 import { transliterate, slugify } from './';
 import data from '../../data/charmap.json';
 
