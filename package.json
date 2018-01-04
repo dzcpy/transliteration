@@ -50,7 +50,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-preset-es2015-ie": "^6.7.0",
     "babelify": "^8.0.0",
-    "browserify": "^14.4.0",
+    "browserify": "^15.0.0",
     "coveralls": "^3.0.0",
     "es5-shim": "^4.5.9",
     "eslint": "^4.0.0",
