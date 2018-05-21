@@ -11,7 +11,9 @@ const options = {
   ignore: [],
 };
 
-const argv = yargs
+const {
+  argv,
+} = yargs
   .version()
   .usage('Usage: $0 <unicode> [options]')
   .option('l', {
@@ -48,12 +50,15 @@ const argv = yargs
   .option('h', {
     alias: 'help',
   })
-  .example('$0 "你好, world!" -r 好=good -r "world=Shi Jie"',
-    'Replace `,` into `!` and `world` into `shijie`.\nResult: ni-good-shi-jie')
-  .example('$0 "你好，世界!" -i 你好 -i ，',
-    'Ignore `你好` and `，`.\nResult: 你好，shi-jie')
-  .wrap(100)
-  .argv;
+  .example(
+    '$0 "你好, world!" -r 好=good -r "world=Shi Jie"',
+    'Replace `,` into `!` and `world` into `shijie`.\nResult: ni-good-shi-jie',
+  )
+  .example(
+    '$0 "你好，世界!" -i 你好 -i ，',
+    'Ignore `你好` and `，`.\nResult: 你好，shi-jie',
+  )
+  .wrap(100);
 
 options.lowercase = !!argv.l;
 options.separator = argv.separator;

@@ -34,21 +34,18 @@ gulp.task('build:browser', ['clean:browser'], () =>
     .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(DEST_BROWSER_PATH))
-    .pipe(gutil.noop()),
-);
+    .pipe(gutil.noop()));
 
 gulp.task('build:node', ['clean:node'], () =>
   gulp.src(SRC_NODE_PATH)
     .pipe(babel())
-    .pipe(gulp.dest(DEST_NODE_PATH)),
-);
+    .pipe(gulp.dest(DEST_NODE_PATH)));
 
 gulp.task('build:bin', ['clean:bin'], () =>
   gulp.src(SRC_BIN_PATH)
     .pipe(babel())
     .pipe(rename({ extname: '' }))
-    .pipe(gulp.dest(DEST_BIN_PATH)),
-);
+    .pipe(gulp.dest(DEST_BIN_PATH)));
 
 gulp.task('clean:browser', cb => rimraf('lib/browser/*', cb));
 

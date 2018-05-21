@@ -7,7 +7,9 @@
 import test from 'tape';
 import 'es5-shim';
 
-const transl = window.transl;
+const {
+  transl,
+} = window;
 
 const defaultOptions = {
   unknown: '[?]',

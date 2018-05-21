@@ -30,9 +30,11 @@ try {
   } else if (typeof window !== 'undefined' && typeof window.document === 'object') {
     bindGlobals(window);
   // Webworker
+  /* eslint-disable no-restricted-globals */
   } else if (typeof WorkerGlobalScope !== 'undefined' && typeof self !== 'undefined') {
     bindGlobals(self);
   }
+  /* eslint-enable no-restricted-globals */
 } catch(e) {} // eslint-disable-line
 
 // CommonJS support

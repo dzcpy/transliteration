@@ -68,8 +68,7 @@ test('#escapeRegex()', (t) => {
   const expected = values.map(() => '');
   const actual = values.map((value, index) =>
   /* eslint-enable no-sparse-arrays,no-confusing-arrow */
-    index ? utils.escapeRegExp(value) : utils.escapeRegExp(),
-  );
+    index ? utils.escapeRegExp(value) : utils.escapeRegExp());
 
   t.deepEqual(expected, actual, 'should return an empty string for empty values');
   t.end();
