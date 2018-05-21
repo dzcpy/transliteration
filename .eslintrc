@@ -2,7 +2,8 @@
   "extends": "airbnb-base",
   "env": {
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "worker": true
   },
   "rules": {
     "func-names": 0,
