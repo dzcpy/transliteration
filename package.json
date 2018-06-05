@@ -65,7 +65,7 @@
     "gulp-util": "^3.0.8",
     "nyc": "^11.0.2",
     "rimraf": "^2.6.1",
-    "tap-spec": "^4.1.1",
+    "tap-spec": "^5.0.0",
     "tape": "^4.6.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
