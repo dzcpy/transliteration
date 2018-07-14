@@ -10,7 +10,7 @@ const options = {
   ignore: [],
 };
 
-const argv = yargs // eslint-disable-line prefer-destructuring
+const { argv } = yargs
   .version()
   .usage('Usage: $0 <unicode> [options]')
   .option('u', {
@@ -45,8 +45,7 @@ const argv = yargs // eslint-disable-line prefer-destructuring
     'Replace `,` into `!`, `world` into `shijie`.\nResult: Ni good, Shi Jie!')
   .example('$0 "你好，世界!" -i 你好 -i ，',
     'Ignore `你好` and `，`.\nResult: 你好，Shi Jie !')
-  .wrap(100)
-  .argv;
+  .wrap(100);
 
 options.unknown = argv.u;
 if (argv.replace.length) {
