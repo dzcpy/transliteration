@@ -50,28 +50,28 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-preset-es2015-ie": "^6.7.0",
     "babelify": "^8.0.0",
-    "browserify": "^14.4.0",
+    "browserify": "^16.2.2",
     "coveralls": "^3.0.0",
     "es5-shim": "^4.5.9",
-    "eslint": "^4.0.0",
-    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
-    "gulp-es3ify": "^0.0.0",
+    "gulp-es3ify": "^0.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
-    "nyc": "^11.0.2",
+    "nyc": "^12.0.2",
     "rimraf": "^2.6.1",
-    "tap-spec": "^4.1.1",
+    "tap-spec": "^5.0.0",
     "tape": "^4.6.3",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
+    "vinyl-source-stream": "^2.0.0",
     "zuul": "^3.11.1"
   },
   "dependencies": {
-    "yargs": "^10.0.3"
+    "yargs": "^12.0.1"
   }
 }
