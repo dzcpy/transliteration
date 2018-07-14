@@ -24,7 +24,8 @@ const options = {
   ignore: []
 };
 
-const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('l', {
+const argv = _yargs2.default // eslint-disable-line prefer-destructuring
+.version().usage('Usage: $0 <unicode> [options]').option('l', {
   alias: 'lowercase',
   default: options.lowercase,
   describe: 'Use lowercase',

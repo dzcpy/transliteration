@@ -126,4 +126,3 @@ test('#transliterage.setCharmap()', (t) => {
   tr.setCharmap({});
   t.end();
 });
-

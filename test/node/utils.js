@@ -66,10 +66,8 @@ test('#escapeRegex()', (t) => {
   /* eslint-disable no-sparse-arrays,no-confusing-arrow */
   const values = [, null, undefined, ''];
   const expected = values.map(() => '');
-  const actual = values.map((value, index) =>
+  const actual = values.map((value, index) => index ? utils.escapeRegExp(value) : utils.escapeRegExp());
   /* eslint-enable no-sparse-arrays,no-confusing-arrow */
-    index ? utils.escapeRegExp(value) : utils.escapeRegExp(),
-  );
 
   t.deepEqual(expected, actual, 'should return an empty string for empty values');
   t.end();
@@ -89,4 +87,3 @@ test('#mergeOptions', (t) => {
   t.deepEqual(utils.mergeOptions(opt, 'abc'), opt, 'extrame case with option="abc"');
   t.end();
 });
-

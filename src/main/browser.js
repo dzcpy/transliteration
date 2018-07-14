@@ -1,5 +1,5 @@
 /* global define, window, WorkerGlobalScope, self */
-import { transliterate, slugify } from './';
+import { transliterate, slugify } from '.';
 import data from '../../data/charmap.json';
 
 transliterate.setCharmap(data);
@@ -30,8 +30,8 @@ try {
   } else if (typeof window !== 'undefined' && typeof window.document === 'object') {
     bindGlobals(window);
   // Webworker
-  } else if (typeof WorkerGlobalScope !== 'undefined' && typeof self !== 'undefined') {
-    bindGlobals(self);
+  } else if (typeof WorkerGlobalScope !== 'undefined' && typeof self !== 'undefined') { // eslint-disable-line no-restricted-globals
+    bindGlobals(self); // eslint-disable-line no-restricted-globals
   }
 } catch(e) {} // eslint-disable-line
 

@@ -20,7 +20,7 @@ const DEST_BIN_PATH = 'lib/bin/';
 
 gulp.task('default', ['build:browser', 'build:node', 'build:bin']);
 
-gulp.task('build:browser', ['clean:browser'], () =>
+gulp.task('build:browser', ['clean:browser'], () => {
   browserify(SRC_BROWSER_PATH, { debug: true })
     .transform(babelify, { presets: ['es2015-ie'], plugins: ['add-module-exports'] })
     .bundle()
@@ -34,21 +34,21 @@ gulp.task('build:browser', ['clean:browser'], () =>
     .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(DEST_BROWSER_PATH))
-    .pipe(gutil.noop()),
-);
+    .pipe(gutil.noop());
+});
 
-gulp.task('build:node', ['clean:node'], () =>
+gulp.task('build:node', ['clean:node'], () => {
   gulp.src(SRC_NODE_PATH)
     .pipe(babel())
-    .pipe(gulp.dest(DEST_NODE_PATH)),
-);
+    .pipe(gulp.dest(DEST_NODE_PATH));
+});
 
-gulp.task('build:bin', ['clean:bin'], () =>
+gulp.task('build:bin', ['clean:bin'], () => {
   gulp.src(SRC_BIN_PATH)
     .pipe(babel())
     .pipe(rename({ extname: '' }))
-    .pipe(gulp.dest(DEST_BIN_PATH)),
-);
+    .pipe(gulp.dest(DEST_BIN_PATH));
+});
 
 gulp.task('clean:browser', cb => rimraf('lib/browser/*', cb));
 

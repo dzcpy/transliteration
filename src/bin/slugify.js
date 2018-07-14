@@ -11,7 +11,7 @@ const options = {
   ignore: [],
 };
 
-const argv = yargs
+const argv = yargs // eslint-disable-line prefer-destructuring
   .version()
   .usage('Usage: $0 <unicode> [options]')
   .option('l', {

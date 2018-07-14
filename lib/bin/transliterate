@@ -21,7 +21,8 @@ const options = {
   ignore: []
 };
 
-const argv = _yargs2.default.version().usage('Usage: $0 <unicode> [options]').option('u', {
+const argv = _yargs2.default // eslint-disable-line prefer-destructuring
+.version().usage('Usage: $0 <unicode> [options]').option('u', {
   alias: 'unknown',
   default: options.unknown,
   describe: 'Placeholder for unknown characters',

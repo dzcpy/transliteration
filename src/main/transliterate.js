@@ -37,7 +37,7 @@ export const replaceStr = (source, replace) => {
 const transliterate = (sourceStr, options) => {
   const opt = options ? mergeOptions(defaultOptions, options) : mergeOptions(defaultOptions, configOptions);
   let str = String(sourceStr);
-  let i, j, splitted, result, ignore, ord;
+  let i; let j; let splitted; let result; let ignore; let ord;
   if (opt.ignore instanceof Array && opt.ignore.length > 0) {
     for (i in opt.ignore) {
       splitted = str.split(opt.ignore[i]);

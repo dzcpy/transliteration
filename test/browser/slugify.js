@@ -2,7 +2,7 @@
 import test from 'tape';
 import 'es5-shim';
 
-const slugify = window.slugify;
+const { slugify } = window;
 
 const defaultOptions = {
   lowercase: true,

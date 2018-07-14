@@ -23,8 +23,7 @@ export const ucs2decode = (string) => {
 };
 
 // add additional space between Chinese and English.
-export const fixChineseSpace = str =>
-  str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
+export const fixChineseSpace = str => str.replace(/([^\u4e00-\u9fa5\W])([\u4e00-\u9fa5])/g, '$1 $2');
 
 // Escape regular expression string
 export const escapeRegExp = (sourceStr) => {
