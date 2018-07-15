@@ -14,32 +14,41 @@
 Transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI. It provides the ability to transliterate UTF-8 characters into corresponding pure ASCII; so they can be safely displayed, used as URL slugs or file names.
 
 ## Demo
+
 [example.html](http://andyhu.github.io/transliteration)
 
 ## Installation
 
 ### Node.js
+
 ```bash
 npm install transliteration --save
 ```
+
 ```javascript
 import { transliterate as tr, slugify } from 'transliteration';
 
 tr('你好, world!'); // Ni Hao , world!
 slugify('你好, world!'); // ni-hao-world
 ```
+
 ### Browser
+
 __CDN:__
+
 ```html
 
 <script src="https://unpkg.com/transliteration/lib/browser/transliteration.min.js"></script>
 ```
+
 __Bower:__
+
 ```bash
 # Install bower if not already installed
 # npm install bower -g
 bower install transliteration
 ```
+
 ```html
 <html>
 <head>
@@ -55,6 +64,7 @@ bower install transliteration
 ```
 
 ### Browser support
+
 `transliteration` has a good browser compatibility with all major browsers (including IE 6-8 if used with `es5-shim`).
 
 ### CLI
@@ -68,12 +78,15 @@ echo 你好 | slugify -S # ni-hao
 ```
 
 ### ReactNative
+
 ```javascript
 import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
 
 ## Breaking changes
+
 ### 1.5.0
+
 Since version 1.5.0, `transliteration` module requires minimum node version v6.0.
 
 ### 1.0.0
@@ -81,6 +94,7 @@ Since version 1.5.0, `transliteration` module requires minimum node version v6.0
 Please note that the code has been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
 
 __Changes:__
+
 * The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
 * Added `transliterate.config` and `slugify.config`.
 * Unknown string will be transliterated as `[?]` instead of `?`.
@@ -93,6 +107,7 @@ __Changes:__
 Transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
 
 __Options:__ (optional)
+
 ```javascript
 {
   /* Unicode characters that are not in the database will be replaced with `unknown` */
@@ -108,12 +123,14 @@ __Options:__ (optional)
 __transliterate.config([optionsObj])__
 
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+
 ```javascript
 transliterate.config({ replace: [['你好', 'Hello']] });
 transliterate('你好, world!'); // Result: 'Hello, world!'. This equals transliterate('你好, world!', { replace: [['你好', 'Hello']] });
 ```
 
 __Example__
+
 ```javascript
 import { transliterate as tr } from 'transliteration';
 tr('你好，世界'); // Ni Hao , Shi Jie
@@ -129,9 +146,11 @@ console.log(tr.config());
 ```
 
 ### slugify(str, [options])
+
 Converts Unicode string to slugs. So it can be safely used in URL or file name.
 
 __Options:__ (optional)
+
 ```javascript
 {
   /* Whether to force slags to be lowercased */
@@ -145,17 +164,20 @@ __Options:__ (optional)
   ignore: [str1, str2] // default: []
 }
 ```
+
 If `options` is not provided, it will use the above default values.
 
 __slugify.config([optionsObj])__
 
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+
 ```javascript
 slugify.config({ replace: [['你好', 'Hello']] });
 slugify('你好, world!'); // Result: 'hello-world'. This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
 ```
 
 __Example:__
+
 ```javascript
 import { slugify } from 'transliteration';
 slugify('你好，世界'); // ni-hao-shi-jie
@@ -171,14 +193,17 @@ console.log(slugify.config());
 ```
 
 ### Usage in browser
+
 `transliteration` can be loaded as an AMD / CommonJS module, or as global variables (UMD).
 
 When using it in the browser, by default it will create global variables under `window` object:
+
 ```javascript
 transl('你好, World'); // window.transl
 // or
 slugify('Hello, 世界'); // window.slugify
 ```
+
 If the variable names conflict with other libraries in your project or you prefer not to use global variables, use noConfilict() before loading libraries which contain the conflicting variables.:
 
 __Load the library globally__
@@ -193,6 +218,7 @@ console.log(slugify); // undefined
 ```
 
 ### Usage in command line
+
 ```
 ➜  ~ transliterate --help
 Usage: transliterate <unicode> [options]
@@ -237,9 +263,11 @@ Examples:
 ```
 
 ### Caveats
+
 `transliteration` supports almost all common languages whereas there might be quirks in some specific languages. For example, Kanji characters in Japanese will be transliterated as Chinese Pinyin. I couldn't find a better way to distinguish Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
 
 If you find any issues, please raise a GitHub issue. Thanks!
 
 ### License
+
 MIT
