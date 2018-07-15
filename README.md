@@ -5,7 +5,6 @@
 [![Dev Dependencies](https://img.shields.io/david/dev/andyhu/transliteration.svg)](https://github.com/andyhu/transliteration/blob/master/package.json)
 [![Coverage Status](https://coveralls.io/repos/github/andyhu/node-transliteration/badge.svg?branch=master)](https://coveralls.io/github/andyhu/transliteration?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
-[![Bower Version](https://img.shields.io/bower/v/transliteration.svg)](https://github.com/andyhu/transliteration)
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/andyhu/transliteration/blob/master/LICENSE.txt)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/andyhu/transliteration)
@@ -74,10 +73,10 @@ import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
 
 ## Breaking changes
-###1.5.0
+### 1.5.0
 Since version 1.5.0, `transliteration` module requires minimum node version v6.0.
 
-###1.0.0
+### 1.0.0
 
 Please note that the code has been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
 
