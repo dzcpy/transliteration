@@ -18,6 +18,7 @@
     "postcoveralls": "rimraf .nyc_output",
     "prepublish": "npm run build"
   },
+  "types": "types/index.d.ts",
   "bin": {
     "transliterate": "lib/bin/transliterate",
     "slugify": "lib/bin/slugify"
