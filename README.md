@@ -85,6 +85,10 @@ import { transliterate, slugify } from 'transliteration/src/main/browser';
 
 ## Breaking changes
 
+### 1.7.0
+
+`bower` support is dropped. Please use CDN or a js bundler like `webpack`.
+
 ### 1.5.0
 
 Since version 1.5.0, `transliteration` module requires minimum node version v6.0.
@@ -264,9 +268,22 @@ Examples:
 
 ### Caveats
 
-`transliteration` supports almost all common languages whereas there might be quirks in some specific languages. For example, Kanji characters in Japanese will be transliterated as Chinese Pinyin. I couldn't find a better way to distinguish Chinese Hanzi and Japanese Kanji. So if you would like to romanize Japanese Kanji, please consider [kuroshiro](https://github.com/hexenq/kuroshiro.js).
+Currently, `transliteration` uses 1 to 1 character map (from Unicode to Latin) under the hood. It is the simplest way to implement, but it has some limitations when dealing with polyphonic characters and languages which share overlapped character sets. It does not work well in some specific languages when the same characters can be transliterated differently when they are placed at different places. Some of the issues are listed below:
 
-If you find any issues, please raise a GitHub issue. Thanks!
+* _Chinese:_ Polyphonic characters are not always transliterated correctly. Alternative: `pinyinlite`.
+
+* _Japanese:_ With `transliteration`, most Japanese Kanji characters are transliterated to Chinese Pinyin because of their overlapping of characters in Unicode. Also there are many polyphonic characters. without doing a word splitting or word mapping, it's impossible to transliterate Kanji accurately. Alternative: `kuroshiro`.
+
+* _Thai:_ Currently it is not working. There seems no working open source project I can directly copy code from. I found some articles explaining the how to transliterate Thai though. I would appreciate if anyone who is interested implementing it can lend a hand. See: [#67](https://github.com/andyhu/transliteration/issues/67).
+
+* _Cylic_ Cylic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
+
+If you there's any other issues, please raise a ticket.
+
+### Powered by BrowserStack
+
+[![BrowserStack](https://raw.githubusercontent.com/andyhu/transliteration/gh-pages/browserstack-logo-600x315.png)](http://browserstack.com/)
+BrowserStack is a fantastic service for testing your web applications in tons of different real browsers and mobile devices. `transliteration` uses BrowserStack to do unit test in different browsers.
 
 ### License
 
