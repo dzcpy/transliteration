@@ -83,17 +83,21 @@ echo 你好 | slugify -S # ni-hao
 import { transliterate, slugify } from 'transliteration/src/main/browser';
 ```
 
-## Breaking changes
+## Change log
 
-### 1.7.0
+### 1.7.0 (breaking)
 
 `bower` support is dropped. Please use CDN or a js bundler like `webpack`.
 
-### 1.5.0
+### 1.6.6
+
+Added support for `TypeScript`. #77
+
+### 1.5.0 (breaking)
 
 Since version 1.5.0, `transliteration` module requires minimum node version v6.0.
 
-### 1.0.0
+### 1.0.0 (breaking)
 
 Please note that the code has been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
 
@@ -283,6 +287,7 @@ If you there's any other issues, please raise a ticket.
 ### Powered by BrowserStack
 
 [![BrowserStack](https://raw.githubusercontent.com/andyhu/transliteration/gh-pages/browserstack-logo-600x315.png)](http://browserstack.com/)
+
 BrowserStack is a fantastic service for testing your web applications in tons of different real browsers and mobile devices. `transliteration` uses BrowserStack to do unit test in different browsers.
 
 ### License
