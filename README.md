@@ -274,13 +274,13 @@ Examples:
 
 Currently, `transliteration` uses 1 to 1 character map (from Unicode to Latin) under the hood. It is the simplest way to implement, but it has some limitations when dealing with polyphonic characters and languages which share overlapped character sets. It does not work well in some specific languages when the same characters can be transliterated differently when they are placed at different places. Some of the issues are listed below:
 
-* _Chinese:_ Polyphonic characters are not always transliterated correctly. Alternative: `pinyinlite`.
+* __Chinese:__ Polyphonic characters are not always transliterated correctly. Alternative: `pinyinlite`.
 
-* _Japanese:_ With `transliteration`, most Japanese Kanji characters are transliterated to Chinese Pinyin because of their overlapping of characters in Unicode. Also there are many polyphonic characters. without doing a word splitting or word mapping, it's impossible to transliterate Kanji accurately. Alternative: `kuroshiro`.
+* __Japanese:__ With `transliteration`, most Japanese Kanji characters are transliterated to Chinese Pinyin because of their overlapping of characters in Unicode. Also there are many polyphonic characters. without doing a word splitting or word mapping, it's impossible to transliterate Kanji accurately. Alternative: `kuroshiro`.
 
-* _Thai:_ Currently it is not working. There seems no working open source project I can directly copy code from. I found some articles explaining the how to transliterate Thai though. I would appreciate if anyone who is interested implementing it can lend a hand. See: [#67](https://github.com/andyhu/transliteration/issues/67).
+* __Thai:__ Currently it is not working. There seems no working open source project I can directly copy code from. I found some articles explaining the how to transliterate Thai though. I would appreciate if anyone who is interested implementing it can lend a hand. See: [#67](https://github.com/andyhu/transliteration/issues/67).
 
-* _Cylic_ Cylic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
+* __Cylic:__ Cylic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
 
 If you there's any other issues, please raise a ticket.
 
