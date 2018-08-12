@@ -1,1 +1,4 @@
-.babelrc
+.*
+bower.json
+gulpfile.babel.js
+browserstack.json
