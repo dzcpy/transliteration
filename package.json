@@ -59,7 +59,7 @@
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.3.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-babel": "^7.0.0",
     "gulp-es3ify": "^0.0.1",
     "gulp-rename": "^1.4.0",
