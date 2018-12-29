@@ -17,7 +17,7 @@ export const replaceStr = (source, replace) => {
   for (const item of replace) {
     if (item[0] instanceof RegExp) {
       if (!item[0].global) {
-        item[0] = new RegExp(item[0].toString().replace(/^\/|\/$/), `${item[0].flags}g`);
+        item[0] = new RegExp(item[0].toString().replace(/^\/|\/$/, `${item[0].flags}g`));
       }
     } else if (typeof item[0] === 'string') {
       item[0] = new RegExp(escapeRegExp(item[0]), 'g');
