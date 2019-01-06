@@ -1,0 +1,10 @@
+{
+  "test_path": [ "/dist/browser/test/index.html" ],
+  "timeout": 600,
+  "browsers": [
+      "chrome_latest",
+      "firefox_latest",
+      "chrome_latest",
+      "ie_9"
+  ]
+}

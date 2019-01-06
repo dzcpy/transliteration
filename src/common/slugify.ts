@@ -1,0 +1,59 @@
+import { OptionsSlugify } from '../types';
+import { defaultOptions as defaultOptionsTransliterate, Transliterate } from './transliterate';
+import { deepClone, escapeRegExp, regexpReplaceCustom } from './utils';
+
+// Slugify
+export const defaultOptions: OptionsSlugify = {
+  ...deepClone(defaultOptionsTransliterate),
+  lowercase: true,
+  separator: '-',
+  uppercase: false,
+};
+
+export class Slugify extends Transliterate {
+  get options(): OptionsSlugify {
+    return deepClone({ ...defaultOptions, ...this.confOptions });
+  }
+
+  /**
+   * Set default config
+   * @param options
+   */
+  public config(options?: OptionsSlugify, reset = false): OptionsSlugify {
+    if (reset) {
+      this.confOptions = {};
+    }
+    if (options && typeof options === 'object') {
+      this.confOptions = deepClone(options);
+    }
+    return this.confOptions;
+  }
+
+  /**
+   * Slugify
+   * @param str
+   * @param options
+   */
+  public slugify(str: string, options?: OptionsSlugify): string {
+    options = typeof options === 'object' ? options : {};
+    const opt: OptionsSlugify = deepClone({ ...this.options, ...options});
+
+    // remove leading and trailing separators
+    const sep: string = escapeRegExp(opt.separator);
+
+    let slug: string = this.transliterate(str, opt);
+
+    const allowedChars = 'a-zA-Z0-9-_.~';
+
+    slug = regexpReplaceCustom(slug, RegExp(`[^${allowedChars}]+`, 'g'), opt.separator!, opt.ignore!);
+    slug = slug.replace(RegExp(`^${sep}+|${sep}$`, 'g'), '');
+
+    if (opt.lowercase) {
+      slug = slug.toLowerCase();
+    }
+    if (opt.uppercase) {
+      slug = slug.toUpperCase();
+    }
+    return slug;
+  }
+}

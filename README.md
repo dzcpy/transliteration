@@ -284,11 +284,9 @@ Currently, `transliteration` uses 1 to 1 character map (from Unicode to Latin) u
 
 If you there's any other issues, please raise a ticket.
 
-### Powered by BrowserStack
+### Browser tests powered by BrowserStack
 
-[![BrowserStack](https://raw.githubusercontent.com/andyhu/transliteration/gh-pages/browserstack-logo-600x315.png)](http://browserstack.com/)
-
-BrowserStack is a fantastic service for testing your web applications in tons of different real browsers and mobile devices. `transliteration` uses BrowserStack to do unit test in different browsers.
+[![BrowserStack](https://raw.githubusercontent.com/andyhu/transliteration/gh-pages/browserstack-logo.png)](http://browserstack.com/)
 
 ### License
 

@@ -1,4 +1,8 @@
 .*
-bower.json
-gulpfile.babel.js
 browserstack.json
+data/
+src/
+scripts/
+test/
+ts*.json
+rollup.config.js

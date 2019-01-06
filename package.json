@@ -1,27 +1,35 @@
 {
   "name": "transliteration",
-  "version": "1.6.6",
+  "version": "2.0.0-alpha1",
   "description": "Unicode to ACSII transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI.",
-  "main": "lib/node/index.js",
+  "main": "dist/node/src/node/index.js",
+  "module": "dist/node/esm.js",
+  "jsnext": "dist/node/esm.js",
+  "browser": "dist/browser/index.min.js",
+  "bin": {
+    "transliterate": "dist/bin/transliterate",
+    "slugify": "dist/bin/slugify"
+  },
+  "types": "dist/node/src/node/index.d.ts",
   "scripts": {
-    "lint": "eslint src/**/*.js test/**/*.js gulpfile.babel.js",
+    "generate:data": "node scripts/generate_data.js",
+    "lint": "tslint -c tslint.json src/**/*.ts test/**/*.ts",
     "pretest": "npm run lint",
-    "test": "npm run test:node",
-    "test:node": "tape -r babel-core/register test/node/*.js | tap-spec",
-    "pretest:browser": "npm run build",
-    "test:browser": "zuul --no-coverage -- test/browser/*.js",
-    "prebuild": "npm run test",
-    "build": "gulp",
+    "test": "npm run test:node && npm run test:cli",
+    "test:node": "ts-node node_modules/tape/bin/tape test/common/*.ts | tap-spec",
+    "test:cli": "ts-node node_modules/tape/bin/tape test/cli/*.ts | tap-spec",
+    "test:browser": "browserstack-runner",
+    "prebuild": "npm run generate:data && npm test && rimraf dist",
+    "build": "rollup -c rollup.config.js && rimraf .rpt2_cache && tsc",
     "coverage": "nyc npm test",
-    "postcoverage": "rimraf .nyc_output",
+    "codecov": "coverage && codecov -f <(nyc report --reporter=text-lcov) && rimraf .nyc_output",
     "coveralls": "nyc npm test && nyc report -r=text-lcov | coveralls",
-    "postcoveralls": "rimraf .nyc_output",
     "prepublish": "npm run build"
   },
-  "types": "types/index.d.ts",
-  "bin": {
-    "transliterate": "lib/bin/transliterate",
-    "slugify": "lib/bin/slugify"
+  "nyc": {
+    "extension": [
+      ".ts"
+    ]
   },
   "repository": {
     "type": "git",
@@ -43,36 +51,38 @@
     "url": "https://github.com/andyhu/transliteration/issues"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=10.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
-    "babel-preset-es2015-ie": "^6.7.0",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.2",
-    "browserstack-runner": "^0.8.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-transform-for-of": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@types/execa": "^0.9.0",
+    "@types/tape": "^4.2.33",
+    "@types/yargs": "^12.0.4",
+    "browserstack-runner": "^0.9.0",
     "browserstack-tape-reporter": "^1.1.0",
-    "coveralls": "^3.0.0",
-    "es5-shim": "^4.5.9",
-    "eslint": "^5.3.0",
-    "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-plugin-import": "^2.3.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-es3ify": "^0.0.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-sourcemaps": "^2.6.0",
-    "gulp-uglify": "^3.0.1",
-    "gulp-util": "^3.0.8",
-    "nyc": "^12.0.2",
+    "codecov": "^3.1.0",
+    "execa": "^1.0.0",
+    "json5": "^2.1.0",
+    "nyc": "^13.1.0",
     "rimraf": "^2.6.1",
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-copy": "^0.2.3",
+    "rollup-plugin-hashbang": "^1.0.1",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^4.0.1",
+    "rollup-plugin-typescript2": "^0.18.1",
     "tap-spec": "^5.0.0",
-    "tape": "^4.6.3",
+    "tape": "^4.9.1",
     "tape-catch": "^1.0.6",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^2.0.0"
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
   },
   "dependencies": {
     "yargs": "^12.0.1"

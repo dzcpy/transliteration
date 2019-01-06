@@ -1,0 +1,17 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rules": {
+    "no-conditional-assignment": {
+      "severity": "warning"
+    },
+    "no-console": {
+      "severity": "warning"
+    },
+    "no-bitwise": {
+      "severity": "warning"
+    },
+    "interface-name": false,
+    "no-implicit-dependencies": [true, "dev"],
+    "no-reference": false
+  }
+}
