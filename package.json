@@ -19,7 +19,7 @@
     "test:node": "ts-node node_modules/tape/bin/tape test/common/*.ts | tap-spec",
     "test:cli": "ts-node node_modules/tape/bin/tape test/cli/*.ts | tap-spec",
     "test:browser": "browserstack-runner",
-    "prebuild": "npm run generate:data && npm test && rimraf dist",
+    "prebuild": "npm run generate:data && rimraf dist",
     "build": "rollup -c rollup.config.js && rimraf .rpt2_cache && tsc",
     "coverage": "nyc npm test",
     "codecov": "coverage && codecov -f <(nyc report --reporter=text-lcov) && rimraf .nyc_output",

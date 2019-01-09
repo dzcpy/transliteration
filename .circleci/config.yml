@@ -26,8 +26,11 @@ jobs:
           name: Test node
           command: npm test
       - run:
+          name: Build
+          command: npm run build
+      - run:
           name: Test browser
-          command: npm test:browser
+          command: npm run test:browser
       - run:
           name: Codecov
           command: npm run codecov
@@ -35,16 +38,3 @@ jobs:
           key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-
-  # node-v6:
-  #   <<: *node-base
-  #   docker:
-  #     - image: node:8-alpine
-  # node-v8:
-  #   <<: *node-base
-  #   docker:
-  #     - image: node:6-alpine
-
-  # browser:
-  #   docker:
-  #     - image:
