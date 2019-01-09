@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { basename } from 'path';
 import yargs from 'yargs';
 import { defaultOptions } from '../common/slugify';
 import { deepClone } from '../common/utils';
@@ -82,7 +83,7 @@ if (argv.stdin) {
   process.stdin.on('end', () => console.log(''));
 } else {
   if (argv._.length !== 1) {
-    console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
+    console.error(`Invalid argument. Please type '${basename(argv.$0)} --help' for help.`);
   } else {
     console.log(slugify(argv._[0], options));
   }

@@ -5,6 +5,7 @@ import { deepClone, escapeRegExp, regexpReplaceCustom } from './utils';
 // Slugify
 export const defaultOptions: OptionsSlugify = {
   ...deepClone(defaultOptionsTransliterate),
+  allowedChars: 'a-zA-Z0-9-_.~',
   lowercase: true,
   separator: '-',
   uppercase: false,
@@ -43,9 +44,7 @@ export class Slugify extends Transliterate {
 
     let slug: string = this.transliterate(str, opt);
 
-    const allowedChars = 'a-zA-Z0-9-_.~';
-
-    slug = regexpReplaceCustom(slug, RegExp(`[^${allowedChars}]+`, 'g'), opt.separator!, opt.ignore!);
+    slug = regexpReplaceCustom(slug, RegExp(`[^${opt.allowedChars}]+`, 'g'), opt.separator!, opt.ignore!);
     slug = slug.replace(RegExp(`^${sep}+|${sep}$`, 'g'), '');
 
     if (opt.lowercase) {

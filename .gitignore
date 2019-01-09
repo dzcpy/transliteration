@@ -3,3 +3,5 @@ coverage/
 dist/
 lib/
 .vscode
+.nyc_output
+.rpt2_cache

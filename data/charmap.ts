@@ -4,13 +4,19 @@ export interface Charmap {
   [key: string]: string
 };
 export const charmap: Charmap = {};
-for (const high of arr.keys()) {
+for (let high = 0; high < arr.length; high++) {
   // The detection is used to fix the redundant trailing space
-  for (const [low, value] of arr[high].entries()) {
+  for (let low = 0; low < arr[high].length; low++) {
+    const value = arr[high][low];
     if (typeof value === 'string' && value.length) {
       const char = String.fromCharCode((high << 8) + low);
       charmap[char] = value;
     }
   }
 }
-arr = undefined;
+// Fix memory leak
+try {
+  arr = undefined;
+} catch (e) {
+  arr = [];
+}

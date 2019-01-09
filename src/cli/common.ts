@@ -38,9 +38,8 @@ export const parseReplaceOptionItem = (option: string): OptionReplaceArrayItem =
  */
 export const parseReplaceOption = (argvReplaceOption: string[]): OptionReplaceArray => {
   const replaceOption: OptionReplaceArray = [] as OptionReplaceArray;
-  let item: string;
-  for (item of argvReplaceOption) {
-    replaceOption.push([...parseReplaceOptionItem(item)] as OptionReplaceArrayItem);
+  for (let i = 0; i < argvReplaceOption.length; i++) {
+    replaceOption.push([...parseReplaceOptionItem(argvReplaceOption[i])] as OptionReplaceArrayItem);
   }
   return replaceOption;
 };

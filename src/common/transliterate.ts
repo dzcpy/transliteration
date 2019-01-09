@@ -45,12 +45,15 @@ export class Transliterate {
   public codeMapReplace(str: string, ignoreRanges: IntervalArray): string {
     let index = 0;
     let result = '';
-    for (const char of str) {
+    for (let i = 0; i < str.length; i++) {
+      // Get current character, take surrogates in consideration
+      const char = /[\uD800-\uDBFF]/.test(str[i]) && /[\uDC00-\uDFFF]/.test(str[i + 1]) ?
+        str[i] + str[i + 1] : str[i];
       let s: string;
       switch (true) {
         // current character is in ignored list
         case inRange(index, ignoreRanges):
-        // could be UTF-16 with high and low surrogates
+        // could be UTF-32 with high and low surrogates
         case char.length === 2 && inRange(index + 1, ignoreRanges):
           s = char;
           break;
@@ -65,6 +68,8 @@ export class Transliterate {
       }
       result += s;
       index += char.length;
+      // If it's UTF-32 then skip next character
+      i += char.length - 1;
     }
     return result;
   }
@@ -74,15 +79,17 @@ export class Transliterate {
    * @param option replace option to be either an object or tuple array
    * @return return the paired array version of replace option
    */
-  public formatReplaceOption = (option: OptionReplaceCombined): OptionReplaceArray => {
+  public formatReplaceOption(option: OptionReplaceCombined): OptionReplaceArray {
     if (option instanceof Array) {
       // return a new copy of the array
       return deepClone(option);
     }
     // convert object option to array one
     const replaceArr: OptionReplaceArray = [];
-    for (const key of Object.keys(option as OptionReplaceObject)) {
-      replaceArr.push([key, option[key]]);
+    for (const key in option as OptionReplaceObject) {
+      if (option.hasOwnProperty(key)) {
+        replaceArr.push([key, option[key]]);
+      }
     }
     return replaceArr;
   }
@@ -95,7 +102,8 @@ export class Transliterate {
   public replaceString(source: string, searches: OptionReplaceArray, ignore: string[] = []): string {
     const clonedSearches = deepClone(searches);
     let result = source;
-    for (const item of clonedSearches) {
+    for (let i = 0; i < clonedSearches.length; i++) {
+      const item = clonedSearches[i];
       switch (true) {
         case item[0] instanceof RegExp:
           item[0] = RegExp(item[0].source, `${item[0].flags.replace('g', '')}g`);
@@ -123,8 +131,8 @@ export class Transliterate {
     }
     if (data && typeof data === 'object' && Object.keys(data).length) {
       this.map = deepClone(this.map);
-      for (const from of Object.keys(data)) {
-        if (from.length < 3 && from <= '\udbff\udfff') {
+      for (const from in data) {
+        if (data.hasOwnProperty(from) && from.length < 3 && from <= '\udbff\udfff') {
           this.map[from] = data[from];
         }
       }

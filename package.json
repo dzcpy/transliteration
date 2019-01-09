@@ -3,9 +3,9 @@
   "version": "2.0.0-alpha1",
   "description": "Unicode to ACSII transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI.",
   "main": "dist/node/src/node/index.js",
-  "module": "dist/node/esm.js",
-  "jsnext": "dist/node/esm.js",
-  "browser": "dist/browser/index.min.js",
+  "module": "dist/browser/bundle.esm.min.js",
+  "jsnext": "dist/browser/bundle.esm.min.js",
+  "browser": "dist/browser/bundle.umd.min.js",
   "bin": {
     "transliterate": "dist/bin/transliterate",
     "slugify": "dist/bin/slugify"
@@ -18,13 +18,12 @@
     "test": "npm run test:node && npm run test:cli",
     "test:node": "ts-node node_modules/tape/bin/tape test/common/*.ts | tap-spec",
     "test:cli": "ts-node node_modules/tape/bin/tape test/cli/*.ts | tap-spec",
-    "test:browser": "browserstack-runner",
-    "prebuild": "npm run generate:data && npm test && rimraf dist",
+    "prebuild": "npm run generate:data && rimraf dist",
     "build": "rollup -c rollup.config.js && rimraf .rpt2_cache && tsc",
     "coverage": "nyc npm test",
     "codecov": "coverage && codecov -f <(nyc report --reporter=text-lcov) && rimraf .nyc_output",
     "coveralls": "nyc npm test && nyc report -r=text-lcov | coveralls",
-    "prepublish": "npm run build"
+    "prepublish": "npm run lint && npm test && npm run build"
   },
   "nyc": {
     "extension": [
@@ -33,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andyhu/transliteration.git"
+    "url": "https://github.com/dzcpy/transliteration.git"
   },
   "keywords": [
     "transliterate",
@@ -48,37 +47,36 @@
   "author": "Andy Hu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andyhu/transliteration/issues"
+    "url": "https://github.com/dzcpy/transliteration/issues"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-    "@babel/plugin-transform-for-of": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.2.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@types/execa": "^0.9.0",
     "@types/tape": "^4.2.33",
     "@types/yargs": "^12.0.4",
-    "browserstack-runner": "^0.9.0",
-    "browserstack-tape-reporter": "^1.1.0",
     "codecov": "^3.1.0",
     "execa": "^1.0.0",
     "json5": "^2.1.0",
     "nyc": "^13.1.0",
     "rimraf": "^2.6.1",
     "rollup": "^1.0.0",
-    "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-copy": "^0.2.3",
     "rollup-plugin-hashbang": "^1.0.1",
-    "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-terser": "^4.0.1",
+    "rollup-plugin-terser": "^4.0.2",
     "rollup-plugin-typescript2": "^0.18.1",
+    "rollup-plugin-uglify": "^6.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1",
-    "tape-catch": "^1.0.6",
+    "tape-rollup": "^4.6.4",
+    "ts-loader": "^5.3.3",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",

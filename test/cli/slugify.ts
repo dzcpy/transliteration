@@ -5,7 +5,7 @@ import { join } from 'path';
 import test from 'tape';
 import { OptionsSlugify } from '../../src/types';
 
-const execPath = 'npx ts-node dist/bin/slugify';
+const execPath = 'npx ts-node src/cli/slugify';
 const cmdOptions = {
   cwd: join(__dirname, '../../'),
   stripFinalNewline: false

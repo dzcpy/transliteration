@@ -51,6 +51,13 @@ export interface OptionsSlugify extends OptionsTransliterate {
    * @default '-'
    */
   separator?: string;
+  /**
+   * Allowed characters.
+   * When `allowedChars` is set to `'abc'`, then only characters match `/[abc]/g` will be preserved.
+   * Other characters will all be converted to `separator`
+   * @default 'a-zA-Z0-9-_.~''
+   */
+  allowedChars?: string;
 };
 
 export type Options = OptionsTransliterate | OptionsSlugify;

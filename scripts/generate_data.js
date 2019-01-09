@@ -8,6 +8,7 @@ const json = JSON.parse(readFileSync(join(__filename, '../../data/data.json'), {
 const codemap = [];
 const lastIndex = 255;
 const isChinese = low => low >= (0x4e && low <= 0x9f) || (low >= 0xf9 && low <= 0xfa);
+let separator
 // be sure that json[0] exists
 for (let i = 0; i <= lastIndex; i++) {
   if (!Array.isArray(json[i]) || json[i].length === 0) {
@@ -34,15 +35,21 @@ export interface Charmap {
   [key: string]: string
 };
 export const charmap: Charmap = {};
-for (const high of arr.keys()) {
+for (let high = 0; high < arr.length; high++) {
   // The detection is used to fix the redundant trailing space
-  for (const [low, value] of arr[high].entries()) {
+  for (let low = 0; low < arr[high].length; low++) {
+    const value = arr[high][low];
     if (typeof value === 'string' && value.length) {
       const char = String.fromCharCode((high << 8) + low);
       charmap[char] = value;
     }
   }
 }
-arr = undefined;
+// Fix memory leak
+try {
+  arr = undefined;
+} catch (e) {
+  arr = [];
+}
 `;
 writeFileSync(join(__filename, '../../data/charmap.ts'), code, { encoding: 'utf8' });

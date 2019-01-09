@@ -1,50 +1,43 @@
 workflows:
-  version: 2.1
+  version: 2.0
   test:
     jobs:
       - node-v10
-      # - node-v8
-      # - node-v6
-      # - browser
+      - node-v8
+      - node-v6
 
-version: 2.1
+version: 2.0
 jobs:
   node-v10: &node-base
     docker:
       - image: node:10-alpine
+    working_directory: ~/repo
     steps:
       - checkout
       - run:
           name: Install `ca-certificates`
           command: apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
       - restore_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
           command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
       - run:
-          name: Test node
-          command: npm test
-      - run:
-          name: Test browser
-          command: npm test:browser
+          name: Build
+          command: npm run build
       - run:
           name: Codecov
           command: npm run codecov
-      - save_cache:
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
 
-  # node-v6:
-  #   <<: *node-base
-  #   docker:
-  #     - image: node:8-alpine
-  # node-v8:
-  #   <<: *node-base
-  #   docker:
-  #     - image: node:6-alpine
-
-  # browser:
-  #   docker:
-  #     - image:
+  node-v8:
+    <<: *node-base
+    docker:
+      - image: node:8-alpine
+  node-v6:
+    <<: *node-base
+    docker:
+      - image: node:6-alpine

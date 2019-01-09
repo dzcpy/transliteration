@@ -4,16 +4,21 @@ import { IntervalArray } from '../types';
  * Escape regular expression string
  * @see https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex/6969486#6969486
  */
-export const escapeRegExp = (str?: string): string => (str || '').replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+export function escapeRegExp(str?: string): string {
+  return (str || '').replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+};
 
-export const isChinese = (char: string): boolean => char > "\u4e00" && char < "\u9fff" || char > "\uf900" && char < "\ufaff";
+export function isChinese(char: string): boolean {
+  const c = char.charCodeAt(0);
+  return c >= 0x4e00 && c <= 0x9fff || c >= 0xf900 && c <= 0xfaff;
+};
 
 /**
  * Deep clone a variable
  * @param obj Object to clone
  * @returns The cloned object
  */
-export const deepClone = (obj: any): any => {
+export function deepClone(obj: any): any {
   switch (true) {
     case obj instanceof Array:
       const clonedArr: any[] = [];
@@ -27,8 +32,10 @@ export const deepClone = (obj: any): any => {
       return new RegExp(obj.source, obj.flags);
     case obj instanceof Object:
       const clonedObj: any = {};
-      for (const key of Object.keys(obj)) {
-        clonedObj[key] = deepClone(obj[key]);
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          clonedObj[key] = deepClone(obj[key]);
+        }
       }
       return clonedObj;
     default:
@@ -43,9 +50,10 @@ export const deepClone = (obj: any): any => {
  * @param searches Strings to search
  * @returns A list of occurrences in the format of [[from, to], [from, to]]
  */
-export const findStrOccurrences = (source: string, searches: string[]): IntervalArray => {
+export function findStrOccurrences (source: string, searches: string[]): IntervalArray {
   let result: IntervalArray = [];
-  for (const str of searches) {
+  for (let i = 0; i < searches.length; i++) {
+    const str = searches[i];
     let index = -1;
     while ((index = source.indexOf(str, index + 1)) > -1) {
       result.push([index, index + str.length - 1]);
@@ -67,7 +75,7 @@ const enum Position { Left = -1, Middle = 0, Right = 1 };
  * @param num
  * @param range
  */
-const getPosition = (num: number, range: [number, number]): Position => {
+function getPosition(num: number, range: [number, number]): Position {
   switch (true) {
     case num < range[0]:
       return Position.Left;
@@ -82,7 +90,7 @@ const getPosition = (num: number, range: [number, number]): Position => {
  * @param num
  * @param rangeArr
  */
-export const inRange = (num: number, rangeArr: IntervalArray): boolean => {
+export function inRange(num: number, rangeArr: IntervalArray): boolean {
   if (rangeArr.length === 0) {
     return false;
   }
@@ -103,7 +111,7 @@ export const inRange = (num: number, rangeArr: IntervalArray): boolean => {
  * @param replacement Replace matched RegExp with replacement value
  * @param ignored Ignore certain string values within the matched strings
  */
-export const regexpReplaceCustom = (source: string, regexp: RegExp, replacement: string, ignored: string[] = []) => {
+export function regexpReplaceCustom(source: string, regexp: RegExp, replacement: string, ignored: string[] = []) {
   // RegExp version of ignored
   const ignoredRegexp = ignored.length ? RegExp(ignored.map(escapeRegExp).join('|'), 'g') : null;
   // clones regex and with g flag

@@ -20,8 +20,8 @@
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "target": "es2018"
+    "target": "es2015"
   },
-  "include": ["src", "test", "types"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src", "data"],
+  "exclude": ["node_modules", "dist", "src/cli", "src/browser", "test"]
 }

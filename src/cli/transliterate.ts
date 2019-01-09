@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { basename } from 'path';
 import yargs from 'yargs';
 import { defaultOptions } from '../common/transliterate';
 import { deepClone } from '../common/utils';
@@ -62,7 +63,7 @@ if (argv.stdin) {
   process.stdin.on('end', () => console.log(''));
 } else {
   if (argv._.length !== 1) {
-    console.error(`Invalid argument. Please type '${argv.$0} --help' for help.`);
+    console.error(`Invalid argument. Please type '${basename(argv.$0)} --help' for help.`);
   } else {
     console.log(tr(argv._[0], options));
   }
