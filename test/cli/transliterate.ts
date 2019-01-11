@@ -24,7 +24,7 @@ const tr = (str: string, options: OptionsTransliterate = {}): string => {
   }
   const [trailingSpaces] = str.match(/[\r\n]+$/) || [''];
   const { stdout } = execa.shellSync(`${execPath} "${str}"${args}`, cmdOptions);
-  return stdout + trailingSpaces;
+  return stdout.replace(/[\r\n]+$/, '') + trailingSpaces;
 }
 
 test('#transliterate()', tt => {

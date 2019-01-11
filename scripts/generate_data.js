@@ -46,10 +46,6 @@ for (let high = 0; high < arr.length; high++) {
   }
 }
 // Fix memory leak
-try {
-  arr = undefined;
-} catch (e) {
-  arr = [];
-}
+arr = undefined;
 `;
 writeFileSync(join(__filename, '../../data/charmap.ts'), code, { encoding: 'utf8' });
