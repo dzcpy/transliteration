@@ -22,6 +22,7 @@ test('#findStrOccurrences()', t => {
     ['test', ['t'], [[0, 0], [3, 3]]],
     ['testtest', ['e', 't'], [[0, 1], [3, 5], [7, 7]]],
     ['你好呀你好', ['你', '呀'], [[0, 0], [2, 3]]],
+    ['abcbde', ['bc', 'bcb'], [[1, 3]]],
   ];
   for (const [source, searches, result] of tests) {
     t.deepEqual(findStrOccurrences(source, searches), result, `find ${searches.join(', ')} in ${source}`);
