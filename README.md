@@ -274,23 +274,23 @@ Examples:
 
 ### 2.0.0
 
-1. **CDN file path changes**
-2. The entire module was refactored in Typescript, with a big performance improvement as well as a reduced package size.
-3. Better code quality. 100% unit tested.
-4. `bower` support was dropped. Please use CDN or together with a js bundler like `webpack` or `rollup`.
-5. As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`
+* **CDN file path changes**
+* The entire module was refactored in Typescript, with a big performance improvement as well as a reduced package size.
+* Better code quality. 100% unit tested.
+* `bower` support was dropped. Please use CDN or together with a js bundler like `webpack` or `rollup`.
+* As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`
 
 ### 1.6.6
 
-1. Added support for `TypeScript`. #77
+* Added support for `TypeScript`. #77
 
 ### 1.5.0
 
-1. Minimum node requirement: 6.0+
+* Minimum node requirement: 6.0+
 
 ### 1.0.0
 
-1. Code had been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
+* Code had been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
 
 __Changes:__
 
