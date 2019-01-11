@@ -16,7 +16,7 @@ Universal unicode -> latin transliteration / slugify module. Works with all majo
 
 ### Compatibility / Browser support
 
-IE 10+ and all modern browsers.
+IE 9+ and all modern browsers.
 
 Node.js, in the browser, Web Worker, ReactNative and CLI
 
