@@ -1,6 +1,6 @@
 # Transliteration
 
-[![Build Status](	https://img.shields.io/circleci/project/github/dzcpy/transliteration.svg)](https://travis-ci.org/dzcpy/transliteration)
+[![Build Status](	https://img.shields.io/circleci/project/github/dzcpy/transliteration.svg)](https://circleci.com/gh/dzcpy/transliteration)
 [![Dependencies](https://img.shields.io/david/dzcpy/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/package.json)
 [![Dev Dependencies](https://img.shields.io/david/dev/dzcpy/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/package.json)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dzcpy/transliteration.svg)](https://coveralls.io/github/dzcpy/transliteration?branch=master)
