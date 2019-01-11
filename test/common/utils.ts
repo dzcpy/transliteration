@@ -72,10 +72,5 @@ test('#deepClone', t => {
   t.deepEqual(deepClone(s), s);
   t.notEqual(deepClone(c), c);
   t.deepEqual(deepClone(c), c);
-  const w = {
-    a: 'b',
-    hasOwnProperty: () => false,
-  };
-  t.deepEqual(deepClone(w), w);
   t.end();
 });
