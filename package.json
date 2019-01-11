@@ -21,7 +21,7 @@
     "prebuild": "npm run generate:data && rimraf dist",
     "build": "rollup -c rollup.config.js && rimraf .rpt2_cache && tsc",
     "coverage": "nyc npm test",
-    "codecov": "coverage && codecov -f <(nyc report --reporter=text-lcov) && rimraf .nyc_output",
+    "codecov": "coverage && nyc report --reporter=text-lcov > coverage.lcov && codecov && rimraf .nyc_output coverage.lcov",
     "coveralls": "nyc npm test && nyc report -r=text-lcov | coveralls",
     "prepublish": "npm run lint && npm test && npm run build"
   },
