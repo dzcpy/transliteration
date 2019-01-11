@@ -41,7 +41,7 @@ __CDN:__
 
 ```html
 <!-- UMD build -->
-<script async defer  src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.umd.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.umd.min.js"></script>
 <!-- ESM build -->
 <script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.esm.min.js" type="module"></script>
 <script type="module">
@@ -274,8 +274,8 @@ Examples:
 
 ### 2.0.0
 
-* **CDN file path changes**
-* The entire module was refactored in Typescript, with a big performance improvement as well as a reduced package size.
+* **CDN files path changed**
+* The entire module has been` refactored in Typescript, with a big performance improvement as well as a reduced package size.
 * Better code quality. 100% unit tested.
 * `bower` support was dropped. Please use CDN or together with a js bundler like `webpack` or `rollup`.
 * As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`
