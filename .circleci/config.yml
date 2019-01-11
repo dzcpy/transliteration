@@ -1,9 +1,8 @@
-version: 2.0
+version: 2
 jobs:
   build:
     docker:
       - image: node:10-alpine
-    working_directory: ~/repo
     steps:
       - checkout
       - run:
@@ -18,9 +17,22 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+  test:
+    docker:
+      - image: node:10-alpine
+    steps:
+      - checkout
       - run:
           name: Build
           command: npm run build
       - run:
-          name: Codecov
+          name: Test and Codecov
           command: npm run codecov
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+          requires:
+            - build
