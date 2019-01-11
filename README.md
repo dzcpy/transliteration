@@ -41,9 +41,9 @@ __CDN:__
 
 ```html
 <!-- UMD build -->
-<script async defer  src="https://cdn.jsdelivr.net/npm/transliteration@2.0.0-alpha1/dist/browser/bundle.umd.min.js"></script>
+<script async defer  src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.umd.min.js"></script>
 <!-- ESM build -->
-<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.0-alpha1/dist/browser/bundle.esm.min.js" type="module"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.esm.min.js" type="module"></script>
 <script type="module">
   import { transl } from './bundle.esm.min.js';
   console.log(transl('你好'));
