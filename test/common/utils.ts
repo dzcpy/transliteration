@@ -1,5 +1,5 @@
 import test from 'tape';
-import { escapeRegExp, findStrOccurrences, inRange, regexpReplaceCustom, deepClone } from '../../src/common/utils';
+import { deepClone, escapeRegExp, findStrOccurrences, inRange, regexpReplaceCustom } from '../../src/common/utils';
 
 test('#escapeRegex()', t => {
   const escaped = '\\^\\$\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|\\\\';
