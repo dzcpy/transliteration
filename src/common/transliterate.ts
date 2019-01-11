@@ -87,7 +87,7 @@ export class Transliterate {
     // convert object option to array one
     const replaceArr: OptionReplaceArray = [];
     for (const key in option as OptionReplaceObject) {
-      if (option.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(option, key)) {
         replaceArr.push([key, option[key]]);
       }
     }
@@ -132,7 +132,7 @@ export class Transliterate {
     if (data && typeof data === 'object' && Object.keys(data).length) {
       this.map = deepClone(this.map);
       for (const from in data) {
-        if (data.hasOwnProperty(from) && from.length < 3 && from <= '\udbff\udfff') {
+        if (Object.prototype.hasOwnProperty.call(data, from) && from.length < 3 && from <= '\udbff\udfff') {
           this.map[from] = data[from];
         }
       }

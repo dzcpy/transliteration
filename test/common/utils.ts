@@ -1,5 +1,5 @@
 import test from 'tape';
-import { escapeRegExp, findStrOccurrences, inRange, regexpReplaceCustom } from '../../src/common/utils';
+import { escapeRegExp, findStrOccurrences, inRange, regexpReplaceCustom, deepClone } from '../../src/common/utils';
 
 test('#escapeRegex()', t => {
   const escaped = '\\^\\$\\.\\*\\+\\?\\(\\)\\[\\]\\{\\}\\|\\\\';
@@ -50,5 +50,32 @@ test('#regexpReplaceCustom', t => {
   t.equal(regexpReplaceCustom('abc!!!$!!!def!!jdj', /[^a-zA-Z0-9-_.~]+/g, '-', ['$', '(', '##']), 'abc-$-def-jdj');
   t.equal(regexpReplaceCustom('abc!!!$!!!def!!jdj', /[^a-zA-Z0-9-_.~]+/g, '-', []), 'abc-def-jdj');
   t.equal(regexpReplaceCustom('abc$def', /[^a-zA-Z0-9-_.~]+/g, '-', ['$']), 'abc$def');
+  t.end();
+});
+
+test('#deepClone', t => {
+  const o = { a: 'b' };
+  const a = ['a'];
+  const d = new Date();
+  const r = /a/g;
+  const s = 'a';
+  const c = { o, a, d, r, s };
+  t.notEqual(deepClone(o), o);
+  t.deepEqual(deepClone(o), o);
+  t.notEqual(deepClone(a), a);
+  t.deepEqual(deepClone(a), a);
+  t.notEqual(deepClone(d), d);
+  t.deepEqual(deepClone(d), d);
+  t.notEqual(deepClone(r), r);
+  t.deepEqual(deepClone(r), r);
+  t.equal(deepClone(s), s);
+  t.deepEqual(deepClone(s), s);
+  t.notEqual(deepClone(c), c);
+  t.deepEqual(deepClone(c), c);
+  const w = {
+    a: 'b',
+    hasOwnProperty: () => false,
+  };
+  t.deepEqual(deepClone(w), w);
   t.end();
 });
