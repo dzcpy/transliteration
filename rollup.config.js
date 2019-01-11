@@ -29,7 +29,7 @@ export default [
       typescript(typescriptOptions),
       babel(babelOptions),
       commonjs(),
-      // terser(),
+      terser(),
 		],
   },
   // Browser ESM module
