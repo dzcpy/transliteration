@@ -3,7 +3,7 @@
 [![Build Status](	https://img.shields.io/circleci/project/github/dzcpy/transliteration.svg)](https://circleci.com/gh/dzcpy/transliteration)
 [![Dependencies](https://img.shields.io/david/dzcpy/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/package.json)
 [![Dev Dependencies](https://img.shields.io/david/dev/dzcpy/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/package.json)
-[![Coverage Status](https://img.shields.io/codecov/c/github/dzcpy/transliteration.svg)](https://coveralls.io/github/dzcpy/transliteration?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/dzcpy/transliteration/badge.svg?branch=master)](https://coveralls.io/github/dzcpy/transliteration?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/LICENSE.txt)
