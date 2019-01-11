@@ -110,7 +110,7 @@ __Options:__ (optional)
 }
 ```
 
-### transliterate.config([optionsObj])__
+### transliterate.config([optionsObj])
 
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 

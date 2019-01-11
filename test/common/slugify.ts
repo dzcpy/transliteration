@@ -3,9 +3,10 @@ import { defaultOptions } from '../../src/common/slugify';
 import { slugify } from '../../src/node';
 import { OptionsSlugify } from '../../src/types';
 
-test('#slugify()', tt => {
-  const tests: Array<[string, object, string]> = [
+test('#slugify()', t => {
+  const tests: Array<[string, object | undefined, string]> = [
     ['你好, 世界!', {}, 'ni-hao-shi-jie'],
+    ['你好, 世界!', undefined, 'ni-hao-shi-jie'],
     ['你好, 世界!', { separator: '_' }, 'ni_hao_shi_jie'],
     ['你好, 世界!', { lowercase: false }, 'Ni-Hao-Shi-Jie'],
     ['你好, 世界!', { uppercase: true }, 'NI-HAO-SHI-JIE'],
@@ -21,13 +22,10 @@ test('#slugify()', tt => {
     ['你好, 世界!', { replace: [['你好', 'Hello '], ['世界', 'World ']] }, 'hello-world'],
     ['你好, 世界!', { separator: ', ', replace: [['你好', 'Hola'], ['世界', 'mundo']], ignore: ['¡', '!'], lowercase: false }, 'Hola, mundo!'],
   ];
-  test('Generate slugs', t => {
-    for (const [str, options, slug] of tests) {
-      t.equal(slugify(str, options), slug, `${str}-->${slug}`);
-    }
-    t.end();
-  });
-  tt.end();
+  for (const [str, options, slug] of tests) {
+    t.equal(slugify(str, options), slug, `${str}-->${slug}`);
+  }
+  t.end();
 });
 
 test('#slugify.config()', tt => {

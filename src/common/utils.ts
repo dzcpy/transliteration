@@ -33,6 +33,7 @@ export function deepClone(obj: any): any {
     case obj instanceof Object:
       const clonedObj: any = {};
       for (const key in obj) {
+         /* istanbul ignore else */
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
           clonedObj[key] = deepClone(obj[key]);
         }

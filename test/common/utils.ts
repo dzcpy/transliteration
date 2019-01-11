@@ -20,7 +20,7 @@ test('#escapeRegex()', t => {
 test('#findStrOccurrences()', t => {
   const tests: Array<[string, string[], Array<[number, number]>]> = [
     ['test', ['t'], [[0, 0], [3, 3]]],
-    ['testtest', ['t', 'e'], [[0, 1], [3, 5], [7, 7]]],
+    ['testtest', ['e', 't'], [[0, 1], [3, 5], [7, 7]]],
     ['你好呀你好', ['你', '呀'], [[0, 0], [2, 3]]],
   ];
   for (const [source, searches, result] of tests) {
@@ -50,6 +50,7 @@ test('#regexpReplaceCustom', t => {
   t.equal(regexpReplaceCustom('abc!!!$!!!def!!jdj', /[^a-zA-Z0-9-_.~]+/g, '-', ['$', '(', '##']), 'abc-$-def-jdj');
   t.equal(regexpReplaceCustom('abc!!!$!!!def!!jdj', /[^a-zA-Z0-9-_.~]+/g, '-', []), 'abc-def-jdj');
   t.equal(regexpReplaceCustom('abc$def', /[^a-zA-Z0-9-_.~]+/g, '-', ['$']), 'abc$def');
+  t.equal(regexpReplaceCustom('abc$def', /[^a-zA-Z0-9-_.~]+/g, '-'), 'abc-def');
   t.end();
 });
 
