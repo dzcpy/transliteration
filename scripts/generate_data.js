@@ -7,7 +7,7 @@ const json = JSON.parse(readFileSync(join(__filename, '../../data/data.json'), {
 
 const codemap = [];
 const lastIndex = 255;
-const isChinese = low => low >= (0x4e && low <= 0x9f) || (low >= 0xf9 && low <= 0xfa);
+const isChinese = low => (low >= 0x4e && low <= 0x9f) || (low >= 0xf9 && low <= 0xfa);
 let separator
 // be sure that json[0] exists
 for (let i = 0; i <= lastIndex; i++) {
@@ -16,7 +16,7 @@ for (let i = 0; i <= lastIndex; i++) {
   } else {
     codemap[i] = [];
     for (let j = 0; j < json[i].length; j++) {
-      if (json[i][j] === undefined || json[i][j] === null) {
+      if (json[i][j] === undefined || json[i][j] === null || json[i][j] === '') {
         json[i][j] = null;
       }
       if (isChinese(i) && typeof json[i][j] === 'string') {
