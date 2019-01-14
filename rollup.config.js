@@ -21,20 +21,20 @@ const babelOptions = {
 };
 
 export default [
-	// Browser UMD build
-	{
-		input: 'src/browser/index.ts',
+  // Browser UMD build
+  {
+    input: 'src/browser/index.ts',
     output: { name: 'window', file: pkg.browser, format: 'umd', sourcemap: true, extend: true },
-		plugins: [
+    plugins: [
       typescript(typescriptOptions),
       babel(babelOptions),
       commonjs(),
       terser(),
-		],
+    ],
   },
   // Browser ESM module
-	{
-		input: 'src/browser/index.ts',
+  {
+    input: 'src/browser/index.ts',
     output: { file: pkg.module, format: 'esm', sourcemap: true },
     plugins: [
       typescript(typescriptOptions),
@@ -42,8 +42,8 @@ export default [
     ],
   },
   // Node CLI bin transliteration file
-	{
-		input: 'src/cli/transliterate.ts',
+  {
+    input: 'src/cli/transliterate.ts',
     output: { file: pkg.bin.transliterate, format: 'cjs' },
     plugins: [
       typescript(typescriptOptions),
@@ -52,13 +52,13 @@ export default [
     ],
   },
   // Node CLI bin slugify file
-	{
-		input: 'src/cli/slugify.ts',
+  {
+    input: 'src/cli/slugify.ts',
     output: { file: pkg.bin.slugify, format: 'cjs' },
     plugins: [
       typescript(typescriptOptions),
       terser(),
       hashbang(),
     ],
-	},
+  },
 ];

@@ -8,7 +8,7 @@
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/LICENSE.txt)
 
-Universal unicode -> latin transliteration / slugify module. Works with all major languages and on all platforms.
+Universal Unicode ➡ Latin transliteration / slugify module. Works with all major languages and on all platforms.
 
 ## Demo
 
@@ -18,9 +18,9 @@ Universal unicode -> latin transliteration / slugify module. Works with all majo
 
 IE 9+ and all modern browsers.
 
-Node.js, in the browser, Web Worker, ReactNative and CLI
+Other platforms including Node.js, Web Worker, ReactNative and CLI
 
-## Installation
+## Install
 
 ### Node.js / React Native
 
@@ -41,11 +41,16 @@ __CDN:__
 
 ```html
 <!-- UMD build -->
-<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.umd.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.umd.min.js"></script>
+<script>
+  console.log(transl('你好'));
+</script>
+```
+
+```html
 <!-- ESM build -->
-<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.3/dist/browser/bundle.esm.min.js" type="module"></script>
 <script type="module">
-  import { transl } from './bundle.esm.min.js';
+  import { transl } from 'https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.esm.min.js';
   console.log(transl('你好'));
 </script>
 ```
@@ -74,7 +79,7 @@ echo 你好 | slugify -S # ni-hao
 
 ### transliterate(str, [options])
 
-Transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `[?]`.
+Transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `''`.
 
 __Options:__ (optional)
 
@@ -110,34 +115,34 @@ __Options:__ (optional)
 }
 ```
 
-### transliterate.config([optionsObj])
+### transliterate.config([optionsObj], [reset = false])
 
-Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
-
-```javascript
-transliterate.config({ replace: [['你好', 'Hello']] });
-transliterate('你好, world!'); // Result: 'Hello, world!'. This equals transliterate('你好, world!', { replace: [['你好', 'Hello']] });
-```
-
-__Examples:__
+Bind options object globally so any following calls will be using `optoinsObj` as default. If `optionsObj` is omitted, it will return current default options object.
 
 ```javascript
 import { transliterate as tr } from 'transliteration';
-tr('你好，世界'); // Ni Hao , Shi Jie
-tr('Γεια σας, τον κόσμο'); // Geia sas, ton kosmo
-tr('안녕하세요, 세계'); // annyeonghaseyo, segye
-tr('你好，世界', { replace: {你: 'You'}, ignore: ['好'] }) // You 好, Shi Jie
-tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] }) // You 好, Shi Jie (option in array form)
-// or use configurations
+tr('你好，世界');
+// Ni Hao , Shi Jie
+tr('Γεια σας, τον κόσμο');
+// Geia sas, ton kosmo
+tr('안녕하세요, 세계');
+// annyeonghaseyo, segye
+tr('你好，世界', { replace: {你: 'You'}, ignore: ['好'] });
+// You 好, Shi Jie
+tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] });
+ // You 好, Shi Jie (option in array form)
 tr.config({ replace: [['你', 'You']], ignore: ['好'] });
 tr('你好，世界') // You 好, Shi Jie
-// get configurations
 console.log(tr.config());
+// { replace: [['你', 'You']], ignore: ['好'] }
+tr.config(undefined, true);
+console.log(tr.config());
+// {}
 ```
 
 ### slugify(str, [options])
 
-Converts Unicode string to slugs. So it can be safely used in URL or file name.
+Convert Unicode `str` into a slug string for making sure it is safe to be used in an URL as a file name.
 
 __Options:__ (optional)
 
@@ -193,33 +198,36 @@ __Options:__ (optional)
   allowedChars?: string;
 ```
 
-If `options` is not provided, it will use the above default values.
-
-### slugify.config([optionsObj])
+### slugify.config([optionsObj], [reset = false])
 
 Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 
 ```javascript
-slugify.config({ replace: [['你好', 'Hello']] });
-slugify('你好, world!'); // Result: 'hello-world'. This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
-```
-
-__Example:__
-
-### Node.js / webpack
-
-```javascript
 import { slugify } from 'transliteration';
-slugify('你好，世界'); // ni-hao-shi-jie
-slugify('你好，世界', { lowercase: false, separator: '_' }); // Ni_Hao_Shi_Jie
-slugify('你好，世界', { replace: {你好: 'Hello', 世界: 'world'}, separator: '_' }); // hello_world
-slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // hello_world (option in array form)
-slugify('你好，世界', { ignore: ['你好'] }); // 你好shi-jie
-// or use configurations
+slugify('你好，世界');
+// ni-hao-shi-jie
+slugify('你好，世界', { lowercase: false, separator: '_' });
+// Ni_Hao_Shi_Jie
+slugify('你好，世界', { replace: {你好: 'Hello', 世界: 'world'}, separator: '_' });
+// hello_world
+slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // replace option in array form)
+// hello_world
+slugify('你好，世界', { ignore: ['你好'] });
+// 你好shi-jie
+
 slugify.config({ lowercase: false, separator: '_' });
 slugify('你好，世界'); // Ni_Hao_Shi_Jie
 // get configurations
 console.log(slugify.config());
+slugify.config({ replace: [['你好', 'Hello']] });
+slugify('你好, world!'); // This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
+// hello-world
+console.log(slugify.config());
+// { replace: [['你好', 'Hello']] }
+slugify.config(undefined, true);
+console.log(slugify.config());
+// {}
+
 ```
 
 If the variable names conflict with other libraries in your project or you prefer not to use global variables, use noConfilict() before loading libraries which contain the conflicting variables.:
@@ -269,16 +277,17 @@ Examples:
 
 ```
 
-
 ## Change log
 
 ### 2.0.0
 
 * **CDN files path changed**
-* The entire module has been` refactored in Typescript, with a big performance improvement as well as a reduced package size.
+* The entire module had been` refactored in Typescript, with big performance improvements as well as a reduced package size.
 * Better code quality. 100% unit tested.
-* `bower` support was dropped. Please use CDN or together with a js bundler like `webpack` or `rollup`.
-* As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`
+* `bower` support was dropped. Please use CDN or `webpack`/`rollup`.
+* As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`, and it is configurable.
+* Added `uppercase` as an option for `slugify`, if is set to `true` then the generated slug will be converted to uppercase letters.
+* Unknown characters will be transliterated as empty string by default, instead of a meaningless `[?]`.
 
 ### 1.6.6
 
@@ -291,9 +300,6 @@ Examples:
 ### 1.0.0
 
 * Code had been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
-
-__Changes:__
-
 * The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
 * Added `transliterate.config` and `slugify.config`.
 * Unknown string will be transliterated as `[?]` instead of `?`.
@@ -308,7 +314,7 @@ Currently, `transliteration` only supports 1 to 1 code map (from Unicode to Lati
 
 * __Japanese:__ Most Japanese Kanji characters are transliterated into Chinese Pinyin because of the overlapped code map in Unicode. Also there are many polyphonic characters in Japanese which makes it impossible to transliterate Japanese Kanji correctly without tokenizing the sentence. Consider using `kuroshiro` for a better Kanji -> Romaji conversion.
 
-* __Thai:__ Currently it is not working. If you know how to make it work, please contact me.
+* __Thai:__ Currently it is not working. If you know how to fix it, please comment on [this](https://github.com/dzcpy/transliteration/issues/67) issue.
 
 * __Cylic:__ Cylic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
 
