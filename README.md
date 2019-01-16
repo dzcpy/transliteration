@@ -57,7 +57,7 @@ __CDN:__
 
 `transliteration` can be loaded as an AMD / CommonJS module, or as global variables (UMD).
 
-When using it in the browser, by default it will create global variables under `window` object:
+When using it in the browser, by default it creates global variables under `window` object:
 
 ```javascript
 transl('你好, World'); // window.transl
@@ -191,7 +191,7 @@ __Options:__ (optional)
   separator?: string;
   /**
    * Allowed characters.
-   * When `allowedChars` is set to `'abc'`, then only characters match `/[abc]/g` will be preserved.
+   * When `allowedChars` is set to `'abc'`, then only characters which match `/[abc]/g` will be preserved.
    * Other characters will all be converted to `separator`
    * @default 'a-zA-Z0-9-_.~''
    */
@@ -216,12 +216,13 @@ slugify('你好，世界', { ignore: ['你好'] });
 // 你好shi-jie
 
 slugify.config({ lowercase: false, separator: '_' });
-slugify('你好，世界'); // Ni_Hao_Shi_Jie
-// get configurations
+slugify('你好，世界');
+// Ni_Hao_Shi_Jie
 console.log(slugify.config());
+// { lowercase: false, separator: "_" }
 slugify.config({ replace: [['你好', 'Hello']] });
-slugify('你好, world!'); // This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
-// hello-world
+slugify('你好, world!');
+// This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
 console.log(slugify.config());
 // { replace: [['你好', 'Hello']] }
 slugify.config(undefined, true);
