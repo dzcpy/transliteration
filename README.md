@@ -14,7 +14,7 @@ Universal Unicode ➡ Latin transliteration / slugify module. Works with all maj
 
 [Try it out](http://dzcpy.github.io/transliteration)
 
-### Compatibility / Browser support
+## Compatibility / Browser support
 
 IE 9+ and all modern browsers.
 
@@ -37,7 +37,7 @@ slugify('你好, world!'); // ni-hao-world
 
 ### Browser
 
-__CDN:__
+#### CDN:
 
 ```html
 <!-- UMD build -->
