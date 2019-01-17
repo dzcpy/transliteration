@@ -91,5 +91,6 @@ export type SlugifyFunction = TransliterationFunction<OptionsSlugify>;
 
 export interface BrowserGlobalObject {
   transl: TransliterateFunction;
+  transliterate: TransliterateFunction;
   slugify: SlugifyFunction;
 }

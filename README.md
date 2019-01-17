@@ -48,8 +48,8 @@ slugify('你好, world!'); // ni-hao-world
 ```html
 <!-- ESM build -->
 <script type="module">
-  import { transl } from 'https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.esm.min.js';
-  console.log(transl('你好'));
+  import { transliterate } from 'https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.esm.min.js';
+  console.log(transliterate('你好'));
 </script>
 ```
 
