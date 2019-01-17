@@ -1,2 +1,2 @@
 import { slugify, transliterate } from '../node';
-export { transliterate as transl, slugify };
+export { transliterate as transl, transliterate, slugify };
