@@ -35,9 +35,7 @@ tr('你好, world!'); // Ni Hao , world!
 slugify('你好, world!'); // ni-hao-world
 ```
 
-### Browser
-
-#### CDN:
+### Browser (CDN):
 
 ```html
 <!-- UMD build -->
