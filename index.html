@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/transliteration@2.0.1/dist/browser/bundle.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/transliteration@2.1.1/dist/browser/bundle.umd.min.js"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <style>
     body { margin: 10px 50px; font-family: Arial }
@@ -32,7 +32,7 @@
               </el-form-item>
 
               <el-form-item label="Transliteration Result">
-                <el-input :value="transl(source, JSON.parse(JSON.stringify(translOpt)))" type="textarea" :autosize="{ minRows: 1, maxRows: 5}" :disabled="true"></el-input>
+                <el-input :value="transliterate(source, JSON.parse(JSON.stringify(translOpt)))" type="textarea" :autosize="{ minRows: 1, maxRows: 5}" :disabled="true"></el-input>
               </el-form-item>
 
               <el-form-item label="Slugify Result">
