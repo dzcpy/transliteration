@@ -27,6 +27,8 @@ Other platforms including Node.js, Web Worker, ReactNative and CLI
 npm install transliteration --save
 ```
 
+If you are using Typescript, please do not install `@types/transliteration`. Since `v2` type definition files are built-in.
+
 ```javascript
 import { transliterate as tr, slugify } from 'transliteration';
 
