@@ -291,7 +291,7 @@ Examples:
 * The entire module had been refactored in Typescript, with big performance improvements as well as a reduced package size.
 * Better code quality. 100% unit tested.
 * `bower` support was dropped. Please use CDN or `webpack`/`rollup`.
-* As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`, and it is configurable.
+* As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as allowed characters in the result for `slugify`, and it is configurable.
 * Added `uppercase` as an option for `slugify`, if is set to `true` then the generated slug will be converted to uppercase letters.
 * Unknown characters will be transliterated as empty string by default, instead of a meaningless `[?]`.
 
