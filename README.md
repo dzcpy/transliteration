@@ -41,7 +41,7 @@ slugify('你好, world!');
 
 ```html
 <!-- UMD build -->
-<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.umd.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.1.1/dist/browser/bundle.umd.min.js"></script>
 <script>
   console.log(transliterate('你好'));
 </script>
@@ -50,7 +50,7 @@ slugify('你好, world!');
 ```html
 <!-- ESM build -->
 <script type="module">
-  import { transliterate } from 'https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.esm.min.js';
+  import { transliterate } from 'https://cdn.jsdelivr.net/npm/transliteration@2.1.1/dist/browser/bundle.esm.min.js';
   console.log(transliterate('你好'));
 </script>
 ```
