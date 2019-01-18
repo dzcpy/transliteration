@@ -14,7 +14,7 @@ Universal Unicode ➡ Latin transliteration / slugify module. Works with all maj
 
 [Try it out](http://dzcpy.github.io/transliteration)
 
-### Compatibility / Browser support
+## Compatibility / Browser support
 
 IE 9+ and all modern browsers.
 
@@ -31,38 +31,39 @@ npm install transliteration --save
 ```javascript
 import { transliterate as tr, slugify } from 'transliteration';
 
-tr('你好, world!'); // Ni Hao , world!
-slugify('你好, world!'); // ni-hao-world
+tr('你好, world!');
+// Ni Hao , world!
+slugify('你好, world!');
+// ni-hao-world
 ```
 
-### Browser
-
-__CDN:__
+### Browser (CDN):
 
 ```html
 <!-- UMD build -->
 <script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.umd.min.js"></script>
 <script>
-  console.log(transl('你好'));
+  console.log(transliterate('你好'));
 </script>
 ```
 
 ```html
 <!-- ESM build -->
 <script type="module">
-  import { transl } from 'https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.esm.min.js';
-  console.log(transl('你好'));
+  import { transliterate } from 'https://cdn.jsdelivr.net/npm/transliteration@2.0.4/dist/browser/bundle.esm.min.js';
+  console.log(transliterate('你好'));
 </script>
 ```
 
 `transliteration` can be loaded as an AMD / CommonJS module, or as global variables (UMD).
 
-When using it in the browser, by default it will create global variables under `window` object:
+When using it in the browser, by default it creates global variables under `window` object:
 
 ```javascript
-transl('你好, World'); // window.transl
-// or
-slugify('Hello, 世界'); // window.slugify
+transliterate('你好, World');
+// window.transliterate
+slugify('Hello, 世界');
+// window.slugify
 ```
 
 ### CLI
@@ -191,7 +192,7 @@ __Options:__ (optional)
   separator?: string;
   /**
    * Allowed characters.
-   * When `allowedChars` is set to `'abc'`, then only characters match `/[abc]/g` will be preserved.
+   * When `allowedChars` is set to `'abc'`, then only characters which match `/[abc]/g` will be preserved.
    * Other characters will all be converted to `separator`
    * @default 'a-zA-Z0-9-_.~''
    */
@@ -216,12 +217,13 @@ slugify('你好，世界', { ignore: ['你好'] });
 // 你好shi-jie
 
 slugify.config({ lowercase: false, separator: '_' });
-slugify('你好，世界'); // Ni_Hao_Shi_Jie
-// get configurations
+slugify('你好，世界');
+// Ni_Hao_Shi_Jie
 console.log(slugify.config());
+// { lowercase: false, separator: "_" }
 slugify.config({ replace: [['你好', 'Hello']] });
-slugify('你好, world!'); // This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
-// hello-world
+slugify('你好, world!');
+// This equals slugify('你好, world!', { replace: [['你好', 'Hello']] });
 console.log(slugify.config());
 // { replace: [['你好', 'Hello']] }
 slugify.config(undefined, true);
@@ -279,15 +281,20 @@ Examples:
 
 ## Change log
 
+### 2.1.0
+
+* Added `transliterate` as global variable for browser builds. Keep `transl` for backward compatibility.
+
 ### 2.0.0
 
-* **CDN files path changed**
-* The entire module had been` refactored in Typescript, with big performance improvements as well as a reduced package size.
+* **CDN file structure changed**: [https://www.jsdelivr.com/package/npm/transliteration](https://www.jsdelivr.com/package/npm/transliteration)
+* The entire module had been refactored in Typescript, with big performance improvements as well as a reduced package size.
 * Better code quality. 100% unit tested.
 * `bower` support was dropped. Please use CDN or `webpack`/`rollup`.
 * As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as result for `slugify`, and it is configurable.
 * Added `uppercase` as an option for `slugify`, if is set to `true` then the generated slug will be converted to uppercase letters.
 * Unknown characters will be transliterated as empty string by default, instead of a meaningless `[?]`.
+
 
 ### 1.6.6
 
