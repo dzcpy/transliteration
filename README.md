@@ -17,7 +17,7 @@ Universal Unicode to Latin transliteration + slugify module. Works on all platfo
 
 IE 9+ and all modern browsers.
 
-Other platforms including Node.js, Web Worker, ReactNative and CLI
+Other platforms includes Node.js, Web Worker, ReactNative and CLI
 
 ## Install
 
