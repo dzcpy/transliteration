@@ -3,6 +3,7 @@ import { terser } from "rollup-plugin-terser";
 import typescript from 'rollup-plugin-typescript2';
 import hashbang from 'rollup-plugin-hashbang';
 import commonjs from 'rollup-plugin-commonjs';
+import sourceMaps from 'rollup-plugin-sourcemaps';
 import pkg from './package.json';
 
 const typescriptOptions = {
@@ -30,6 +31,7 @@ export default [
       babel(babelOptions),
       commonjs(),
       terser(),
+      sourceMaps(),
     ],
   },
   // Browser ESM module
@@ -39,6 +41,7 @@ export default [
     plugins: [
       typescript(typescriptOptions),
       terser(),
+      sourceMaps(),
     ],
   },
   // Node CLI bin transliteration file

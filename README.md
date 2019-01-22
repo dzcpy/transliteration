@@ -93,7 +93,7 @@ __Options:__ (optional)
    */
   ignore?: string[];
   /**
-   * Replace a list of string / regex in the source string into the provided target string before transliteration
+   * Replace a list of string / regex in the source string with the provided target string before transliteration
    * The option can either be an array or an object
    * @example tr('你好，世界', { replace: {你: 'You'} }) // You Hao , Shi Jie
    * @example tr('你好，世界', { replace: [['你', 'You']] }) // You Hao , Shi Jie
@@ -144,7 +144,7 @@ console.log(tr.config());
 
 ### slugify(str, [options])
 
-Convert Unicode `str` into a slug string for making sure it is safe to be used in an URL as a file name.
+Convert Unicode `str` to a slug string for making sure it is safe to be used in an URL as a file name.
 
 __Options:__ (optional)
 
@@ -155,7 +155,7 @@ __Options:__ (optional)
    */
   ignore?: string[];
   /**
-   * Replace a list of string / regex in the source string into the provided target string before transliteration
+   * Replace a list of string / regex in the source string with the provided target string before transliteration
    * The option can either be an array or an object
    * @example tr('你好，世界', { replace: {你: 'You'} }) // You Hao , Shi Jie
    * @example tr('你好，世界', { replace: [['你', 'You']] }) // You Hao , Shi Jie
@@ -200,12 +200,7 @@ __Options:__ (optional)
   allowedChars?: string;
 ```
 
-### slugify.config([optionsObj], [reset = false])
-
-Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
-
 ```javascript
-import { slugify } from 'transliteration';
 slugify('你好，世界');
 // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' });
@@ -216,7 +211,13 @@ slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']]
 // hello_world
 slugify('你好，世界', { ignore: ['你好'] });
 // 你好shi-jie
+```
 
+### slugify.config([optionsObj], [reset = false])
+
+Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+
+```javascript
 slugify.config({ lowercase: false, separator: '_' });
 slugify('你好，世界');
 // Ni_Hao_Shi_Jie
@@ -233,8 +234,6 @@ console.log(slugify.config());
 
 ```
 
-If the variable names conflict with other libraries in your project or you prefer not to use global variables, use noConfilict() before loading libraries which contain the conflicting variables.:
-
 ### CLI
 
 ```
@@ -250,7 +249,7 @@ Options:
   -h, --help                                                                               [boolean]
 
 Examples:
-  transliterate "你好, world!" -r 好=good -r          Replace `,` into `!`, `world` into `shijie`.
+  transliterate "你好, world!" -r 好=good -r          Replace `,` with `!`, `world` with `shijie`.
   "world=Shi Jie"                                     Result: Ni good, Shi Jie!
   transliterate "你好，世界!" -i 你好 -i ，           Ignore `你好` and `，`.
                                                       Result: 你好，Shi Jie !
@@ -272,7 +271,7 @@ Options:
   -h, --help                                                                               [boolean]
 
 Examples:
-  slugify "你好, world!" -r 好=good -r "world=Shi     Replace `,` into `!` and `world` into
+  slugify "你好, world!" -r 好=good -r "world=Shi     Replace `,` with `!` and `world` with
   Jie"                                                `shijie`.
                                                       Result: ni-good-shi-jie
   slugify "你好，世界!" -i 你好 -i ，                 Ignore `你好` and `，`.
