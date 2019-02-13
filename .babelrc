@@ -1,6 +1,6 @@
 {
   "presets": [
-      ["@babel/preset-env", {
+      ["@babel/env", {
           "loose": true,
           "spec": true,
           "targets": {
@@ -8,14 +8,15 @@
                   "last 3 Chrome versions",
                   "last 3 Firefox versions",
                   "Safari >= 7",
-                  "Explorer >= 10",
+                  "Explorer >= 9",
                   "Edge >= 12",
                   "iOS >= 10",
                   "Android >= 6"
               ]
           },
           "useBuiltIns": "usage",
-          "debug": false
+          "debug": false,
+          "modules": false
       }]
   ],
   "plugins": [

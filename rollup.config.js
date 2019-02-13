@@ -2,7 +2,6 @@ import babel from 'rollup-plugin-babel';
 import { terser } from "rollup-plugin-terser";
 import typescript from 'rollup-plugin-typescript2';
 import hashbang from 'rollup-plugin-hashbang';
-import commonjs from 'rollup-plugin-commonjs';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import pkg from './package.json';
 
@@ -18,6 +17,7 @@ const typescriptOptions = {
 };
 
 const babelOptions = {
+  babelHelpers: 'bundled',
   extensions: ['.js', '.ts'],
 };
 
@@ -29,7 +29,6 @@ export default [
     plugins: [
       typescript(typescriptOptions),
       babel(babelOptions),
-      commonjs(),
       terser(),
       sourceMaps(),
     ],
