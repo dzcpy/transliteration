@@ -114,6 +114,11 @@ test('#transliterate()', tt => {
     t.equal(tr(' \t\r\n你好，世界！\t\r\n ', { trim: false }), ' \t\r\nNi Hao, Shi Jie!\t\r\n ');
     t.end();
   });
+  
+  test('- With unknown option', t => {
+    t.equal(tr('🚀', { unknown: '?' }), '?');
+    t.end();
+  });
 
   tt.end();
 });
