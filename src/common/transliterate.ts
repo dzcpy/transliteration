@@ -39,10 +39,9 @@ export class Transliterate {
    * Replace the source string using the code map
    * @param str
    * @param ignoreRanges
-   * @param map
    * @param unknown
    */
-  public codeMapReplace(str: string, ignoreRanges: IntervalArray): string {
+  public codeMapReplace(str: string, ignoreRanges: IntervalArray, unknown?: string): string {
     let index = 0;
     let result = '';
     for (let i = 0; i < str.length; i++) {
@@ -58,7 +57,7 @@ export class Transliterate {
           s = char;
           break;
         default:
-          s = this.map[char] || this.options.unknown!;
+          s = this.map[char] || unknown!;
       }
       // fix Chinese spacing issue
       if (isChinese(char) && this.map[char]) {
@@ -165,7 +164,7 @@ export class Transliterate {
       ignoreRanges = findStrOccurrences(source, opt.ignore);
     }
 
-    str = this.codeMapReplace(str, ignoreRanges);
+    str = this.codeMapReplace(str, ignoreRanges, opt.unknown);
 
     // trim spaces at the beginning and ending of the string
     if (opt.trim) {
