@@ -323,9 +323,9 @@ Currently, `transliteration` only supports 1 to 1 code map (from Unicode to Lati
 
 * __Thai:__ Currently it is not working. If you know how to fix it, please comment on [this](https://github.com/dzcpy/transliteration/issues/67) issue.
 
-* __Cylic:__ Cylic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
+* __Cyrillic:__ Cyrillic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
 
-If you there's any other issues, please raise a ticket.
+If you find any other issues, please raise a ticket.
 
 ### License
 
