@@ -8,6 +8,7 @@ import { OptionReplaceCombined, OptionsTransliterate } from '../../src/types';
 const execPath = 'npx ts-node src/cli/transliterate.ts';
 const cmdOptions = {
   cwd: join(__dirname, '../../'),
+  shell: true,
   stripFinalNewline: false
 };
 
@@ -23,7 +24,7 @@ const tr = (str: string, options: OptionsTransliterate = {}): string => {
     args += options.replace.map((s: [string | RegExp, string]): string => ` -r "${escape(s[0] as string)}=${escape(s[1])}"`).join('');
   }
   const [trailingSpaces] = str.match(/[\r\n]+$/) || [''];
-  const { stdout } = execa.shellSync(`${execPath} "${str}"${args}`, cmdOptions);
+  const { stdout } = execa.sync(`${execPath} "${str}"${args}`, cmdOptions);
   return stdout.replace(/[\r\n]+$/, '') + trailingSpaces;
 }
 
@@ -107,14 +108,14 @@ test('#transliterate()', tt => {
   test('- Stream input', t => {
     const filename = join(tmpdir(), Math.floor(Math.random() * 10000000).toString(16) + '.txt');
     writeFileSync(filename, '你好，世界！');
-    const { stdout } = execa.shellSync(`${execPath} -S < ${filename}`, { ...cmdOptions });
+    const { stdout } = execa.sync(`${execPath} -S < ${filename}`, { ...cmdOptions });
     unlinkSync(filename);
-    t.equal(stdout, "Ni Hao, Shi Jie!");
+    t.equal(stdout, "Ni Hao, Shi Jie!\n");
     t.end();
   });
 
   test('- Invalid argument', t => {
-    const { stderr } = execa.shellSync(`${execPath} -abc`, { ...cmdOptions });
+    const { stderr } = execa.sync(`${execPath} -abc`, { ...cmdOptions });
     t.true(/Invalid argument\. Please type '.*? --help' for help\./.test(stderr));
     t.end();
   });
