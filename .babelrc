@@ -15,6 +15,7 @@
               ]
           },
           "useBuiltIns": "usage",
+          "corejs": "3.1.4",
           "debug": false,
           "modules": false
       }]
