@@ -3,6 +3,7 @@ import { terser } from "rollup-plugin-terser";
 import typescript from 'rollup-plugin-typescript2';
 import hashbang from 'rollup-plugin-hashbang';
 import sourceMaps from 'rollup-plugin-sourcemaps';
+import commonjs from 'rollup-plugin-commonjs';
 import pkg from './package.json';
 
 const typescriptOptions = {
@@ -27,6 +28,7 @@ export default [
     input: 'src/browser/index.ts',
     output: { name: 'window', file: pkg.browser, format: 'umd', sourcemap: true, extend: true },
     plugins: [
+      commonjs(),
       typescript(typescriptOptions),
       babel(babelOptions),
       terser(),
@@ -38,6 +40,7 @@ export default [
     input: 'src/browser/index.ts',
     output: { file: pkg.module, format: 'esm', sourcemap: true },
     plugins: [
+      commonjs(),
       typescript(typescriptOptions),
       terser(),
       sourceMaps(),
@@ -48,6 +51,7 @@ export default [
     input: 'src/cli/transliterate.ts',
     output: { file: pkg.bin.transliterate, format: 'cjs' },
     plugins: [
+      commonjs(),
       typescript(typescriptOptions),
       terser(),
       hashbang(),
@@ -58,6 +62,7 @@ export default [
     input: 'src/cli/slugify.ts',
     output: { file: pkg.bin.slugify, format: 'cjs' },
     plugins: [
+      commonjs(),
       typescript(typescriptOptions),
       terser(),
       hashbang(),
