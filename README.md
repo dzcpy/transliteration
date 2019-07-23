@@ -119,7 +119,7 @@ __Options:__ (optional)
 
 ### transliterate.config([optionsObj], [reset = false])
 
-Bind options object globally so any following calls will be using `optoinsObj` as default. If `optionsObj` is omitted, it will return current default options object.
+Bind options object globally so any following calls will be using `optionsObj` as default. If `optionsObj` is omitted, it will return current default options object.
 
 ```javascript
 import { transliterate as tr } from 'transliteration';
@@ -215,7 +215,7 @@ slugify('你好，世界', { ignore: ['你好'] });
 
 ### slugify.config([optionsObj], [reset = false])
 
-Bind options globally so any following calls will be using `optoinsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+Bind options globally so any following calls will be using `optionsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
 
 ```javascript
 slugify.config({ lowercase: false, separator: '_' });
