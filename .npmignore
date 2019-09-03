@@ -5,3 +5,4 @@ scripts/
 test/
 ts*.json
 rollup.config.js
+renovate.json
