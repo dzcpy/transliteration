@@ -62,7 +62,7 @@
     "@types/yargs": "13.0.2",
     "codecov": "3.6.0",
     "core-js": "3.2.1",
-    "coveralls": "3.0.6",
+    "coveralls": "3.0.9",
     "execa": "2.0.4",
     "json5": "2.1.0",
     "nyc": "14.1.1",
