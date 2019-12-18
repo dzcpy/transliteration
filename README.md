@@ -15,9 +15,7 @@ Universal Unicode to Latin transliteration + slugify module. Works on all platfo
 
 ## Compatibility / Browser support
 
-IE 9+ and all modern browsers.
-
-Other platforms includes Node.js, Web Worker, ReactNative and CLI
+IE 9+ and all modern browsers, Node.js, Web Worker, ReactNative and CLI
 
 ## Install
 
@@ -27,7 +25,7 @@ Other platforms includes Node.js, Web Worker, ReactNative and CLI
 npm install transliteration --save
 ```
 
-If you are using Typescript, please do not install `@types/transliteration`. Since `v2` type definition files are built-in.
+If you are using Typescript, please do not install `@types/transliteration`. Since in verson `2.x`, type definition files are built-in within this project.
 
 ```javascript
 import { transliterate as tr, slugify } from 'transliteration';
@@ -42,7 +40,7 @@ slugify('你好, world!');
 
 ```html
 <!-- UMD build -->
-<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.1.4/dist/browser/bundle.umd.min.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.1.8/dist/browser/bundle.umd.min.js"></script>
 <script>
   console.log(transliterate('你好'));
 </script>
@@ -51,20 +49,22 @@ slugify('你好, world!');
 ```html
 <!-- ESM build -->
 <script type="module">
-  import { transliterate } from 'https://cdn.jsdelivr.net/npm/transliteration@2.1.4/dist/browser/bundle.esm.min.js';
+  import { transliterate } from 'https://cdn.jsdelivr.net/npm/transliteration@2.1.8/dist/browser/bundle.esm.min.js';
   console.log(transliterate('你好'));
 </script>
 ```
 
 `transliteration` can be loaded as an AMD / CommonJS module, or as global variables (UMD).
 
-When using it in the browser, by default it creates global variables under `window` object:
+When you use it in the browser, by default it creates three global variables under `window` object:
 
 ```javascript
 transliterate('你好, World');
 // window.transliterate
 slugify('Hello, 世界');
 // window.slugify
+transl('Hola, mundo'); // For backward compatibility only, will be removed in next major version
+// window.transl
 ```
 
 ### CLI
@@ -81,7 +81,7 @@ echo 你好 | slugify -S # ni-hao
 
 ### transliterate(str, [options])
 
-Transliterates the string `str` and return the result. Characters which this module doesn't recognise will be defaulted to the placeholder from the `unknown` argument in the configuration option, defaults to `''`.
+Transliterate the string `str` and return the result. Characters which this module can't handle will default to the placeholder character(s) given in the `unknown` option. If it's not provided, they will be removed.
 
 __Options:__ (optional)
 
@@ -119,7 +119,7 @@ __Options:__ (optional)
 
 ### transliterate.config([optionsObj], [reset = false])
 
-Bind options object globally so any following calls will be using `optionsObj` as default. If `optionsObj` is omitted, it will return current default options object.
+Bind option object globally so any following calls will use `optionsObj` by default. If `optionsObj` is not given, it will return current default option object.
 
 ```javascript
 import { transliterate as tr } from 'transliteration';
@@ -144,7 +144,7 @@ console.log(tr.config());
 
 ### slugify(str, [options])
 
-Convert Unicode `str` to a slug string for making sure it is safe to be used in an URL as a file name.
+Convert Unicode `str` into a slug string, making sure it is safe to be used in an URL or in a file name.
 
 __Options:__ (optional)
 
@@ -193,7 +193,7 @@ __Options:__ (optional)
   separator?: string;
   /**
    * Allowed characters.
-   * When `allowedChars` is set to `'abc'`, then only characters which match `/[abc]/g` will be preserved.
+   * When `allowedChars` is set to `'abc'`, only characters which match `/[abc]/g` will be preserved.
    * Other characters will all be converted to `separator`
    * @default 'a-zA-Z0-9-_.~''
    */
@@ -215,7 +215,7 @@ slugify('你好，世界', { ignore: ['你好'] });
 
 ### slugify.config([optionsObj], [reset = false])
 
-Bind options globally so any following calls will be using `optionsObj` by default. If `optionsObj` argument is omitted, it will return current default option object.
+Bind option object globally so any following calls will use `optionsObj` by default. If `optionsObj` is not given, it will return current default option object.
 
 ```javascript
 slugify.config({ lowercase: false, separator: '_' });
@@ -283,7 +283,7 @@ Examples:
 
 ### 2.1.0
 
-* Added `transliterate` as global variable for browser builds. Keep `transl` for backward compatibility.
+* Add `transliterate` as a global variable for browser builds. Keep `transl` for backward compatibility.
 
 ### 2.0.0
 
