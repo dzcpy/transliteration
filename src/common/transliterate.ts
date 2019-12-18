@@ -45,7 +45,7 @@ export class Transliterate {
     let index = 0;
     let result = '';
     for (let i = 0; i < str.length; i++) {
-      // Get current character, take surrogates in consideration
+      // Get current character, taking surrogates in consideration
       const char = /[\uD800-\uDBFF]/.test(str[i]) && /[\uDC00-\uDFFF]/.test(str[i + 1]) ?
         str[i] + str[i + 1] : str[i];
       let s: string;
@@ -151,7 +151,7 @@ export class Transliterate {
     const opt: OptionsTransliterate = deepClone({ ...this.options, ...options});
 
     // force convert to string
-    let str = String(source);
+    let str = typeof source === 'string' ? source : String(source);
 
     const replaceOption: OptionReplaceArray = this.formatReplaceOption(opt.replace as OptionReplaceCombined);
     if (replaceOption.length) {
