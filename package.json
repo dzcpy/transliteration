@@ -52,11 +52,11 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
+    "@babel/core": "7.7.7",
     "@babel/plugin-proposal-class-properties": "7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "7.7.4",
-    "@babel/preset-env": "7.7.6",
-    "@babel/preset-typescript": "7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.7.7",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-typescript": "7.7.7",
     "@types/execa": "2.0.0",
     "@types/tape": "4.2.33",
     "@types/yargs": "13.0.3",
