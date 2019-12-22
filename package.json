@@ -67,7 +67,7 @@
     "json5": "2.1.1",
     "nyc": "14.1.1",
     "rimraf": "3.0.0",
-    "rollup": "1.27.13",
+    "rollup": "1.27.14",
     "rollup-plugin-babel": "5.0.0-alpha.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-hashbang": "2.2.2",
