@@ -52,18 +52,18 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
+    "@babel/core": "7.7.7",
     "@babel/plugin-proposal-class-properties": "7.7.4",
-    "@babel/plugin-proposal-object-rest-spread": "7.7.4",
-    "@babel/preset-env": "7.7.6",
-    "@babel/preset-typescript": "7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.7.7",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-typescript": "7.7.7",
     "@types/execa": "2.0.0",
     "@types/tape": "4.2.33",
     "@types/yargs": "13.0.3",
     "codecov": "3.6.1",
-    "core-js": "3.5.0",
+    "core-js": "3.6.0",
     "coveralls": "3.0.9",
-    "execa": "3.4.0",
+    "execa": "4.0.0",
     "json5": "2.1.1",
     "nyc": "14.1.1",
     "rimraf": "3.0.0",
@@ -81,7 +81,7 @@
     "ts-node": "8.5.4",
     "tslint": "5.20.1",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.7.3"
+    "typescript": "3.7.4"
   },
   "dependencies": {
     "yargs": "^15.0.2"
