@@ -61,7 +61,7 @@
     "@types/tape": "4.2.33",
     "@types/yargs": "13.0.3",
     "codecov": "3.6.1",
-    "core-js": "3.6.0",
+    "core-js": "3.6.2",
     "coveralls": "3.0.9",
     "execa": "4.0.0",
     "json5": "2.1.1",
