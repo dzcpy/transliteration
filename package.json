@@ -43,7 +43,7 @@
     "unicode",
     "unidecode"
   ],
-  "author": "Andy Hu",
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dzcpy/transliteration/issues"
