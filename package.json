@@ -52,10 +52,10 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.8.3",
+    "@babel/core": "7.8.4",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "7.8.3",
-    "@babel/preset-env": "7.8.3",
+    "@babel/preset-env": "7.8.4",
     "@babel/preset-typescript": "7.8.3",
     "@types/execa": "2.0.0",
     "@types/tape": "4.2.33",
