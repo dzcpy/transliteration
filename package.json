@@ -60,7 +60,7 @@
     "@types/execa": "2.0.0",
     "@types/tape": "4.2.33",
     "@types/yargs": "15.0.2",
-    "codecov": "3.6.4",
+    "codecov": "3.6.5",
     "core-js": "3.6.4",
     "coveralls": "3.0.9",
     "execa": "4.0.0",
