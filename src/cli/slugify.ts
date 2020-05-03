@@ -60,10 +60,14 @@ const { argv } = yargs
   .option('h', {
     alias: 'help',
   })
-  .example('$0 "你好, world!" -r 好=good -r "world=Shi Jie"',
-    'Replace `,` into `!` and `world` into `shijie`.\nResult: ni-good-shi-jie')
-  .example('$0 "你好，世界!" -i 你好 -i ，',
-    'Ignore `你好` and `，`.\nResult: 你好，shi-jie')
+  .example(
+    '$0 "你好, world!" -r 好=good -r "world=Shi Jie"',
+    'Replace `,` into `!` and `world` into `shijie`.\nResult: ni-good-shi-jie',
+  )
+  .example(
+    '$0 "你好，世界!" -i 你好 -i ，',
+    'Ignore `你好` and `，`.\nResult: 你好，shi-jie',
+  )
   .wrap(100);
 
 options.lowercase = !!argv.l;
@@ -83,7 +87,9 @@ if (argv.stdin) {
   process.stdin.on('end', () => console.log(''));
 } else {
   if (argv._.length !== 1) {
-    console.error(`Invalid argument. Please type '${basename(argv.$0)} --help' for help.`);
+    console.error(
+      `Invalid argument. Please type '${basename(argv.$0)} --help' for help.`,
+    );
   } else {
     console.log(slugify(argv._[0], options));
   }

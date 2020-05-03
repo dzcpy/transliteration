@@ -2,7 +2,9 @@ import { Charmap } from '../../data/charmap';
 
 export type OptionReplaceArrayItem = [string | RegExp, string];
 export type OptionReplaceArray = OptionReplaceArrayItem[];
-export interface OptionReplaceObject { [from: string]: string };
+export interface OptionReplaceObject {
+  [from: string]: string;
+}
 export type OptionReplaceCombined = OptionReplaceArray | OptionReplaceObject;
 
 export interface OptionsTransliterate {
@@ -33,7 +35,7 @@ export interface OptionsTransliterate {
    * @default ''
    */
   unknown?: string;
-};
+}
 
 export interface OptionsSlugify extends OptionsTransliterate {
   /**
@@ -58,11 +60,11 @@ export interface OptionsSlugify extends OptionsTransliterate {
    * @default 'a-zA-Z0-9-_.~''
    */
   allowedChars?: string;
-};
+}
 
 export type Options = OptionsTransliterate | OptionsSlugify;
 
-export type IntervalArray = Array<[number, number]>;
+export type IntervalArray = [number, number][];
 
 interface TransliterationFunction<T> {
   (source: string, options?: T): string;
@@ -85,7 +87,9 @@ interface TransliterationFunction<T> {
   noConflict?: () => TransliterationFunction<T>;
 }
 
-export type TransliterateFunction = TransliterationFunction<OptionsTransliterate>;
+export type TransliterateFunction = TransliterationFunction<
+  OptionsTransliterate
+>;
 
 export type SlugifyFunction = TransliterationFunction<OptionsSlugify>;
 

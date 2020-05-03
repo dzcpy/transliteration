@@ -3,7 +3,9 @@ import { Transliterate } from '../common/transliterate';
 import { SlugifyFunction, TransliterateFunction } from '../types';
 
 const t = new Transliterate();
-export const transliterate: TransliterateFunction = t.transliterate.bind(t) as TransliterateFunction;
+export const transliterate: TransliterateFunction = t.transliterate.bind(
+  t,
+) as TransliterateFunction;
 transliterate.config = t.config.bind(t);
 transliterate.setData = t.setData.bind(t);
 

@@ -1,5 +1,8 @@
 import { OptionsSlugify } from '../types';
-import { defaultOptions as defaultOptionsTransliterate, Transliterate } from './transliterate';
+import {
+  defaultOptions as defaultOptionsTransliterate,
+  Transliterate,
+} from './transliterate';
 import { deepClone, escapeRegExp, regexpReplaceCustom } from './utils';
 
 // Slugify
@@ -37,14 +40,19 @@ export class Slugify extends Transliterate {
    */
   public slugify(str: string, options?: OptionsSlugify): string {
     options = typeof options === 'object' ? options : {};
-    const opt: OptionsSlugify = deepClone({ ...this.options, ...options});
+    const opt: OptionsSlugify = deepClone({ ...this.options, ...options });
 
     // remove leading and trailing separators
     const sep: string = escapeRegExp(opt.separator);
 
     let slug: string = this.transliterate(str, opt);
 
-    slug = regexpReplaceCustom(slug, RegExp(`[^${opt.allowedChars}]+`, 'g'), opt.separator!, opt.ignore!);
+    slug = regexpReplaceCustom(
+      slug,
+      RegExp(`[^${opt.allowedChars}]+`, 'g'),
+      opt.separator!,
+      opt.ignore!,
+    );
     slug = slug.replace(RegExp(`^${sep}+|${sep}$`, 'g'), '');
 
     if (opt.lowercase) {

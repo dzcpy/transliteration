@@ -1,4 +1,4 @@
-import { OptionReplaceArray, OptionReplaceArrayItem } from "../types";
+import { OptionReplaceArray, OptionReplaceArrayItem } from '../types';
 
 /**
  * Temporary replace token for CLI replace option
@@ -10,7 +10,9 @@ export const substituteCLIReplace = '__REPLACE_SUBSTITUTE__';
  * @param option the individual `replace` option provided by the CLI command
  * @example 'x=y'
  */
-export const parseReplaceOptionItem = (option: string): OptionReplaceArrayItem => {
+export const parseReplaceOptionItem = (
+  option: string,
+): OptionReplaceArrayItem => {
   let substitute: string = substituteCLIReplace;
   let result: string[];
   // make sure source string doesn't have the substitute string
@@ -20,11 +22,13 @@ export const parseReplaceOptionItem = (option: string): OptionReplaceArrayItem =
   // escape for \\=
   if (option.match(/[^\\]\\\\=/)) {
     option = option.replace(/([^\\])\\\\=/g, '$1\\=');
-  // escape for \=
+    // escape for \=
   } else if (option.match(/[^\\]\\=/)) {
     option = option.replace(/([^\\])\\=/g, `$1${substitute}`);
   }
-  result = option.split('=').map(value => value.replace(new RegExp(substitute, 'g'), '='));
+  result = option
+    .split('=')
+    .map((value) => value.replace(new RegExp(substitute, 'g'), '='));
   if (result.length !== 2) {
     result = [result.splice(0, 1)[0], result.join('=')];
   }
@@ -36,10 +40,14 @@ export const parseReplaceOptionItem = (option: string): OptionReplaceArrayItem =
  * @param option `replace` option
  * @example ['x=y', 'z=a']
  */
-export const parseReplaceOption = (argvReplaceOption: string[]): OptionReplaceArray => {
+export const parseReplaceOption = (
+  argvReplaceOption: string[],
+): OptionReplaceArray => {
   const replaceOption: OptionReplaceArray = [] as OptionReplaceArray;
   for (let i = 0; i < argvReplaceOption.length; i++) {
-    replaceOption.push([...parseReplaceOptionItem(argvReplaceOption[i])] as OptionReplaceArrayItem);
+    replaceOption.push([
+      ...parseReplaceOptionItem(argvReplaceOption[i]),
+    ] as OptionReplaceArrayItem);
   }
   return replaceOption;
 };

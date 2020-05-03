@@ -6,12 +6,12 @@ import { IntervalArray } from '../types';
  */
 export function escapeRegExp(str?: string): string {
   return (str || '').replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-};
+}
 
 export function isChinese(char: string): boolean {
   const c = char.charCodeAt(0);
-  return c >= 0x4e00 && c <= 0x9fff || c >= 0xf900 && c <= 0xfaff;
-};
+  return (c >= 0x4e00 && c <= 0x9fff) || (c >= 0xf900 && c <= 0xfaff);
+}
 
 /**
  * Deep clone a variable
@@ -26,14 +26,14 @@ export function deepClone(obj: any): any {
         clonedArr[i] = deepClone(obj[i]);
       }
       return clonedArr;
-    // case obj instanceof Date:
-    //   return new Date(obj.valueOf());
+    case obj instanceof Date:
+      return new Date(obj.valueOf());
     case obj instanceof RegExp:
       return new RegExp(obj.source, obj.flags);
     case obj instanceof Object:
       const clonedObj: any = {};
       for (const key in obj) {
-         /* istanbul ignore else */
+        /* istanbul ignore else */
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
           clonedObj[key] = deepClone(obj[key]);
         }
@@ -42,7 +42,7 @@ export function deepClone(obj: any): any {
     default:
       return obj;
   }
-};
+}
 
 /**
  * Find all occurrences of a list of strings and merge the result in an interval array
@@ -51,7 +51,10 @@ export function deepClone(obj: any): any {
  * @param searches Strings to search
  * @returns A list of occurrences in the format of [[from, to], [from, to]]
  */
-export function findStrOccurrences (source: string, searches: string[]): IntervalArray {
+export function findStrOccurrences(
+  source: string,
+  searches: string[],
+): IntervalArray {
   let result: IntervalArray = [];
   for (let i = 0; i < searches.length; i++) {
     const str = searches[i];
@@ -61,15 +64,25 @@ export function findStrOccurrences (source: string, searches: string[]): Interva
     }
   }
   // sort the interval array
-  const sortedResult: IntervalArray = result.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const sortedResult: IntervalArray = result.sort(
+    (a, b) => a[0] - b[0] || a[1] - b[1],
+  );
   result = [];
   let last: [number, number];
   // merge overlapped ranges
-  sortedResult.forEach(r => !last || r[0] > last[1] + 1 ? result.push(last = r) : r[1] > last[1] && (last[1] = r[1]));
+  sortedResult.forEach((r) =>
+    !last || r[0] > last[1] + 1
+      ? result.push((last = r))
+      : r[1] > last[1] && (last[1] = r[1]),
+  );
   return result;
-};
+}
 
-const enum Position { Left = -1, Middle = 0, Right = 1 };
+const enum Position {
+  Left = -1,
+  Middle = 0,
+  Right = 1,
+}
 
 /**
  * Check the position of the number of a specific range
@@ -84,7 +97,7 @@ function getPosition(num: number, range: [number, number]): Position {
       return Position.Right;
   }
   return Position.Middle;
-};
+}
 
 /**
  * Check if the given `num` is in the `rangeArr` interval array using Binary Search algorithm
@@ -103,7 +116,7 @@ export function inRange(num: number, rangeArr: IntervalArray): boolean {
       return inRange(num, rangeArr.slice(testIndex + 1));
   }
   return true;
-};
+}
 
 /**
  * Custom RegExp replace function to replace all unnecessary strings into target replacement string
@@ -112,9 +125,16 @@ export function inRange(num: number, rangeArr: IntervalArray): boolean {
  * @param replacement Replace matched RegExp with replacement value
  * @param ignored Ignore certain string values within the matched strings
  */
-export function regexpReplaceCustom(source: string, regexp: RegExp, replacement: string, ignored: string[] = []) {
+export function regexpReplaceCustom(
+  source: string,
+  regexp: RegExp,
+  replacement: string,
+  ignored: string[] = [],
+) {
   // RegExp version of ignored
-  const ignoredRegexp = ignored.length ? RegExp(ignored.map(escapeRegExp).join('|'), 'g') : null;
+  const ignoredRegexp = ignored.length
+    ? RegExp(ignored.map(escapeRegExp).join('|'), 'g')
+    : null;
   // clones regex and with g flag
   const rule = RegExp(regexp.source, regexp.flags.replace('g', '') + 'g');
   // final result
@@ -127,14 +147,17 @@ export function regexpReplaceCustom(source: string, regexp: RegExp, replacement:
     let ignoreLastIndex = 0;
     if (matchMain) {
       while (true) {
-        const matchIgnore = ignoredRegexp ? ignoredRegexp.exec(matchMain[0]) : null;
+        const matchIgnore = ignoredRegexp
+          ? ignoredRegexp.exec(matchMain[0])
+          : null;
         if (matchIgnore) {
-          ignoreResult += matchIgnore.index > ignoreLastIndex ? replacement : '';
+          ignoreResult +=
+            matchIgnore.index > ignoreLastIndex ? replacement : '';
           ignoreResult += matchIgnore[0];
           ignoreLastIndex = ignoredRegexp!.lastIndex;
-        }
-        else {
-          ignoreResult += matchMain[0].length > ignoreLastIndex ? replacement : '';
+        } else {
+          ignoreResult +=
+            matchMain[0].length > ignoreLastIndex ? replacement : '';
           break;
         }
       }
@@ -146,4 +169,4 @@ export function regexpReplaceCustom(source: string, regexp: RegExp, replacement:
     }
   }
   return result;
-};
+}
