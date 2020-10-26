@@ -12,6 +12,7 @@ export const defaultOptions: OptionsSlugify = {
   lowercase: true,
   separator: '-',
   uppercase: false,
+  fixChineseSpacing: true,
 };
 
 export class Slugify extends Transliterate {

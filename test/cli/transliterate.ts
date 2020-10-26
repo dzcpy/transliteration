@@ -74,7 +74,7 @@ test('#transliterate()', (tt) => {
       ['മലയാലമ്', 'mlyaalm'],
       //  the Malayaalam word for 'Malayaalam'
       //  Yes, if we were doing it right, that'd be 'malayaalam', not 'mlyaalm'
-      ['げんまい茶', 'genmai Cha'],
+      ['げんまい茶', 'genmaiCha'],
       //  Japanese, astonishingly unmangled.
       [`\u0800\u1400${unescape('%uD840%uDD00')}`, ''],
       // Unknown characters
@@ -89,8 +89,8 @@ test('#transliterate()', (tt) => {
   test('- With ignore option', (t) => {
     const tests: [string, string[], string][] = [
       ['Æneid', ['Æ'], 'Æneid'],
-      ['你好，世界！', ['，', '！'], 'Ni Hao， Shi Jie！'],
-      ['你好，世界！', ['你好', '！'], '你好, Shi Jie！'],
+      ['你好，世界！', ['，', '！'], 'Ni Hao，Shi Jie！'],
+      ['你好，世界！', ['你好', '！'], '你好,Shi Jie！'],
     ];
     for (const [str, ignore, result] of tests) {
       t.equal(tr(str, { ignore }), result, `${str}-->${result}`);
@@ -100,7 +100,7 @@ test('#transliterate()', (tt) => {
 
   test('- With replace option', (t) => {
     const tests: [string, string[] | object, string][] = [
-      ['你好，世界！', [['你好', 'Hola']], 'Hola, Shi Jie!'],
+      ['你好，世界！', [['你好', 'Hola']], 'Hola,Shi Jie!'],
     ];
     for (const [str, replace, result] of tests) {
       t.equal(
@@ -136,7 +136,7 @@ test('#transliterate()', (tt) => {
       ...cmdOptions,
     });
     unlinkSync(filename);
-    t.equal(stdout, 'Ni Hao, Shi Jie!\n');
+    t.equal(stdout, 'Ni Hao,Shi Jie!\n');
     t.end();
   });
 

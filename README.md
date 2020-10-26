@@ -40,7 +40,11 @@ slugify('你好, world!');
 
 ```html
 <!-- UMD build -->
-<script async defer src="https://cdn.jsdelivr.net/npm/transliteration@2.1.8/dist/browser/bundle.umd.min.js"></script>
+<script
+  async
+  defer
+  src="https://cdn.jsdelivr.net/npm/transliteration@2.1.8/dist/browser/bundle.umd.min.js"
+></script>
 <script>
   console.log(transliterate('你好'));
 </script>
@@ -83,7 +87,7 @@ echo 你好 | slugify -S # ni-hao
 
 Transliterate the string `str` and return the result. Characters which this module can't handle will default to the placeholder character(s) given in the `unknown` option. If it's not provided, they will be removed.
 
-__Options:__ (optional)
+**Options:** (optional)
 
 ```javascript
 {
@@ -114,6 +118,11 @@ __Options:__ (optional)
    * @default ''
    */
   unknown?: string;
+  /**
+   * Fix Chinese spacing. For example, `你好` is transliterated to `Ni Hao` instead of `NiHao`. If you don't need to transliterate Chinese characters, set it to false to false to improve performance.
+   * @default true
+   */
+  fixChineseSpacing?: boolean;
 }
 ```
 
@@ -129,12 +138,12 @@ tr('Γεια σας, τον κόσμο');
 // Geia sas, ton kosmo
 tr('안녕하세요, 세계');
 // annyeonghaseyo, segye
-tr('你好，世界', { replace: {你: 'You'}, ignore: ['好'] });
-// You 好, Shi Jie
+tr('你好，世界', { replace: { 你: 'You' }, ignore: ['好'] });
+// You 好,Shi Jie
 tr('你好，世界', { replace: [['你', 'You']], ignore: ['好'] });
- // You 好, Shi Jie (option in array form)
+// You 好,Shi Jie (option in array form)
 tr.config({ replace: [['你', 'You']], ignore: ['好'] });
-tr('你好，世界') // You 好, Shi Jie
+tr('你好，世界'); // You 好,Shi Jie
 console.log(tr.config());
 // { replace: [['你', 'You']], ignore: ['好'] }
 tr.config(undefined, true);
@@ -146,7 +155,7 @@ console.log(tr.config());
 
 Convert Unicode `str` into a slug string, making sure it is safe to be used in an URL or in a file name.
 
-__Options:__ (optional)
+**Options:** (optional)
 
 ```javascript
   /**
@@ -198,6 +207,10 @@ __Options:__ (optional)
    * @default 'a-zA-Z0-9-_.~''
    */
   allowedChars?: string;
+  /**
+   * Fix Chinese spacing. For example, `你好` is transliterated to `Ni Hao` instead of `NiHao`. If you don't need to transliterate Chinese characters, set it to false to false to improve performance.
+   */
+  fixChineseSpacing?: boolean;
 ```
 
 ```javascript
@@ -205,9 +218,18 @@ slugify('你好，世界');
 // ni-hao-shi-jie
 slugify('你好，世界', { lowercase: false, separator: '_' });
 // Ni_Hao_Shi_Jie
-slugify('你好，世界', { replace: {你好: 'Hello', 世界: 'world'}, separator: '_' });
+slugify('你好，世界', {
+  replace: { 你好: 'Hello', 世界: 'world' },
+  separator: '_',
+});
 // hello_world
-slugify('你好，世界', { replace: [['你好', 'Hello'], ['世界', 'world']], separator: '_' }); // replace option in array form)
+slugify('你好，世界', {
+  replace: [
+    ['你好', 'Hello'],
+    ['世界', 'world'],
+  ],
+  separator: '_',
+}); // replace option in array form)
 // hello_world
 slugify('你好，世界', { ignore: ['你好'] });
 // 你好shi-jie
@@ -231,7 +253,6 @@ console.log(slugify.config());
 slugify.config(undefined, true);
 console.log(slugify.config());
 // {}
-
 ```
 
 ### CLI Usage
@@ -279,51 +300,17 @@ Examples:
 
 ```
 
-## Change log
-
-### 2.1.0
-
-* Add `transliterate` as a global variable for browser builds. Keep `transl` for backward compatibility.
-
-### 2.0.0
-
-* **CDN file structure changed**: [https://www.jsdelivr.com/package/npm/transliteration](https://www.jsdelivr.com/package/npm/transliteration)
-* The entire module had been refactored in Typescript, with big performance improvements as well as a reduced package size.
-* Better code quality. 100% unit tested.
-* `bower` support was dropped. Please use CDN or `webpack`/`rollup`.
-* As according to RFC 3986, more characters(`/a-zA-Z0-9-_.~/`) are kept as allowed characters in the result for `slugify`, and it is configurable.
-* Added `uppercase` as an option for `slugify`, if is set to `true` then the generated slug will be converted to uppercase letters.
-* Unknown characters will be transliterated as empty string by default, instead of a meaningless `[?]`.
-
-
-### 1.6.6
-
-* Added support for `TypeScript`. #77
-
-### 1.5.0
-
-* Minimum node requirement: 6.0+
-
-### 1.0.0
-
-* Code had been entirely refactored since version 1.0.0. Be careful when you plan to upgrade from v0.1.x or v0.2.x to v1.0.x
-* The `options` parameter of `transliterate` now is an `Object` (In 0.1.x it's a string `unknown`).
-* Added `transliterate.config` and `slugify.config`.
-* Unknown string will be transliterated as `[?]` instead of `?`.
-* In the browser, global variables have been changed to `window.transl` and `windnow.slugify`. Other global variables are removed.
-
-
 ## Caveats
 
 Currently, `transliteration` only supports 1 to 1 code map (from Unicode to Latin). It is the simplest way to implement, but there are some limitations when dealing with polyphonic characters. It does not work well with all languages, please test all possible situations before using it. Some known issues are:
 
-* __Chinese:__ Polyphonic characters are not always transliterated correctly. Alternative: `pinyin`.
+- **Chinese:** Polyphonic characters are not always transliterated correctly. Alternative: `pinyin`.
 
-* __Japanese:__ Most Japanese Kanji characters are transliterated into Chinese Pinyin because of the overlapped code map in Unicode. Also there are many polyphonic characters in Japanese which makes it impossible to transliterate Japanese Kanji correctly without tokenizing the sentence. Consider using `kuroshiro` for a better Kanji -> Romaji conversion.
+- **Japanese:** Most Japanese Kanji characters are transliterated into Chinese Pinyin because of the overlapped code map in Unicode. Also there are many polyphonic characters in Japanese which makes it impossible to transliterate Japanese Kanji correctly without tokenizing the sentence. Consider using `kuroshiro` for a better Kanji -> Romaji conversion.
 
-* __Thai:__ Currently it is not working. If you know how to fix it, please comment on [this](https://github.com/dzcpy/transliteration/issues/67) issue.
+- **Thai:** Currently it is not working. If you know how to fix it, please comment on [this](https://github.com/dzcpy/transliteration/issues/67) issue.
 
-* __Cyrillic:__ Cyrillic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
+- **Cyrillic:** Cyrillic characters are overlapped between a few languages. The result might be inaccurate in some specific languages, for example Bulgarian.
 
 If you find any other issues, please raise a ticket.
 

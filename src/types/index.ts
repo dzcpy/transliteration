@@ -35,6 +35,11 @@ export interface OptionsTransliterate {
    * @default ''
    */
   unknown?: string;
+  /**
+   * Fix Chinese spacing. For example, `你好` is transliterated to `Ni Hao` instead of `NiHao`. If you don't need to transliterate Chinese characters, set it to false to false to improve performance.
+   * @default true
+   */
+  fixChineseSpacing?: boolean;
 }
 
 export interface OptionsSlugify extends OptionsTransliterate {
@@ -60,6 +65,10 @@ export interface OptionsSlugify extends OptionsTransliterate {
    * @default 'a-zA-Z0-9-_.~''
    */
   allowedChars?: string;
+  /**
+   * Fix Chinese spacing. For example, `你好` is transliterated to `Ni Hao` instead of `NiHao`. If you don't need to transliterate Chinese characters, set it to false to false to improve performance.
+   */
+  fixChineseSpacing?: boolean;
 }
 
 export type Options = OptionsTransliterate | OptionsSlugify;
