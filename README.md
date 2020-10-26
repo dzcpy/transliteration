@@ -283,7 +283,7 @@ Usage: slugify <unicode> [options]
 Options:
   --version        Show version number                                                     [boolean]
   -U, --unknown    Placeholder for unknown characters                         [string] [default: ""]
-  -l, --lowercase  Peturns result in lowercase                             [boolean] [default: true]
+  -l, --lowercase  Returns result in lowercase                             [boolean] [default: true]
   -u, --uppercase  Returns result in uppercase                            [boolean] [default: false]
   -s, --separator  Separator of the slug                                     [string] [default: "-"]
   -r, --replace    Custom string replacement                                   [array] [default: []]

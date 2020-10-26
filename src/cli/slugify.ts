@@ -23,7 +23,7 @@ const { argv } = yargs
   .option('l', {
     alias: 'lowercase',
     default: options.lowercase,
-    describe: 'Peturns result in lowercase',
+    describe: 'Returns result in lowercase',
     type: 'boolean',
   })
   .option('u', {
