@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "2.3.1",
+  "version": "2.3.3",
   "description": "Unicode to ACSII transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI.",
   "main": "dist/node/src/node/index.js",
   "module": "dist/browser/bundle.esm.min.js",

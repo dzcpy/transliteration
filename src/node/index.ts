@@ -13,5 +13,3 @@ const s = new Slugify();
 export const slugify: SlugifyFunction = s.slugify.bind(s) as SlugifyFunction;
 slugify.config = s.config.bind(s);
 slugify.setData = s.setData.bind(s);
-
-export * from '../types';
