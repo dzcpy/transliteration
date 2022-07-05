@@ -44,7 +44,7 @@ export class Slugify extends Transliterate {
     const opt: OptionsSlugify = deepClone({ ...this.options, ...options });
 
     // remove leading and trailing separators
-    const sep: string = escapeRegExp(opt.separator);
+    const sep: string = opt.separator ? escapeRegExp(opt.separator) : '';
 
     let slug: string = this.transliterate(str, opt);
 
@@ -54,7 +54,9 @@ export class Slugify extends Transliterate {
       opt.separator!,
       opt.ignore!,
     );
-    slug = slug.replace(RegExp(`^${sep}+|${sep}$`, 'g'), '');
+    if (sep) {
+      slug = slug.replace(RegExp(`^${sep}+|${sep}$`, 'g'), '');
+    }
 
     if (opt.lowercase) {
       slug = slug.toLowerCase();
