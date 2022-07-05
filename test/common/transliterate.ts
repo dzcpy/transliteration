@@ -15,7 +15,7 @@ import { charmap } from './../../data/charmap';
 
 test('#transliterate()', (tt) => {
   test('- Purity tests', (t) => {
-    const tests = [];
+    const tests: string[] = [];
     for (let i = 1; tests.length < 127; ) {
       tests.push(String.fromCharCode(i++));
     }
@@ -208,9 +208,8 @@ test('#transliterate.setData()', (t) => {
 
 test('#formatReplaceOption', (t) => {
   const transliterate = new Transliterate();
-  const formatReplaceOption = transliterate.formatReplaceOption.bind(
-    transliterate,
-  );
+  const formatReplaceOption =
+    transliterate.formatReplaceOption.bind(transliterate);
   const optObj: OptionReplaceObject = { a: 'b', c: 'd' };
   const optArr: OptionReplaceArray = [
     ['a', 'b'],

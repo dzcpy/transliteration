@@ -1,21 +1,37 @@
-import execa from 'execa';
+import { exec, ExecException } from 'child_process';
 import { unlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import test from 'tape';
+
 import { OptionsSlugify } from '../../src/types';
 
+const execAsync = async (
+  command: string,
+): Promise<{ stdout: string; stderr: string }> =>
+  new Promise((resolve, reject) => {
+    exec(
+      command,
+      { cwd: join(__dirname, '../../') },
+      (error: ExecException | null, stdout: string, stderr: string) => {
+        if (error) {
+          reject(stderr);
+        } else {
+          resolve({ stdout, stderr });
+        }
+      },
+    );
+  });
+
 const execPath = 'npx ts-node src/cli/slugify';
-const cmdOptions = {
-  cwd: join(__dirname, '../../'),
-  shell: true,
-  stripFinalNewline: false,
-};
 
 const escape = (str: string): string =>
   str.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 
-const slugify = (str: string, options: OptionsSlugify = {}): string => {
+const slugify = async (
+  str: string,
+  options: OptionsSlugify = {},
+): Promise<string> => {
   str = escape(str);
   let args = '';
   if (Array.isArray(options.ignore)) {
@@ -41,7 +57,7 @@ const slugify = (str: string, options: OptionsSlugify = {}): string => {
     args += ` -s "${escape(options.separator)}"`;
   }
   const [trailingSpaces] = str.match(/[\r\n]+$/) || [''];
-  const { stdout } = execa.sync(`${execPath} "${str}"${args}`, cmdOptions);
+  const { stdout } = await execAsync(`${execPath} "${str}"${args}`);
   return stdout + trailingSpaces;
 };
 
@@ -104,29 +120,27 @@ test('#slugify()', (tt) => {
     ],
   ];
 
-  test('Generate slugs', (t) => {
+  test('Generate slugs', async (t) => {
     for (const [str, options, slug] of tests) {
-      t.equal(slugify(str, options), slug, `${str}-->${slug}`);
+      t.equal(await slugify(str, options), slug, `${str}-->${slug}`);
     }
     t.end();
   });
 
-  test('- Stream input', (t) => {
+  test('- Stream input', async (t) => {
     const filename = join(
       tmpdir(),
       Math.floor(Math.random() * 10000000).toString(16) + '.txt',
     );
     writeFileSync(filename, '你好，世界！');
-    const { stdout } = execa.sync(`${execPath} -S < ${filename}`, {
-      ...cmdOptions,
-    });
+    const { stdout } = await execAsync(`${execPath} -S < ${filename}`);
     unlinkSync(filename);
     t.equal(stdout, 'ni-hao-shi-jie\n');
     t.end();
   });
 
-  test('- Invalid argument', (t) => {
-    const { stderr } = execa.sync(`${execPath} -abc`, { ...cmdOptions });
+  test('- Invalid argument', async (t) => {
+    const { stderr } = await execAsync(`${execPath} -abc`);
     t.true(
       /Invalid argument\. Please type '.*? --help' for help\./.test(stderr),
     );

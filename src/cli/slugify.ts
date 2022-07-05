@@ -5,13 +5,34 @@ import yargs from 'yargs';
 import { defaultOptions } from '../common/slugify';
 import { deepClone } from '../common/utils';
 import { slugify } from '../node';
-import { OptionsSlugify } from '../types';
+import { OptionReplaceArray, OptionsSlugify } from '../types';
 import { parseReplaceOption } from './common';
 
 const STDIN_ENCODING = 'utf-8';
 const options: OptionsSlugify = deepClone(defaultOptions);
 
-const { argv } = yargs
+type ArgvType = {
+  U?: string;
+  unknown?: string;
+  l?: boolean;
+  lowercase?: boolean;
+  u?: boolean;
+  uppercase?: boolean;
+  s?: string;
+  separator?: string;
+  r?: OptionReplaceArray;
+  replace?: OptionReplaceArray;
+  i?: string[];
+  ignore?: string[];
+  S: boolean;
+  stdin: boolean;
+  h: unknown;
+  help: unknown;
+  _: (string | number)[];
+  $0: string;
+};
+
+const result = yargs
   .version()
   .usage('Usage: $0 <unicode> [options]')
   .option('U', {
@@ -70,10 +91,14 @@ const { argv } = yargs
   )
   .wrap(100);
 
+const argv: ArgvType = result.argv as any;
+
 options.lowercase = !!argv.l;
 options.uppercase = !!argv.u;
 options.separator = argv.separator as string;
-options.replace = parseReplaceOption(argv.replace as string[]);
+options.replace = parseReplaceOption(
+  (argv.replace ?? []) as unknown as string[],
+);
 options.ignore = argv.ignore as string[];
 
 if (argv.stdin) {
@@ -91,6 +116,6 @@ if (argv.stdin) {
       `Invalid argument. Please type '${basename(argv.$0)} --help' for help.`,
     );
   } else {
-    console.log(slugify(argv._[0], options));
+    console.log(slugify(String(argv._[0] ?? ''), options));
   }
 }

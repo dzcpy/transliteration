@@ -1,21 +1,36 @@
-import execa from 'execa';
+import { exec, ExecException } from 'child_process';
 import { unlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import test from 'tape';
 import { OptionReplaceCombined, OptionsTransliterate } from '../../src/types';
 
+const execAsync = async (
+  command: string,
+): Promise<{ stdout: string; stderr: string }> =>
+  new Promise((resolve, reject) => {
+    exec(
+      command,
+      { cwd: join(__dirname, '../../') },
+      (error: ExecException | null, stdout: string, stderr: string) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve({ stdout, stderr });
+        }
+      },
+    );
+  });
+
 const execPath = 'npx ts-node src/cli/transliterate.ts';
-const cmdOptions = {
-  cwd: join(__dirname, '../../'),
-  shell: true,
-  stripFinalNewline: false,
-};
 
 const escape = (str: string): string =>
   str.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 
-const tr = (str: string, options: OptionsTransliterate = {}): string => {
+const tr = async (
+  str: string,
+  options: OptionsTransliterate = {},
+): Promise<string> => {
   str = escape(str);
   let args = '';
   if (Array.isArray(options.ignore)) {
@@ -32,12 +47,12 @@ const tr = (str: string, options: OptionsTransliterate = {}): string => {
       .join('');
   }
   const [trailingSpaces] = str.match(/[\r\n]+$/) || [''];
-  const { stdout } = execa.sync(`${execPath} "${str}"${args}`, cmdOptions);
+  const { stdout } = await execAsync(`${execPath} "${str}"${args}`);
   return stdout.replace(/[\r\n]+$/, '') + trailingSpaces;
 };
 
 test('#transliterate()', (tt) => {
-  test('- Basic string tests', (t) => {
+  test('- Basic string tests', async (t) => {
     const tests: (string | number)[] = [
       '',
       1 / 10,
@@ -47,13 +62,12 @@ test('#transliterate()', (tt) => {
       'I like pie.\n',
     ];
 
-    tests.forEach((str) => {
-      t.equal(tr(str.toString()), str.toString(), str as string);
-    });
-    t.end();
+    for (const str of tests) {
+      t.equal(await tr(str.toString()), str.toString(), str as string);
+    }
   });
 
-  test('- Complex tests', (t) => {
+  test('- Complex tests', async (t) => {
     const tests: [string, string][] = [
       ['Æneid', 'AEneid'],
       ['étude', 'etude'],
@@ -81,40 +95,37 @@ test('#transliterate()', (tt) => {
     ];
 
     for (const [str, result] of tests) {
-      t.equal(tr(str), result, `${str}-->${result}`);
+      t.equal(await tr(str), result, `${str}-->${result}`);
     }
-    t.end();
   });
 
-  test('- With ignore option', (t) => {
+  test('- With ignore option', async (t) => {
     const tests: [string, string[], string][] = [
       ['Æneid', ['Æ'], 'Æneid'],
       ['你好，世界！', ['，', '！'], 'Ni Hao，Shi Jie！'],
       ['你好，世界！', ['你好', '！'], '你好,Shi Jie！'],
     ];
     for (const [str, ignore, result] of tests) {
-      t.equal(tr(str, { ignore }), result, `${str}-->${result}`);
+      t.equal(await tr(str, { ignore }), result, `${str}-->${result}`);
     }
-    t.end();
   });
 
-  test('- With replace option', (t) => {
+  test('- With replace option', async (t) => {
     const tests: [string, string[] | object, string][] = [
       ['你好，世界！', [['你好', 'Hola']], 'Hola,Shi Jie!'],
     ];
     for (const [str, replace, result] of tests) {
       t.equal(
-        tr(str, { replace: replace as OptionReplaceCombined }),
+        await tr(str, { replace: replace as OptionReplaceCombined }),
         result,
         `${str}-->${result} with ${typeof replace} option`,
       );
     }
-    t.end();
   });
 
-  test('- With replace / replaceAfter and ignore options', (t) => {
+  test('- With replace / replaceAfter and ignore options', async (t) => {
     t.equal(
-      tr('你好, 世界!', {
+      await tr('你好, 世界!', {
         replace: [
           ['你好', 'Hola'],
           ['世界', 'mundo'],
@@ -123,29 +134,24 @@ test('#transliterate()', (tt) => {
       }),
       'Hola, mundo!',
     );
-    t.end();
   });
 
-  test('- Stream input', (t) => {
+  test('- Stream input', async (t) => {
     const filename = join(
       tmpdir(),
       Math.floor(Math.random() * 10000000).toString(16) + '.txt',
     );
     writeFileSync(filename, '你好，世界！');
-    const { stdout } = execa.sync(`${execPath} -S < ${filename}`, {
-      ...cmdOptions,
-    });
+    const { stdout } = await execAsync(`${execPath} -S < ${filename}`);
     unlinkSync(filename);
     t.equal(stdout, 'Ni Hao,Shi Jie!\n');
-    t.end();
   });
 
-  test('- Invalid argument', (t) => {
-    const { stderr } = execa.sync(`${execPath} -abc`, { ...cmdOptions });
+  test('- Invalid argument', async (t) => {
+    const { stderr } = await execAsync(`${execPath} -abc`);
     t.true(
       /Invalid argument\. Please type '.*? --help' for help\./.test(stderr),
     );
-    t.end();
   });
 
   tt.end();

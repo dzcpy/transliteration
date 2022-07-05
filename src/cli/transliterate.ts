@@ -5,13 +5,30 @@ import yargs from 'yargs';
 import { defaultOptions } from '../common/transliterate';
 import { deepClone } from '../common/utils';
 import { transliterate as tr } from '../node/index';
-import { OptionsTransliterate } from '../types';
+import { OptionReplaceArray, OptionsTransliterate } from '../types';
 import { parseReplaceOption } from './common';
 
 const STDIN_ENCODING = 'utf-8';
 const options: OptionsTransliterate = deepClone(defaultOptions);
 
-const { argv } = yargs
+type ArgvType = {
+  u?: string;
+  unknown?: string;
+  s?: string;
+  separator?: string;
+  r?: OptionReplaceArray;
+  replace?: OptionReplaceArray;
+  i?: string[];
+  ignore?: string[];
+  S: boolean;
+  stdin: boolean;
+  h: unknown;
+  help: unknown;
+  _: (string | number)[];
+  $0: string;
+};
+
+const result = yargs
   .version()
   .usage('Usage: $0 <unicode> [options]')
   .option('u', {
@@ -52,8 +69,12 @@ const { argv } = yargs
   )
   .wrap(100);
 
+const argv: ArgvType = result.argv as any;
+
 options.unknown = argv.unknown as string;
-options.replace = parseReplaceOption(argv.replace as string[]);
+options.replace = parseReplaceOption(
+  (argv.replace ?? []) as unknown as string[],
+);
 options.ignore = argv.ignore as string[];
 
 if (argv.stdin) {
@@ -71,6 +92,6 @@ if (argv.stdin) {
       `Invalid argument. Please type '${basename(argv.$0)} --help' for help.`,
     );
   } else {
-    console.log(tr(argv._[0], options));
+    console.log(tr(String(argv._[0] ?? ''), options));
   }
 }
