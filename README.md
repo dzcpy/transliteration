@@ -1,8 +1,6 @@
 <p align="center"><img src="http://dzcpy.github.io/transliteration/transliteration.png" alt="Transliteration"></p>
 
 [![Build Status](https://img.shields.io/circleci/project/github/dzcpy/transliteration/master.svg)](https://circleci.com/gh/dzcpy/transliteration)
-[![Dependencies](https://img.shields.io/david/dzcpy/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/package.json)
-[![Dev Dependencies](https://img.shields.io/david/dev/dzcpy/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/package.json)
 [![Coverage Status](https://coveralls.io/repos/github/dzcpy/transliteration/badge.svg?branch=master)](https://coveralls.io/github/dzcpy/transliteration?branch=master)
 [![NPM Version](https://img.shields.io/npm/v/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
