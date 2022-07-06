@@ -1,6 +1,6 @@
 {
   "name": "transliteration",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Unicode to ACSII transliteration / slugify module for node.js, browser, Web Worker, ReactNative and CLI.",
   "main": "dist/node/src/node/index.js",
   "module": "dist/browser/bundle.esm.min.js",
@@ -20,6 +20,7 @@
     "test:cli": "ts-node node_modules/tape/bin/tape test/cli/*.ts | tap-spec",
     "prebuild": "npm run generate:data && rimraf dist",
     "build": "rollup -c rollup.config.js && rimraf .rpt2_cache && tsc",
+    "postbuild": "echo \"export * from '../types';\" >> dist/node/src/node/index.d.ts",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report -r=text-lcov | coveralls",
     "prepublish": "npm run lint && npm test && npm run build"
