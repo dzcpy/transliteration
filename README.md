@@ -6,6 +6,7 @@
 [![NPM Download](https://img.shields.io/npm/dm/transliteration.svg)](https://www.npmjs.com/package/transliteration)
 [![JSDelivr Download](https://data.jsdelivr.com/v1/package/npm/transliteration/badge)](https://www.jsdelivr.com/package/npm/transliteration)
 [![License](https://img.shields.io/npm/l/transliteration.svg)](https://github.com/dzcpy/transliteration/blob/master/LICENSE.txt)
+
 Universal Unicode to Latin transliteration + slugify module. Works on all platforms and with all major languages.
 
 ## Demo
