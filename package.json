@@ -23,7 +23,7 @@
     "postbuild": "(ver && (echo export * from '../types';>> dist/node/src/node/index.d.ts)) || (echo \"export * from '../types';\">> dist/node/src/node/index.d.ts)",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test && nyc report -r=text-lcov | coveralls",
-    "prepublishOnly": "npm run lint && npm test && npm run build"
+    "prepublishOnly": "yarn install && npm run lint && npm test && npm run build"
   },
   "nyc": {
     "extension": [
